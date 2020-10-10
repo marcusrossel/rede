@@ -1,0 +1,929 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2C130A332503F73D00A1ACA7 /* Shelf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C130A322503F73D00A1ACA7 /* Shelf.swift */; };
+		2C315FE9251BA4B9003E12AD /* Home.Folders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C315FE8251BA4B9003E12AD /* Home.Folders.swift */; };
+		2C362D4224FA6CF600F7AD6D /* RedeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C362D4124FA6CF600F7AD6D /* RedeApp.swift */; };
+		2C362D4424FA6CF600F7AD6D /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C362D4324FA6CF600F7AD6D /* Home.swift */; };
+		2C362D4624FA6CF800F7AD6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C362D4524FA6CF800F7AD6D /* Assets.xcassets */; };
+		2C362D5424FA6CF800F7AD6D /* RedeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C362D5324FA6CF800F7AD6D /* RedeTests.swift */; };
+		2C362D5F24FA6CF800F7AD6D /* RedeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C362D5E24FA6CF800F7AD6D /* RedeUITests.swift */; };
+		2C362D6E24FA6D8F00F7AD6D /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C362D6D24FA6D8F00F7AD6D /* Bookmark.swift */; };
+		2C362D7024FA6F6900F7AD6D /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C362D6F24FA6F6900F7AD6D /* Folder.swift */; };
+		2C37418E251D04820020FD33 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C37418D251D04820020FD33 /* Language.swift */; };
+		2C37419C251D05760020FD33 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C37419B251D05760020FD33 /* Settings.swift */; };
+		2C4CDCDE24FBBF4D0019163E /* FolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CDCDD24FBBF4D0019163E /* FolderView.swift */; };
+		2C4CDCE024FBD3330019163E /* FoldersEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4CDCDF24FBD3330019163E /* FoldersEditor.swift */; };
+		2C4CDCE224FBE1930019163E /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 2C4CDCE124FBE1930019163E /* SwiftSoup */; };
+		2C565EB5251D169D005E2B99 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C565EB4251D169D005E2B99 /* Storage.swift */; };
+		2C64C34725230B47005FB328 /* DataField in Frameworks */ = {isa = PBXBuildFile; productRef = 2C64C34625230B47005FB328 /* DataField */; };
+		2C701C1325236B4A00F8159D /* FolderEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C701C1225236B4A00F8159D /* FolderEditor.swift */; };
+		2C7CF9B724FFC9D800081C22 /* UserDefaults+Rede.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C362D7424FA73C100F7AD6D /* UserDefaults+Rede.swift */; };
+		2C7CF9B824FFCA2F00081C22 /* UserDefaults+Rede.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C362D7424FA73C100F7AD6D /* UserDefaults+Rede.swift */; };
+		2C7CF9BE24FFD40D00081C22 /* IconPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7CF9BD24FFD40D00081C22 /* IconPicker.swift */; };
+		2C86E20124FB9F0100C0A329 /* BookmarkRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C86E20024FB9F0100C0A329 /* BookmarkRow.swift */; };
+		2C86E20524FBA63600C0A329 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 2C86E20424FBA63600C0A329 /* SwiftSoup */; };
+		2CCD355D251A50F7000EA526 /* Preview Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD355C251A50F7000EA526 /* Preview Data.swift */; };
+		2CCECF6A25288D67007A992F /* SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCECF6925288D67007A992F /* SFSymbols.swift */; };
+		2CDD3B6924FA9DCF00E6161E /* ShareExtensionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDD3B6824FA9DCF00E6161E /* ShareExtensionController.swift */; };
+		2CDD3B7024FA9DCF00E6161E /* RedeShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2CDD3B6624FA9DCF00E6161E /* RedeShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2CDD3B7624FAA4D900E6161E /* ShareExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDD3B7524FAA4D900E6161E /* ShareExtensionView.swift */; };
+		2CDD3B7724FAA88600E6161E /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C362D6D24FA6D8F00F7AD6D /* Bookmark.swift */; };
+		2CDD3B7824FAA88600E6161E /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C362D6F24FA6F6900F7AD6D /* Folder.swift */; };
+		2CDD3B7F24FABD9D00E6161E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDD3B7E24FABD9D00E6161E /* SettingsView.swift */; };
+		2CECBB532503880200B126CD /* ShareExtensionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CECBB522503880200B126CD /* ShareExtensionData.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2C362D5024FA6CF800F7AD6D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C362D3624FA6CF600F7AD6D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C362D3D24FA6CF600F7AD6D;
+			remoteInfo = Rede;
+		};
+		2C362D5B24FA6CF800F7AD6D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C362D3624FA6CF600F7AD6D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C362D3D24FA6CF600F7AD6D;
+			remoteInfo = Rede;
+		};
+		2CDD3B6E24FA9DCF00E6161E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C362D3624FA6CF600F7AD6D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2CDD3B6524FA9DCF00E6161E;
+			remoteInfo = RedeShareExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2CDD3B7124FA9DCF00E6161E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2CDD3B7024FA9DCF00E6161E /* RedeShareExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2C130A322503F73D00A1ACA7 /* Shelf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shelf.swift; sourceTree = "<group>"; };
+		2C315FE8251BA4B9003E12AD /* Home.Folders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.Folders.swift; sourceTree = "<group>"; };
+		2C362D3E24FA6CF600F7AD6D /* Rede.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rede.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C362D4124FA6CF600F7AD6D /* RedeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeApp.swift; sourceTree = "<group>"; };
+		2C362D4324FA6CF600F7AD6D /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		2C362D4524FA6CF800F7AD6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2C362D4A24FA6CF800F7AD6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C362D4F24FA6CF800F7AD6D /* RedeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RedeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C362D5324FA6CF800F7AD6D /* RedeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeTests.swift; sourceTree = "<group>"; };
+		2C362D5524FA6CF800F7AD6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C362D5A24FA6CF800F7AD6D /* RedeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RedeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C362D5E24FA6CF800F7AD6D /* RedeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeUITests.swift; sourceTree = "<group>"; };
+		2C362D6024FA6CF800F7AD6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C362D6D24FA6D8F00F7AD6D /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
+		2C362D6F24FA6F6900F7AD6D /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
+		2C362D7424FA73C100F7AD6D /* UserDefaults+Rede.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Rede.swift"; sourceTree = "<group>"; };
+		2C37418D251D04820020FD33 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		2C37419B251D05760020FD33 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		2C4CDCDD24FBBF4D0019163E /* FolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderView.swift; sourceTree = "<group>"; };
+		2C4CDCDF24FBD3330019163E /* FoldersEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldersEditor.swift; sourceTree = "<group>"; };
+		2C565EB4251D169D005E2B99 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		2C701C1225236B4A00F8159D /* FolderEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderEditor.swift; sourceTree = "<group>"; };
+		2C7CF9BD24FFD40D00081C22 /* IconPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPicker.swift; sourceTree = "<group>"; };
+		2C86E20024FB9F0100C0A329 /* BookmarkRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkRow.swift; sourceTree = "<group>"; };
+		2CCD355C251A50F7000EA526 /* Preview Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Preview Data.swift"; sourceTree = "<group>"; };
+		2CCECF6925288D67007A992F /* SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
+		2CDD3B6624FA9DCF00E6161E /* RedeShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RedeShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CDD3B6824FA9DCF00E6161E /* ShareExtensionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtensionController.swift; sourceTree = "<group>"; };
+		2CDD3B6D24FA9DCF00E6161E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CDD3B7524FAA4D900E6161E /* ShareExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtensionView.swift; sourceTree = "<group>"; };
+		2CDD3B7E24FABD9D00E6161E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2CECBB522503880200B126CD /* ShareExtensionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtensionData.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2C362D3B24FA6CF600F7AD6D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C86E20524FBA63600C0A329 /* SwiftSoup in Frameworks */,
+				2C64C34725230B47005FB328 /* DataField in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C362D4C24FA6CF800F7AD6D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C362D5724FA6CF800F7AD6D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CDD3B6324FA9DCF00E6161E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C4CDCE224FBE1930019163E /* SwiftSoup in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2C130A312503F71F00A1ACA7 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				2C565EB4251D169D005E2B99 /* Storage.swift */,
+				2C130A322503F73D00A1ACA7 /* Shelf.swift */,
+				2C37419B251D05760020FD33 /* Settings.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		2C315FE6251BA484003E12AD /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				2C362D4324FA6CF600F7AD6D /* Home.swift */,
+				2C315FE8251BA4B9003E12AD /* Home.Folders.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		2C315FE7251BA49B003E12AD /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				2C315FE6251BA484003E12AD /* Home */,
+				2C315FEC251BBF1F003E12AD /* Folder */,
+				2C37418C251D040A0020FD33 /* Settings */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		2C315FEC251BBF1F003E12AD /* Folder */ = {
+			isa = PBXGroup;
+			children = (
+				2C4CDCDD24FBBF4D0019163E /* FolderView.swift */,
+				2C86E20024FB9F0100C0A329 /* BookmarkRow.swift */,
+			);
+			path = Folder;
+			sourceTree = "<group>";
+		};
+		2C362D3524FA6CF600F7AD6D = {
+			isa = PBXGroup;
+			children = (
+				2C362D4024FA6CF600F7AD6D /* Rede */,
+				2C362D5224FA6CF800F7AD6D /* RedeTests */,
+				2C362D5D24FA6CF800F7AD6D /* RedeUITests */,
+				2CDD3B6724FA9DCF00E6161E /* RedeShareExtension */,
+				2C362D3F24FA6CF600F7AD6D /* Products */,
+				2C86E20624FBA9DC00C0A329 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2C362D3F24FA6CF600F7AD6D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2C362D3E24FA6CF600F7AD6D /* Rede.app */,
+				2C362D4F24FA6CF800F7AD6D /* RedeTests.xctest */,
+				2C362D5A24FA6CF800F7AD6D /* RedeUITests.xctest */,
+				2CDD3B6624FA9DCF00E6161E /* RedeShareExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2C362D4024FA6CF600F7AD6D /* Rede */ = {
+			isa = PBXGroup;
+			children = (
+				2C362D4124FA6CF600F7AD6D /* RedeApp.swift */,
+				2C315FE7251BA49B003E12AD /* Screens */,
+				2C362D6C24FA6D6200F7AD6D /* Model */,
+				2C130A312503F71F00A1ACA7 /* Persistence */,
+				2C7CF9BC24FFCE4A00081C22 /* Extensions */,
+				2CDD3B7D24FAB65D00E6161E /* Assets */,
+			);
+			path = Rede;
+			sourceTree = "<group>";
+		};
+		2C362D5224FA6CF800F7AD6D /* RedeTests */ = {
+			isa = PBXGroup;
+			children = (
+				2C362D5324FA6CF800F7AD6D /* RedeTests.swift */,
+				2C362D5524FA6CF800F7AD6D /* Info.plist */,
+			);
+			path = RedeTests;
+			sourceTree = "<group>";
+		};
+		2C362D5D24FA6CF800F7AD6D /* RedeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2C362D5E24FA6CF800F7AD6D /* RedeUITests.swift */,
+				2C362D6024FA6CF800F7AD6D /* Info.plist */,
+			);
+			path = RedeUITests;
+			sourceTree = "<group>";
+		};
+		2C362D6C24FA6D6200F7AD6D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2C362D6D24FA6D8F00F7AD6D /* Bookmark.swift */,
+				2C362D6F24FA6F6900F7AD6D /* Folder.swift */,
+				2C37418D251D04820020FD33 /* Language.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2C37418C251D040A0020FD33 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				2CDD3B7E24FABD9D00E6161E /* SettingsView.swift */,
+				2CC091FD251E45DB007CF848 /* Folder Setup */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		2C7CF9BC24FFCE4A00081C22 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2C362D7424FA73C100F7AD6D /* UserDefaults+Rede.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2C86E20624FBA9DC00C0A329 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2CC091FD251E45DB007CF848 /* Folder Setup */ = {
+			isa = PBXGroup;
+			children = (
+				2C4CDCDF24FBD3330019163E /* FoldersEditor.swift */,
+				2C701C1225236B4A00F8159D /* FolderEditor.swift */,
+				2C7CF9BD24FFD40D00081C22 /* IconPicker.swift */,
+			);
+			path = "Folder Setup";
+			sourceTree = "<group>";
+		};
+		2CDD3B6724FA9DCF00E6161E /* RedeShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				2CDD3B7524FAA4D900E6161E /* ShareExtensionView.swift */,
+				2CDD3B6824FA9DCF00E6161E /* ShareExtensionController.swift */,
+				2CECBB522503880200B126CD /* ShareExtensionData.swift */,
+				2CDD3B6D24FA9DCF00E6161E /* Info.plist */,
+			);
+			path = RedeShareExtension;
+			sourceTree = "<group>";
+		};
+		2CDD3B7D24FAB65D00E6161E /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				2CCECF6925288D67007A992F /* SFSymbols.swift */,
+				2CCD355C251A50F7000EA526 /* Preview Data.swift */,
+				2C362D4524FA6CF800F7AD6D /* Assets.xcassets */,
+				2C362D4A24FA6CF800F7AD6D /* Info.plist */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2C362D3D24FA6CF600F7AD6D /* Rede */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C362D6324FA6CF800F7AD6D /* Build configuration list for PBXNativeTarget "Rede" */;
+			buildPhases = (
+				2C362D3A24FA6CF600F7AD6D /* Sources */,
+				2C362D3B24FA6CF600F7AD6D /* Frameworks */,
+				2C362D3C24FA6CF600F7AD6D /* Resources */,
+				2CDD3B7124FA9DCF00E6161E /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2CDD3B6F24FA9DCF00E6161E /* PBXTargetDependency */,
+			);
+			name = Rede;
+			packageProductDependencies = (
+				2C86E20424FBA63600C0A329 /* SwiftSoup */,
+				2C64C34625230B47005FB328 /* DataField */,
+			);
+			productName = Rede;
+			productReference = 2C362D3E24FA6CF600F7AD6D /* Rede.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2C362D4E24FA6CF800F7AD6D /* RedeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C362D6624FA6CF800F7AD6D /* Build configuration list for PBXNativeTarget "RedeTests" */;
+			buildPhases = (
+				2C362D4B24FA6CF800F7AD6D /* Sources */,
+				2C362D4C24FA6CF800F7AD6D /* Frameworks */,
+				2C362D4D24FA6CF800F7AD6D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2C362D5124FA6CF800F7AD6D /* PBXTargetDependency */,
+			);
+			name = RedeTests;
+			productName = RedeTests;
+			productReference = 2C362D4F24FA6CF800F7AD6D /* RedeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2C362D5924FA6CF800F7AD6D /* RedeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C362D6924FA6CF800F7AD6D /* Build configuration list for PBXNativeTarget "RedeUITests" */;
+			buildPhases = (
+				2C362D5624FA6CF800F7AD6D /* Sources */,
+				2C362D5724FA6CF800F7AD6D /* Frameworks */,
+				2C362D5824FA6CF800F7AD6D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2C362D5C24FA6CF800F7AD6D /* PBXTargetDependency */,
+			);
+			name = RedeUITests;
+			productName = RedeUITests;
+			productReference = 2C362D5A24FA6CF800F7AD6D /* RedeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		2CDD3B6524FA9DCF00E6161E /* RedeShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2CDD3B7424FA9DCF00E6161E /* Build configuration list for PBXNativeTarget "RedeShareExtension" */;
+			buildPhases = (
+				2CDD3B6224FA9DCF00E6161E /* Sources */,
+				2CDD3B6324FA9DCF00E6161E /* Frameworks */,
+				2CDD3B6424FA9DCF00E6161E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RedeShareExtension;
+			packageProductDependencies = (
+				2C4CDCE124FBE1930019163E /* SwiftSoup */,
+			);
+			productName = RedeShareExtension;
+			productReference = 2CDD3B6624FA9DCF00E6161E /* RedeShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2C362D3624FA6CF600F7AD6D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					2C362D3D24FA6CF600F7AD6D = {
+						CreatedOnToolsVersion = 12.0;
+					};
+					2C362D4E24FA6CF800F7AD6D = {
+						CreatedOnToolsVersion = 12.0;
+						TestTargetID = 2C362D3D24FA6CF600F7AD6D;
+					};
+					2C362D5924FA6CF800F7AD6D = {
+						CreatedOnToolsVersion = 12.0;
+						TestTargetID = 2C362D3D24FA6CF600F7AD6D;
+					};
+					2CDD3B6524FA9DCF00E6161E = {
+						CreatedOnToolsVersion = 12.0;
+					};
+				};
+			};
+			buildConfigurationList = 2C362D3924FA6CF600F7AD6D /* Build configuration list for PBXProject "Rede" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2C362D3524FA6CF600F7AD6D;
+			packageReferences = (
+				2C86E20324FBA63600C0A329 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				2C64C34525230B47005FB328 /* XCRemoteSwiftPackageReference "data-field" */,
+			);
+			productRefGroup = 2C362D3F24FA6CF600F7AD6D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2C362D3D24FA6CF600F7AD6D /* Rede */,
+				2C362D4E24FA6CF800F7AD6D /* RedeTests */,
+				2C362D5924FA6CF800F7AD6D /* RedeUITests */,
+				2CDD3B6524FA9DCF00E6161E /* RedeShareExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2C362D3C24FA6CF600F7AD6D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C362D4624FA6CF800F7AD6D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C362D4D24FA6CF800F7AD6D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C362D5824FA6CF800F7AD6D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CDD3B6424FA9DCF00E6161E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2C362D3A24FA6CF600F7AD6D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C701C1325236B4A00F8159D /* FolderEditor.swift in Sources */,
+				2C362D6E24FA6D8F00F7AD6D /* Bookmark.swift in Sources */,
+				2CCECF6A25288D67007A992F /* SFSymbols.swift in Sources */,
+				2C86E20124FB9F0100C0A329 /* BookmarkRow.swift in Sources */,
+				2C315FE9251BA4B9003E12AD /* Home.Folders.swift in Sources */,
+				2C37418E251D04820020FD33 /* Language.swift in Sources */,
+				2C362D4224FA6CF600F7AD6D /* RedeApp.swift in Sources */,
+				2C7CF9B824FFCA2F00081C22 /* UserDefaults+Rede.swift in Sources */,
+				2C130A332503F73D00A1ACA7 /* Shelf.swift in Sources */,
+				2C7CF9BE24FFD40D00081C22 /* IconPicker.swift in Sources */,
+				2C362D7024FA6F6900F7AD6D /* Folder.swift in Sources */,
+				2C37419C251D05760020FD33 /* Settings.swift in Sources */,
+				2CCD355D251A50F7000EA526 /* Preview Data.swift in Sources */,
+				2C4CDCDE24FBBF4D0019163E /* FolderView.swift in Sources */,
+				2C4CDCE024FBD3330019163E /* FoldersEditor.swift in Sources */,
+				2C565EB5251D169D005E2B99 /* Storage.swift in Sources */,
+				2CDD3B7F24FABD9D00E6161E /* SettingsView.swift in Sources */,
+				2C362D4424FA6CF600F7AD6D /* Home.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C362D4B24FA6CF800F7AD6D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C362D5424FA6CF800F7AD6D /* RedeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C362D5624FA6CF800F7AD6D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C362D5F24FA6CF800F7AD6D /* RedeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CDD3B6224FA9DCF00E6161E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CECBB532503880200B126CD /* ShareExtensionData.swift in Sources */,
+				2CDD3B7624FAA4D900E6161E /* ShareExtensionView.swift in Sources */,
+				2CDD3B6924FA9DCF00E6161E /* ShareExtensionController.swift in Sources */,
+				2CDD3B7724FAA88600E6161E /* Bookmark.swift in Sources */,
+				2C7CF9B724FFC9D800081C22 /* UserDefaults+Rede.swift in Sources */,
+				2CDD3B7824FAA88600E6161E /* Folder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2C362D5124FA6CF800F7AD6D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2C362D3D24FA6CF600F7AD6D /* Rede */;
+			targetProxy = 2C362D5024FA6CF800F7AD6D /* PBXContainerItemProxy */;
+		};
+		2C362D5C24FA6CF800F7AD6D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2C362D3D24FA6CF600F7AD6D /* Rede */;
+			targetProxy = 2C362D5B24FA6CF800F7AD6D /* PBXContainerItemProxy */;
+		};
+		2CDD3B6F24FA9DCF00E6161E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2CDD3B6524FA9DCF00E6161E /* RedeShareExtension */;
+			targetProxy = 2CDD3B6E24FA9DCF00E6161E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2C362D6124FA6CF800F7AD6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2C362D6224FA6CF800F7AD6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2C362D6424FA6CF800F7AD6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Rede/Rede.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Rede/Assets\"";
+				DEVELOPMENT_TEAM = ACS45765XH;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Rede/Assets/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.marcusrossel.Rede;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		2C362D6524FA6CF800F7AD6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Rede/Rede.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Rede/Assets\"";
+				DEVELOPMENT_TEAM = ACS45765XH;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Rede/Assets/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.marcusrossel.Rede;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		2C362D6724FA6CF800F7AD6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ACS45765XH;
+				INFOPLIST_FILE = RedeTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.marcusrossel.RedeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rede.app/Rede";
+			};
+			name = Debug;
+		};
+		2C362D6824FA6CF800F7AD6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ACS45765XH;
+				INFOPLIST_FILE = RedeTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.marcusrossel.RedeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rede.app/Rede";
+			};
+			name = Release;
+		};
+		2C362D6A24FA6CF800F7AD6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ACS45765XH;
+				INFOPLIST_FILE = RedeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.marcusrossel.RedeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Rede;
+			};
+			name = Debug;
+		};
+		2C362D6B24FA6CF800F7AD6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ACS45765XH;
+				INFOPLIST_FILE = RedeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.marcusrossel.RedeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Rede;
+			};
+			name = Release;
+		};
+		2CDD3B7224FA9DCF00E6161E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(EMBEDDED_CONTENT_CONTAINS_SWIFT)";
+				CODE_SIGN_ENTITLEMENTS = RedeShareExtension/RedeShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ACS45765XH;
+				INFOPLIST_FILE = RedeShareExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.marcusrossel.Rede.RedeShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		2CDD3B7324FA9DCF00E6161E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(EMBEDDED_CONTENT_CONTAINS_SWIFT)";
+				CODE_SIGN_ENTITLEMENTS = RedeShareExtension/RedeShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ACS45765XH;
+				INFOPLIST_FILE = RedeShareExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.marcusrossel.Rede.RedeShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2C362D3924FA6CF600F7AD6D /* Build configuration list for PBXProject "Rede" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C362D6124FA6CF800F7AD6D /* Debug */,
+				2C362D6224FA6CF800F7AD6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C362D6324FA6CF800F7AD6D /* Build configuration list for PBXNativeTarget "Rede" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C362D6424FA6CF800F7AD6D /* Debug */,
+				2C362D6524FA6CF800F7AD6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C362D6624FA6CF800F7AD6D /* Build configuration list for PBXNativeTarget "RedeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C362D6724FA6CF800F7AD6D /* Debug */,
+				2C362D6824FA6CF800F7AD6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C362D6924FA6CF800F7AD6D /* Build configuration list for PBXNativeTarget "RedeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C362D6A24FA6CF800F7AD6D /* Debug */,
+				2C362D6B24FA6CF800F7AD6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2CDD3B7424FA9DCF00E6161E /* Build configuration list for PBXNativeTarget "RedeShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CDD3B7224FA9DCF00E6161E /* Debug */,
+				2CDD3B7324FA9DCF00E6161E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2C64C34525230B47005FB328 /* XCRemoteSwiftPackageReference "data-field" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marcusrossel/data-field.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.2;
+			};
+		};
+		2C86E20324FBA63600C0A329 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2C4CDCE124FBE1930019163E /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C86E20324FBA63600C0A329 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+		2C64C34625230B47005FB328 /* DataField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C64C34525230B47005FB328 /* XCRemoteSwiftPackageReference "data-field" */;
+			productName = DataField;
+		};
+		2C86E20424FBA63600C0A329 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C86E20324FBA63600C0A329 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 2C362D3624FA6CF600F7AD6D /* Project object */;
+}
