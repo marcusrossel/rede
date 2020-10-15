@@ -31,12 +31,14 @@
 		2C86E20524FBA63600C0A329 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 2C86E20424FBA63600C0A329 /* SwiftSoup */; };
 		2CCD355D251A50F7000EA526 /* Preview Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCD355C251A50F7000EA526 /* Preview Data.swift */; };
 		2CCECF6A25288D67007A992F /* SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCECF6925288D67007A992F /* SFSymbols.swift */; };
+		2CD0F2B325387FA900DD4843 /* Label+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD0F2B225387FA900DD4843 /* Label+Init.swift */; };
 		2CDD3B6924FA9DCF00E6161E /* ShareExtensionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDD3B6824FA9DCF00E6161E /* ShareExtensionController.swift */; };
 		2CDD3B7024FA9DCF00E6161E /* RedeShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2CDD3B6624FA9DCF00E6161E /* RedeShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2CDD3B7624FAA4D900E6161E /* ShareExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDD3B7524FAA4D900E6161E /* ShareExtensionView.swift */; };
 		2CDD3B7724FAA88600E6161E /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C362D6D24FA6D8F00F7AD6D /* Bookmark.swift */; };
 		2CDD3B7824FAA88600E6161E /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C362D6F24FA6F6900F7AD6D /* Folder.swift */; };
 		2CDD3B7F24FABD9D00E6161E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDD3B7E24FABD9D00E6161E /* SettingsView.swift */; };
+		2CE5CBBE2538851700C9F92D /* Label+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD0F2B225387FA900DD4843 /* Label+Init.swift */; };
 		2CECBB532503880200B126CD /* ShareExtensionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CECBB522503880200B126CD /* ShareExtensionData.swift */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +107,7 @@
 		2C86E20024FB9F0100C0A329 /* BookmarkRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkRow.swift; sourceTree = "<group>"; };
 		2CCD355C251A50F7000EA526 /* Preview Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Preview Data.swift"; sourceTree = "<group>"; };
 		2CCECF6925288D67007A992F /* SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
+		2CD0F2B225387FA900DD4843 /* Label+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Label+Init.swift"; sourceTree = "<group>"; };
 		2CDD3B6624FA9DCF00E6161E /* RedeShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RedeShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CDD3B6824FA9DCF00E6161E /* ShareExtensionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtensionController.swift; sourceTree = "<group>"; };
 		2CDD3B6D24FA9DCF00E6161E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -262,6 +265,7 @@
 		2C7CF9BC24FFCE4A00081C22 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2CD0F2B225387FA900DD4843 /* Label+Init.swift */,
 				2C362D7424FA73C100F7AD6D /* UserDefaults+Rede.swift */,
 			);
 			path = Extensions;
@@ -483,6 +487,7 @@
 				2C37418E251D04820020FD33 /* Language.swift in Sources */,
 				2C362D4224FA6CF600F7AD6D /* RedeApp.swift in Sources */,
 				2C7CF9B824FFCA2F00081C22 /* UserDefaults+Rede.swift in Sources */,
+				2CD0F2B325387FA900DD4843 /* Label+Init.swift in Sources */,
 				2C130A332503F73D00A1ACA7 /* Shelf.swift in Sources */,
 				2C7CF9BE24FFD40D00081C22 /* IconPicker.swift in Sources */,
 				2C362D7024FA6F6900F7AD6D /* Folder.swift in Sources */,
@@ -517,6 +522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CECBB532503880200B126CD /* ShareExtensionData.swift in Sources */,
+				2CE5CBBE2538851700C9F92D /* Label+Init.swift in Sources */,
 				2CDD3B7624FAA4D900E6161E /* ShareExtensionView.swift in Sources */,
 				2CDD3B6924FA9DCF00E6161E /* ShareExtensionController.swift in Sources */,
 				2CDD3B7724FAA88600E6161E /* Bookmark.swift in Sources */,

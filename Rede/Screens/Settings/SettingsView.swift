@@ -17,11 +17,8 @@ struct SettingsView: View {
             Section(header: Text("Setup")) {
                 NavigationLink(destination: FoldersEditor()/*SwiftUI bug*/.environmentObject(shelf)) {
                     Label(
-                        title: { Text("Folders") },
-                        icon: {
-                            Image(systemName: "folder.fill")
-                                .foregroundColor(Color(.systemBlue))
-                        }
+                        title: "Folders",
+                        icon: (name: "folder.fill", color: Color(.systemBlue))
                     )
                 }
             }
@@ -29,20 +26,17 @@ struct SettingsView: View {
             Section(header: Text("Appearance")) {
                 Toggle(isOn: $settings.showReadBookmarks) {
                     Label(
-                        title: { Text("Show Read Bookmarks") },
-                        icon: {
-                            Image(systemName: "rectangle.fill.on.rectangle.angled.fill")
-                                .foregroundColor(Color(.systemOrange))
-                        }
+                        title: "Show Read Bookmarks",
+                        icon: (name: "rectangle.fill.on.rectangle.angled.fill", color: Color(.systemOrange))
                     )
                 }
                 
                 Picker(
                     selection: $settings.language,
-                    label: Label(title: { Text("Language") }, icon: {
-                                Image(systemName: "globe")
-                                    .foregroundColor(Color(.systemOrange))
-                            }),
+                    label: Label(
+                        title: "Language",
+                        icon: (name: "globe", color: Color(.systemOrange))
+                    ),
                     content: {
                         ForEach(Language.allCases) { language in
                             Text(language.rawValue).tag(language)
@@ -52,28 +46,29 @@ struct SettingsView: View {
                 .pickerStyle(DefaultPickerStyle())
             }
             
-            Section(header: Text("Data")) {
+            Section(header: Text("Behavior")) {
                 Toggle(isOn: $settings.automaticallyNameBookmarks) {
                     Label(
-                        title: { Text("Automatically Name Bookmarks") },
-                        icon: {
-                            Image(systemName: "pencil.and.ellipsis.rectangle")
-                                .foregroundColor(Color(.systemPink))
-                        }
+                        title: "Automatically Name Bookmarks",
+                        icon: (name: "textbox", color: Color(.systemPink))
                     )
                 }
  
+                Toggle(isOn: $settings.automaticallyMarkAsRead) {
+                    Label(
+                        title: "Automatically Mark Bookmarks As Read",
+                        icon: (name: "bookmark.fill", color: Color(.systemPink))
+                    )
+                }
+            }
+            
+            Section(header: Text("Data")) {
                 Label(
-                    title: { Text("Export Bookmarks") },
-                    icon: {
-                        Image(systemName: "tray.and.arrow.up.fill")
-                            .foregroundColor(Color(.systemPink))
-                    }
+                    title: "Export Bookmarks",
+                    icon: (name: "tray.and.arrow.up.fill", color: Color(.systemGray))
                 )
             }
         }
-        .lineLimit(1)
-        .minimumScaleFactor(0.5)
         .navigationTitle("Settings")
     }
 }

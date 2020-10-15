@@ -17,6 +17,10 @@ final class Settings: NSObject, ObservableObject, Storage {
         didSet { didSet(showReadBookmarks, for: \.showReadBookmarks) }
     }
     
+    @Published var automaticallyMarkAsRead: Bool = false {
+        didSet { didSet(automaticallyMarkAsRead, for: \.automaticallyMarkAsRead) }
+    }
+    
     @Published var automaticallyNameBookmarks: Bool = true {
         didSet { didSet(automaticallyNameBookmarks, for: \.automaticallyNameBookmarks) }
     }
@@ -26,6 +30,7 @@ final class Settings: NSObject, ObservableObject, Storage {
     enum Key: String, CaseIterable {
         case language
         case showReadBookmarks
+        case automaticallyMarkAsRead
         case automaticallyNameBookmarks
     }
     
@@ -33,6 +38,7 @@ final class Settings: NSObject, ObservableObject, Storage {
         switch path {
         case \Settings.language:                   return .language
         case \Settings.showReadBookmarks:          return .showReadBookmarks
+        case \Settings.automaticallyMarkAsRead:    return .automaticallyMarkAsRead
         case \Settings.automaticallyNameBookmarks: return .automaticallyNameBookmarks
         default:                                   fatalError()
         }
@@ -42,6 +48,7 @@ final class Settings: NSObject, ObservableObject, Storage {
         switch key {
         case .language:                   set(\.language, from: data)
         case .showReadBookmarks:          set(\.showReadBookmarks, from: data)
+        case .automaticallyMarkAsRead:    set(\.automaticallyMarkAsRead, from: data)
         case .automaticallyNameBookmarks: set(\.automaticallyNameBookmarks, from: data)
         }
     }
@@ -51,6 +58,7 @@ final class Settings: NSObject, ObservableObject, Storage {
         
         `init`(\.language)
         `init`(\.showReadBookmarks)
+        `init`(\.automaticallyMarkAsRead)
         `init`(\.automaticallyNameBookmarks)
     }
 }
