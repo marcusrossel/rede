@@ -7,34 +7,22 @@
 
 import Foundation
 
-// MARK: - Bookmark
+// MARK: Bookmark
 
 struct Bookmark: Codable, Hashable {
     
     var title: String
     let url: URL
     let additionDate: Date
-    var readDate: Date?
-    
-    var hasBeenRead: Bool {
-        get { readDate != nil }
-        set { readDate = newValue ? Date() : nil }
-    }
 
-    init(
-        title: String,
-        url: URL,
-        additionDate: Date = Date(),
-        readDate: Date? = nil
-    ) {
+    init(title: String, url: URL, additionDate: Date = Date()) {
         self.title = title
         self.url = url
         self.additionDate = additionDate
-        self.readDate = readDate
     }
 }
 
-// MARK: - Bookmark ID
+// MARK: Bookmark ID
 
 extension Bookmark: Identifiable {
     

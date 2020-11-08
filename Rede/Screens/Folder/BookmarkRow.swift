@@ -57,8 +57,8 @@ struct BookmarkRow: View {
             }
             
             Button(action: mark) {
-                Text("Mark As \(bookmark.hasBeenRead ? "Unread" : "Read")")
-                Image(systemName: bookmark.hasBeenRead ? "xmark" : "checkmark")
+                Text("Mark As \(folder.bookmarks.read.contains(bookmark) ? "Unread" : "Read")")
+                Image(systemName: folder.bookmarks.read.contains(bookmark) ? "xmark" : "checkmark")
             }
             
             Button(action: delete) {
@@ -78,19 +78,29 @@ struct BookmarkRow: View {
     }
     
     private func mark() {
-        bookmark.hasBeenRead.toggle()
+        if let index = folder.bookmarks.read.firstIndex(of: bookmark) {
+            folder.bookmarks.read.remove(at: index)
+            folder.bookmarks.unread.insert(bookmark, at: 0)
+        } else if let index = folder.bookmarks.unread.firstIndex(of: bookmark) {
+            folder.bookmarks.unread.remove(at: index)
+            folder.bookmarks.read.insert(bookmark, at: 0)
+        } else {
+            fatalError("Bookmark '\(bookmark.title)' is not in the folder '\(folder.name)'.")
+        }
     }
     
     private func delete() {
-        guard let index = folder.bookmarks.firstIndex(of: bookmark) else {
+        if let index = folder.bookmarks.read.firstIndex(of: bookmark) {
+            folder.bookmarks.read.remove(at: index)
+        } else if let index = folder.bookmarks.unread.firstIndex(of: bookmark) {
+            folder.bookmarks.unread.remove(at: index)
+        } else {
             fatalError("Bookmark '\(bookmark.title)' is not in the folder '\(folder.name)'.")
         }
-        
-        folder.bookmarks.remove(at: index)
     }
 }
 
-// MARK: - Previews
+// MARK: Previews
 
 struct BookmarkRow_Previews: PreviewProvider {
     
@@ -104,8 +114,8 @@ struct BookmarkRow_Previews: PreviewProvider {
         @State private var folder = Folder.previewData[1]
         
         var body: some View {
-            List(folder.bookmarks) { bookmark in
-                BookmarkRow(bookmark: $folder.bookmarks[0], folder: $folder)
+            List(folder.bookmarks.all) { bookmark in
+                BookmarkRow(bookmark: $folder.bookmarks.read[0], folder: $folder)
             }
             .listStyle(GroupedListStyle())
         }

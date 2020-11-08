@@ -9,7 +9,7 @@ import SwiftUI
 
 extension Label where Title == Text, Icon == AnyView {
     
-    init(title: String, icon: (name: String, color: Color)) {
+    init(title: String, icon: Rede.Icon) {
         self.init(
             title: { Text(title) },
             icon: { AnyView(Image(systemName: icon.name).foregroundColor(icon.color)) }

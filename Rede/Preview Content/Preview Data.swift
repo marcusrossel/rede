@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - URL
+// MARK: URL
 
 extension URL {
     
@@ -19,11 +19,12 @@ extension URL {
         URL(string: "https://engineering.shopify.com/blogs/engineering/what-is-nix")!,
         URL(string: "http://marcusrossel.com/2020-07-13/counting-complexity")!,
         URL(string: "https://www.youtube.com/watch?v=7pSqk-XV2QM")!,
+        URL(string: "https://www.youtube.com/watch?v=pe83T9hISoY")!,
         URL(string: "https://markmap.js.org")!
     ]
 }
 
-// MARK: - Bookmark
+// MARK: Bookmark
 
 extension Bookmark {
     
@@ -38,8 +39,7 @@ extension Bookmark {
         Bookmark(
             title: "Native Method Swizzling",
             url: URL.previewData[1],
-            additionDate: Date().addingTimeInterval(-3 * hour),
-            readDate: Date()
+            additionDate: Date().addingTimeInterval(-3 * hour)
         ),
         Bookmark(
             title: "Exceptions",
@@ -48,34 +48,35 @@ extension Bookmark {
         ),
         Bookmark(
             title: "Philosophy & Religion",
-            url: URL.previewData[3],
-            readDate: Date()
+            url: URL.previewData[3]
         ),
         Bookmark(
             title: "What is Nix?",
             url: URL.previewData[4],
-            additionDate: Date().addingTimeInterval(-100 * day),
-            readDate: Date().addingTimeInterval(-50 * day)
+            additionDate: Date().addingTimeInterval(-100 * day)
         ),
         Bookmark(
             title: "The Complexity of Counting",
             url: URL.previewData[5],
-            additionDate: Date().addingTimeInterval(-1 * hour),
-            readDate: Date().addingTimeInterval(-1 * hour)
+            additionDate: Date().addingTimeInterval(-1 * hour)
         ),
         Bookmark(
             title: "How Kodak Detected the Atomic Bomb",
             url: URL.previewData[6]
         ),
         Bookmark(
+            title: "Does Planet 9 Exist?",
+            url: URL.previewData[7]
+        ),
+        Bookmark(
             title: "markmap-lib",
-            url: URL.previewData[7],
+            url: URL.previewData[8],
             additionDate: Date().addingTimeInterval(-2 * day)
         )
     ]
 }
 
-// MARK: - Folder
+// MARK: Folder
 
 extension Folder {
     
@@ -85,43 +86,46 @@ extension Folder {
         ),
         Folder(
             name: "Programming",
-            bookmarks: Array(Bookmark.previewData[0...2]),
+            bookmarks: .init(
+                read: Array(Bookmark.previewData[0...0]),
+                unread: Array(Bookmark.previewData[1...2])
+            ),
             sorting: .manual,
-            icon: (name: "command", color: .green)
+            icon: Icon(name: "command", color: .green)
         ),
         Folder(
             name: "Social",
-            bookmarks: Array(Bookmark.previewData[3...3]),
-            icon: (name: "person.fill", color: .yellow)
+            bookmarks: .init(
+                read: [],
+                unread: Array(Bookmark.previewData[3...3])
+            ),
+            icon: Icon(name: "person.fill", color: .yellow)
         ),
         Folder(
             name: "Math",
-            bookmarks: Array(Bookmark.previewData[4...5]),
+            bookmarks: .init(
+                read: Array(Bookmark.previewData[4...4]),
+                unread: Array(Bookmark.previewData[5...5])
+            ),
             sorting: .manual,
-            icon: (name: "number", color: .red)
+            icon: Icon(name: "number", color: .red)
         ),
         Folder(
             name: "Videos",
-            bookmarks: Array(Bookmark.previewData[6...6]),
+            bookmarks: .init(
+                read: Array(Bookmark.previewData[6...7]),
+                unread: []
+            ),
             sorting: .manual,
-            icon: (name: "tropicalstorm", color: .blue)
+            icon: Icon(name: "tropicalstorm", color: .blue)
         ),
         Folder(
             name: "Tools",
-            bookmarks: Array(Bookmark.previewData[7...7]),
-            icon: (name: "hammer.fill", color: .white)
+            bookmarks: .init(
+                read: [],
+                unread: Array(Bookmark.previewData[8...8])
+            ),
+            icon: Icon(name: "hammer.fill", color: .white)
         )
     ]
-}
-
-// MARK: - Shelf
-
-extension Shelf {
-    
-    #warning("This may cause issues.")
-    static let previewData: Shelf = {
-        let value = Shelf()
-        value.folders = Folder.previewData
-        return value
-    }()
 }

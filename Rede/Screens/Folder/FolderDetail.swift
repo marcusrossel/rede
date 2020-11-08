@@ -8,63 +8,34 @@
 import SwiftUI
 
 struct FolderDetail: View {
-    
-    @StateObject private var storage = Storage.shared
 
-    @Binding var folder: Folder
-    
-    private func binding(for bookmark: Bookmark) -> Binding<Bookmark> {
-        if let index = folder.bookmarks.read.firstIndex(of: bookmark) {
-            return $folder.bookmarks.read[index]
-        } else if let index = folder.bookmarks.unread.firstIndex(of: bookmark) {
-            return $folder.bookmarks.unread[index]
-        } else {
-            fatalError("Bookmark '\(bookmark.title)' is not in the folder '\(folder.name)'.")
-        }
+    init(folder: Binding<Folder>) {
+        _model = StateObject(wrappedValue: Model(folder: folder))
     }
+    
+    @StateObject private var model: Model
     
     var body: some View {
         List {
-            if !folder.bookmarks.unread.isEmpty {
+            if !model.folder.bookmarks.unread.isEmpty {
                 Section(header: Text("Unread")) {
-                    ForEach(folder.bookmarks.unread) { bookmark in
-                        BookmarkRow(bookmark: binding(for: bookmark), folder: $folder)
+                    ForEach(model.folder.bookmarks.unread.indexed()) { row in
+                        BookmarkRow(bookmark: $model.folder.bookmarks.unread[row.index], folder: $model.folder)
                     }
                 }
             }
             
-            if storage.settings.showReadBookmarks && !folder.bookmarks.read.isEmpty {
+            if model.settings.showReadBookmarks && !model.folder.bookmarks.read.isEmpty {
                 Section(header: Text("Read")) {
-                    ForEach(folder.bookmarks.read) { bookmark in
-                        BookmarkRow(bookmark: binding(for: bookmark), folder: $folder)
+                    ForEach(model.folder.bookmarks.read.indexed()) { row in
+                        BookmarkRow(bookmark: $model.folder.bookmarks.read[row.index], folder: $model.folder)
                     }
                 }
             }
         }
-        .navigationTitle(folder.name)
+        .navigationTitle(model.folder.name)
         .listStyle(GroupedListStyle())
-        .navigationBarItems(trailing:
-            Picker(
-                selection: $folder.sorting,
-                label: Text(Image(systemName: "arrow.up.arrow.down.circle.fill")),
-                content: {
-                    ForEach(Folder.Sorting.allCases) { sorting in
-                        Label(sorting.rawValue, systemImage: sorting.iconName)
-                            .tag(sorting)
-                    }
-                }
-            )
-            .pickerStyle(MenuPickerStyle())
-        )
-    }
-}
-
-// MARK: Destinations
-
-extension FolderDetail {
-    
-    fileprivate enum Destination {
-
+        .navigationBarItems(trailing: SortingPicker(sorting: $model.folder.sorting))
     }
 }
 
@@ -81,12 +52,41 @@ extension FolderDetail {
         }
         
         @Published private var storage = Storage.shared
+        @Binding var folder: Folder
+        
+        init(folder: Binding<Folder>) {
+            _folder = folder
+        }
+    }
+}
+
+// MARK: Sorting Picker
+
+extension FolderDetail {
+    
+    struct SortingPicker: View {
+        
+        @Binding var sorting: Folder.Sorting
+        
+        var body: some View {
+            Picker(
+                selection: $sorting,
+                label: Text(Image(systemName: "arrow.up.arrow.down.circle.fill")),
+                content: {
+                    ForEach(Folder.Sorting.allCases) { sorting in
+                        Label(sorting.rawValue, systemImage: sorting.iconName)
+                            .tag(sorting)
+                    }
+                }
+            )
+            .pickerStyle(MenuPickerStyle())
+        }
     }
 }
 
 // MARK: Previews
 
-struct FolderView_Previews: PreviewProvider {
+struct FolderDetail_Previews: PreviewProvider {
     
     static var previews: some View {
         StatefulPreview()
@@ -98,7 +98,7 @@ struct FolderView_Previews: PreviewProvider {
         @State private var folder = Folder.previewData[1]
         
         var body: some View {
-            FolderView(folder: $folder)
+            FolderDetail(folder: $folder)
                 .onAppear { Storage.shared.folders = Folder.previewData }
         }
     }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct IconPicker: View {
     
-    @Binding var icon: (name: String, color: Color)
+    @Binding var icon: Icon
     
     @State private var showPicker = false
     

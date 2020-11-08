@@ -16,3 +16,17 @@ struct Settings: Codable {
     var automaticallyMarkAsRead = false
     var automaticallyNameBookmarks = true
 }
+
+// MARK: Language
+
+extension Settings {
+
+    enum Language: String, CaseIterable, Identifiable, Codable {
+
+        case german = "Deutsch"
+        case english = "English"
+        case norwegian = "Norsk (Bokmål)"
+        
+        var id: Language { return self }
+    }
+}

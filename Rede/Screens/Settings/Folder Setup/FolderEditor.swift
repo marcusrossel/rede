@@ -10,15 +10,14 @@ import DataField
 
 struct FolderEditor: View {
     
+    @StateObject private var storage = Storage.shared
     @Binding var folder: Folder
-    
-    @EnvironmentObject private var shelf: Shelf
     @State private var textIsValid = true
     
     var body: some View {
         Label {
             DataField("Folder Name", data: $folder.name) { text in
-                !text.isEmpty
+                storage.isValid(folderName: text, for: folder)
             } invalidText: { text in
                 textIsValid = (text == nil)
             }
@@ -47,11 +46,12 @@ struct FolderEditor_Previews: PreviewProvider {
     /// A `View` that is used for the preview, as `@State` doesn't work on non-`View`s.
     struct StatefulPreview: View {
         
-        @StateObject private var shelf = Shelf.previewData
+        @State var folder = Folder.previewData[0]
         
         var body: some View {
-            FolderEditor(folder: $shelf.folders[0])
-                .environmentObject(shelf)
+            FolderEditor(folder: $folder)
+                .padding()
+                .onAppear { Storage.shared.folders = Folder.previewData }
         }
     }
 }

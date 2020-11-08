@@ -6,39 +6,36 @@
 //
 
 import SwiftUI
+import LazyViewSwiftUI
 
 struct SettingsView: View {
     
-    @StateObject private var settings = Settings()
-    /*SwiftUI bug*/ @EnvironmentObject private var shelf: Shelf
+    @StateObject private var storage = Storage.shared
     
     var body: some View {
         Form {
             Section(header: Text("Setup")) {
-                NavigationLink(destination: FoldersEditor()/*SwiftUI bug*/.environmentObject(shelf)) {
-                    Label(
-                        title: "Folders",
-                        icon: (name: "folder.fill", color: Color(.systemBlue))
-                    )
+                NavigationLink(destination: LazyView(FoldersEditor())) {
+                    Label(title: "Folders", icon: Icon(name: "folder.fill", uiColor: .systemBlue))
                 }
             }
             
             Section(header: Text("Appearance")) {
-                Toggle(isOn: $settings.showReadBookmarks) {
+                Toggle(isOn: $storage.settings.showReadBookmarks) {
                     Label(
                         title: "Show Read Bookmarks",
-                        icon: (name: "rectangle.fill.on.rectangle.angled.fill", color: Color(.systemOrange))
+                        icon: Icon(name: "rectangle.fill.on.rectangle.angled.fill", uiColor: .systemOrange)
                     )
                 }
                 
                 Picker(
-                    selection: $settings.language,
+                    selection: $storage.settings.language,
                     label: Label(
                         title: "Language",
-                        icon: (name: "globe", color: Color(.systemOrange))
+                        icon: Icon(name: "globe", uiColor: .systemOrange)
                     ),
                     content: {
-                        ForEach(Language.allCases) { language in
+                        ForEach(Settings.Language.allCases) { language in
                             Text(language.rawValue).tag(language)
                         }
                     }
@@ -47,17 +44,17 @@ struct SettingsView: View {
             }
             
             Section(header: Text("Behavior")) {
-                Toggle(isOn: $settings.automaticallyNameBookmarks) {
+                Toggle(isOn: $storage.settings.automaticallyNameBookmarks) {
                     Label(
                         title: "Automatically Name Bookmarks",
-                        icon: (name: "textbox", color: Color(.systemPink))
+                        icon: Icon(name: "textbox", uiColor: .systemPink)
                     )
                 }
  
-                Toggle(isOn: $settings.automaticallyMarkAsRead) {
+                Toggle(isOn: $storage.settings.automaticallyMarkAsRead) {
                     Label(
                         title: "Automatically Mark Bookmarks As Read",
-                        icon: (name: "bookmark.fill", color: Color(.systemPink))
+                        icon: Icon(name: "bookmark.fill", uiColor: .systemPink)
                     )
                 }
             }
@@ -65,7 +62,7 @@ struct SettingsView: View {
             Section(header: Text("Data")) {
                 Label(
                     title: "Export Bookmarks",
-                    icon: (name: "tray.and.arrow.up.fill", color: Color(.systemGray))
+                    icon: Icon(name: "tray.and.arrow.up.fill", uiColor: .systemGray)
                 )
             }
         }
@@ -73,13 +70,14 @@ struct SettingsView: View {
     }
 }
 
-// MARK: - Previews
+// MARK: Previews
 
 struct SettingsView_Previews: PreviewProvider {
     
     static var previews: some View {
         NavigationView {
             SettingsView()
+                .onAppear { Storage.shared.folders = Folder.previewData }
         }
     }
 }
