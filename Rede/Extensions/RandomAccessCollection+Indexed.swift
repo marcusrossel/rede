@@ -52,12 +52,11 @@ extension IndexedCollection {
         
         let index: Index
         let element: Base.Element
-        
-        var destructured: (index: Index, element: Base.Element) { (index, element) }
     }
 }
 
-extension IndexedCollection.Element: Identifiable where Base.Element: Hashable & Identifiable {
+extension IndexedCollection.Element: Equatable, Hashable, Identifiable
+where Base.Element: Hashable & Identifiable, Base.Index: Hashable {
 
     var id: Base.Element { element }
 }

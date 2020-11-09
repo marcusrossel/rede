@@ -12,28 +12,12 @@ import SwiftUI
 struct Folder: Identifiable, Hashable, Codable {
     
     var name: String
-    var bookmarks = Bookmarks()
-    var sorting = Sorting.byDate
+    var bookmarks: [Bookmark] = []
+    var sorting = Sorting.manual
     var icon = Icon.folder
     
     var id: String { name }
 }
-
-// MARK: Bookmarks
-
-extension Folder {
-    
-    // This is solely a workaround for tuples not being codable.
-    struct Bookmarks: Hashable, Codable {
-
-        // The read bookmarks are sorted automatically by them being prependend when they are read.
-        var read: [Bookmark] = []
-        var unread: [Bookmark] = []
-        
-        var all: [Bookmark] { unread + read }
-    }
-}
-
 
 // MARK: Folder Sorting
 

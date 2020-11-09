@@ -7,199 +7,176 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C1F21BF25389F2600CB25A8 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F21BE25389F2600CB25A8 /* App.swift */; };
-		2C1F21C325389F2900CB25A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C1F21C225389F2900CB25A8 /* Assets.xcassets */; };
-		2C1F21C625389F2900CB25A8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C1F21C525389F2900CB25A8 /* Preview Assets.xcassets */; };
-		2C1F21D725389F5A00CB25A8 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F21D425389F5A00CB25A8 /* Folder.swift */; };
-		2C1F21D925389F5A00CB25A8 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F21D625389F5A00CB25A8 /* Bookmark.swift */; };
-		2C1F21E62538A33200CB25A8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F21E52538A33200CB25A8 /* Settings.swift */; };
-		2C1F21ED2538A58200CB25A8 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F21EB2538A58200CB25A8 /* Home.swift */; };
-		2C1F21F12538A6F500CB25A8 /* Preview Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F21F02538A6F500CB25A8 /* Preview Data.swift */; };
-		2C1F21F92538AAE400CB25A8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F21F42538AAE400CB25A8 /* SettingsView.swift */; };
-		2C1F21FA2538AAE400CB25A8 /* FolderEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F21F62538AAE400CB25A8 /* FolderEditor.swift */; };
-		2C1F21FB2538AAE400CB25A8 /* FoldersEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F21F72538AAE400CB25A8 /* FoldersEditor.swift */; };
-		2C1F21FC2538AAE400CB25A8 /* IconPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F21F82538AAE400CB25A8 /* IconPicker.swift */; };
-		2C1F22022538AB4E00CB25A8 /* Label+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F22002538AB4E00CB25A8 /* Label+Init.swift */; };
-		2C1F22062538ABCB00CB25A8 /* DataField in Frameworks */ = {isa = PBXBuildFile; productRef = 2C1F22052538ABCB00CB25A8 /* DataField */; };
-		2C1F22092538ACFE00CB25A8 /* SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1F22082538ACFE00CB25A8 /* SFSymbols.swift */; };
-		2C30C235253A0AA6002577D8 /* LazyViewSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2C30C234253A0AA6002577D8 /* LazyViewSwiftUI */; };
-		2C45A707253A2DE10048CB47 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C45A706253A2DE10048CB47 /* Icon.swift */; };
-		2C5CDE3E2540897D00D9E2C2 /* MutableForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5CDE3D2540897D00D9E2C2 /* MutableForEach.swift */; };
-		2C6C2B5B2539FA8400CD1B3F /* FolderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6C2B592539FA8400CD1B3F /* FolderDetail.swift */; };
-		2C6C2B5C2539FA8400CD1B3F /* BookmarkRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6C2B5A2539FA8400CD1B3F /* BookmarkRow.swift */; };
-		2C727C242539CCE000C0507C /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C727C232539CCE000C0507C /* Storage.swift */; };
-		2C810121253C59500037ABD8 /* RandomAccessCollection+Indexed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C810120253C59500037ABD8 /* RandomAccessCollection+Indexed.swift */; };
-		2CB7D94025406EF6001BEABD /* Binding+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB7D93F25406EF6001BEABD /* Binding+Default.swift */; };
+		2C1277E02558484B008B8C7D /* RedeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1277DF2558484B008B8C7D /* RedeApp.swift */; };
+		2C1277E22558484B008B8C7D /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1277E12558484B008B8C7D /* Home.swift */; };
+		2C1277E42558484E008B8C7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C1277E32558484E008B8C7D /* Assets.xcassets */; };
+		2C1277F825584970008B8C7D /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1277F125584970008B8C7D /* Icon.swift */; };
+		2C1277FA25584970008B8C7D /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1277F325584970008B8C7D /* Folder.swift */; };
+		2C1277FB25584970008B8C7D /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1277F425584970008B8C7D /* Bookmark.swift */; };
+		2C1277FD25584970008B8C7D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1277F725584970008B8C7D /* Storage.swift */; };
+		2C12780225584B65008B8C7D /* Preview Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C12780125584B65008B8C7D /* Preview Data.swift */; };
+		2C12780625584D88008B8C7D /* Home.FolderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C12780525584D88008B8C7D /* Home.FolderRow.swift */; };
+		2C12780A25584ED7008B8C7D /* FolderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C12780925584ED7008B8C7D /* FolderDetail.swift */; };
+		2C12780D25585078008B8C7D /* FolderDetail.BookmarkRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C12780C25585078008B8C7D /* FolderDetail.BookmarkRow.swift */; };
+		2C2224D625592F21000F53C6 /* SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2224D525592F21000F53C6 /* SFSymbols.swift */; };
+		2C2224DA255936C6000F53C6 /* Collection+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2224D9255936C6000F53C6 /* Collection+Safe.swift */; };
+		2C2224DE255938BF000F53C6 /* FolderMerger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2224DD255938BF000F53C6 /* FolderMerger.swift */; };
+		2C2224E5255944A8000F53C6 /* Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2224E4255944A8000F53C6 /* Row.swift */; };
+		2CE33FA42558568C006E2254 /* RandomAccessCollection+Indexed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE33FA32558568C006E2254 /* RandomAccessCollection+Indexed.swift */; };
+		2CE33FA725585B7C006E2254 /* FolderEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE33FA625585B7C006E2254 /* FolderEditor.swift */; };
+		2CF72D9125597A46002381AD /* BookmarkEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF72D9025597A46002381AD /* BookmarkEditor.swift */; };
+		2CF72D9425598467002381AD /* FolderPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF72D9325598467002381AD /* FolderPicker.swift */; };
+		2CF72D9A255988A8002381AD /* DataField in Frameworks */ = {isa = PBXBuildFile; productRef = 2CF72D99255988A8002381AD /* DataField */; };
+		2CF72DA125599866002381AD /* URL+LosslessStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF72DA025599866002381AD /* URL+LosslessStringConvertible.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2C1F21BB25389F2600CB25A8 /* Rede.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rede.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C1F21BE25389F2600CB25A8 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
-		2C1F21C225389F2900CB25A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2C1F21C525389F2900CB25A8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		2C1F21D425389F5A00CB25A8 /* Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
-		2C1F21D625389F5A00CB25A8 /* Bookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
-		2C1F21E52538A33200CB25A8 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		2C1F21EB2538A58200CB25A8 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
-		2C1F21F02538A6F500CB25A8 /* Preview Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Preview Data.swift"; sourceTree = "<group>"; };
-		2C1F21F42538AAE400CB25A8 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		2C1F21F62538AAE400CB25A8 /* FolderEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderEditor.swift; sourceTree = "<group>"; };
-		2C1F21F72538AAE400CB25A8 /* FoldersEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldersEditor.swift; sourceTree = "<group>"; };
-		2C1F21F82538AAE400CB25A8 /* IconPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconPicker.swift; sourceTree = "<group>"; };
-		2C1F22002538AB4E00CB25A8 /* Label+Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Label+Init.swift"; sourceTree = "<group>"; };
-		2C1F22082538ACFE00CB25A8 /* SFSymbols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
-		2C30C22F253A02E8002577D8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2C45A706253A2DE10048CB47 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
-		2C5CDE3D2540897D00D9E2C2 /* MutableForEach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableForEach.swift; sourceTree = "<group>"; };
-		2C6C2B592539FA8400CD1B3F /* FolderDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderDetail.swift; sourceTree = "<group>"; };
-		2C6C2B5A2539FA8400CD1B3F /* BookmarkRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkRow.swift; sourceTree = "<group>"; };
-		2C6C2B5E2539FF9800CD1B3F /* Rede.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Rede.entitlements; sourceTree = "<group>"; };
-		2C727C232539CCE000C0507C /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
-		2C810120253C59500037ABD8 /* RandomAccessCollection+Indexed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RandomAccessCollection+Indexed.swift"; sourceTree = "<group>"; };
-		2CB7D93F25406EF6001BEABD /* Binding+Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Default.swift"; sourceTree = "<group>"; };
+		2C1277DC2558484B008B8C7D /* Rede.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rede.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C1277DF2558484B008B8C7D /* RedeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeApp.swift; sourceTree = "<group>"; };
+		2C1277E12558484B008B8C7D /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		2C1277E32558484E008B8C7D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2C1277E82558484E008B8C7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C1277F125584970008B8C7D /* Icon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		2C1277F325584970008B8C7D /* Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
+		2C1277F425584970008B8C7D /* Bookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
+		2C1277F725584970008B8C7D /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		2C12780125584B65008B8C7D /* Preview Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Preview Data.swift"; sourceTree = "<group>"; };
+		2C12780525584D88008B8C7D /* Home.FolderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.FolderRow.swift; sourceTree = "<group>"; };
+		2C12780925584ED7008B8C7D /* FolderDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetail.swift; sourceTree = "<group>"; };
+		2C12780C25585078008B8C7D /* FolderDetail.BookmarkRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetail.BookmarkRow.swift; sourceTree = "<group>"; };
+		2C2224D525592F21000F53C6 /* SFSymbols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
+		2C2224D9255936C6000F53C6 /* Collection+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Safe.swift"; sourceTree = "<group>"; };
+		2C2224DD255938BF000F53C6 /* FolderMerger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderMerger.swift; sourceTree = "<group>"; };
+		2C2224E4255944A8000F53C6 /* Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Row.swift; sourceTree = "<group>"; };
+		2CE33FA32558568C006E2254 /* RandomAccessCollection+Indexed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RandomAccessCollection+Indexed.swift"; sourceTree = "<group>"; };
+		2CE33FA625585B7C006E2254 /* FolderEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderEditor.swift; sourceTree = "<group>"; };
+		2CF72D9025597A46002381AD /* BookmarkEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkEditor.swift; sourceTree = "<group>"; };
+		2CF72D9325598467002381AD /* FolderPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderPicker.swift; sourceTree = "<group>"; };
+		2CF72DA025599866002381AD /* URL+LosslessStringConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+LosslessStringConvertible.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2C1F21B825389F2600CB25A8 /* Frameworks */ = {
+		2C1277D92558484B008B8C7D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C1F22062538ABCB00CB25A8 /* DataField in Frameworks */,
-				2C30C235253A0AA6002577D8 /* LazyViewSwiftUI in Frameworks */,
+				2CF72D9A255988A8002381AD /* DataField in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2C1F21B225389F2600CB25A8 = {
+		2C04B4C12559655800A34D35 /* Folder */ = {
 			isa = PBXGroup;
 			children = (
-				2C1F21BD25389F2600CB25A8 /* Rede */,
-				2C1F21BC25389F2600CB25A8 /* Products */,
+				2C12780925584ED7008B8C7D /* FolderDetail.swift */,
+				2C12780C25585078008B8C7D /* FolderDetail.BookmarkRow.swift */,
+				2CF72D9025597A46002381AD /* BookmarkEditor.swift */,
+			);
+			path = Folder;
+			sourceTree = "<group>";
+		};
+		2C1277D32558484B008B8C7D = {
+			isa = PBXGroup;
+			children = (
+				2C1277DE2558484B008B8C7D /* Rede */,
+				2C1277DD2558484B008B8C7D /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		2C1F21BC25389F2600CB25A8 /* Products */ = {
+		2C1277DD2558484B008B8C7D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2C1F21BB25389F2600CB25A8 /* Rede.app */,
+				2C1277DC2558484B008B8C7D /* Rede.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2C1F21BD25389F2600CB25A8 /* Rede */ = {
+		2C1277DE2558484B008B8C7D /* Rede */ = {
 			isa = PBXGroup;
 			children = (
-				2C1F21BE25389F2600CB25A8 /* App.swift */,
-				2C1F21E82538A4CA00CB25A8 /* Screens */,
-				2C1F21D325389F4600CB25A8 /* Model */,
-				2C1F21DB25389F7C00CB25A8 /* Persistence */,
-				2C1F21FE2538AB2400CB25A8 /* Extensions */,
-				2C1F21C225389F2900CB25A8 /* Assets.xcassets */,
-				2C6C2B5E2539FF9800CD1B3F /* Rede.entitlements */,
-				2C30C22F253A02E8002577D8 /* Info.plist */,
-				2C1F21C425389F2900CB25A8 /* Preview Content */,
+				2C1277DF2558484B008B8C7D /* RedeApp.swift */,
+				2C12780425584D6C008B8C7D /* UI */,
+				2C1277F025584970008B8C7D /* Model */,
+				2C1277F625584970008B8C7D /* Persistence */,
+				2CE33FA225585672006E2254 /* Extensions */,
+				2C1277E32558484E008B8C7D /* Assets.xcassets */,
+				2C1277E82558484E008B8C7D /* Info.plist */,
+				2C1277E52558484E008B8C7D /* Preview Content */,
 			);
 			path = Rede;
 			sourceTree = "<group>";
 		};
-		2C1F21C425389F2900CB25A8 /* Preview Content */ = {
+		2C1277E52558484E008B8C7D /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				2C1F21F02538A6F500CB25A8 /* Preview Data.swift */,
-				2C1F21C525389F2900CB25A8 /* Preview Assets.xcassets */,
+				2C12780125584B65008B8C7D /* Preview Data.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		2C1F21D325389F4600CB25A8 /* Model */ = {
+		2C1277F025584970008B8C7D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				2C1F21D625389F5A00CB25A8 /* Bookmark.swift */,
-				2C1F21D425389F5A00CB25A8 /* Folder.swift */,
-				2C1F21E52538A33200CB25A8 /* Settings.swift */,
-				2C45A706253A2DE10048CB47 /* Icon.swift */,
-				2C1F22082538ACFE00CB25A8 /* SFSymbols.swift */,
+				2C1277F325584970008B8C7D /* Folder.swift */,
+				2C1277F125584970008B8C7D /* Icon.swift */,
+				2C1277F425584970008B8C7D /* Bookmark.swift */,
+				2C2224D525592F21000F53C6 /* SFSymbols.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		2C1F21DB25389F7C00CB25A8 /* Persistence */ = {
+		2C1277F625584970008B8C7D /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				2C727C232539CCE000C0507C /* Storage.swift */,
+				2C1277F725584970008B8C7D /* Storage.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
 		};
-		2C1F21E82538A4CA00CB25A8 /* Screens */ = {
+		2C12780425584D6C008B8C7D /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				2C1F21E92538A58200CB25A8 /* Home */,
-				2C1F21F32538AAC400CB25A8 /* Settings */,
-				2C6C2B582539FA5000CD1B3F /* Folder */,
+				2C2224E4255944A8000F53C6 /* Row.swift */,
+				2CF72D9325598467002381AD /* FolderPicker.swift */,
+				2C2224DC255938AE000F53C6 /* Home */,
+				2C04B4C12559655800A34D35 /* Folder */,
 			);
-			path = Screens;
+			path = UI;
 			sourceTree = "<group>";
 		};
-		2C1F21E92538A58200CB25A8 /* Home */ = {
+		2C2224DC255938AE000F53C6 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				2C1F21EB2538A58200CB25A8 /* Home.swift */,
+				2C1277E12558484B008B8C7D /* Home.swift */,
+				2C12780525584D88008B8C7D /* Home.FolderRow.swift */,
+				2CE33FA625585B7C006E2254 /* FolderEditor.swift */,
+				2C2224DD255938BF000F53C6 /* FolderMerger.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
 		};
-		2C1F21F32538AAC400CB25A8 /* Settings */ = {
+		2CE33FA225585672006E2254 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				2C1F21F52538AAE400CB25A8 /* Folder Setup */,
-				2C1F21F42538AAE400CB25A8 /* SettingsView.swift */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
-		2C1F21F52538AAE400CB25A8 /* Folder Setup */ = {
-			isa = PBXGroup;
-			children = (
-				2C1F21F62538AAE400CB25A8 /* FolderEditor.swift */,
-				2C1F21F72538AAE400CB25A8 /* FoldersEditor.swift */,
-				2C1F21F82538AAE400CB25A8 /* IconPicker.swift */,
-			);
-			path = "Folder Setup";
-			sourceTree = "<group>";
-		};
-		2C1F21FE2538AB2400CB25A8 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				2C1F22002538AB4E00CB25A8 /* Label+Init.swift */,
-				2C810120253C59500037ABD8 /* RandomAccessCollection+Indexed.swift */,
-				2CB7D93F25406EF6001BEABD /* Binding+Default.swift */,
-				2C5CDE3D2540897D00D9E2C2 /* MutableForEach.swift */,
+				2CE33FA32558568C006E2254 /* RandomAccessCollection+Indexed.swift */,
+				2C2224D9255936C6000F53C6 /* Collection+Safe.swift */,
+				2CF72DA025599866002381AD /* URL+LosslessStringConvertible.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		2C6C2B582539FA5000CD1B3F /* Folder */ = {
-			isa = PBXGroup;
-			children = (
-				2C6C2B5A2539FA8400CD1B3F /* BookmarkRow.swift */,
-				2C6C2B592539FA8400CD1B3F /* FolderDetail.swift */,
-			);
-			path = Folder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2C1F21BA25389F2600CB25A8 /* Rede */ = {
+		2C1277DB2558484B008B8C7D /* Rede */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2C1F21CA25389F2900CB25A8 /* Build configuration list for PBXNativeTarget "Rede" */;
+			buildConfigurationList = 2C1277EB2558484E008B8C7D /* Build configuration list for PBXNativeTarget "Rede" */;
 			buildPhases = (
-				2C1F21B725389F2600CB25A8 /* Sources */,
-				2C1F21B825389F2600CB25A8 /* Frameworks */,
-				2C1F21B925389F2600CB25A8 /* Resources */,
+				2C1277D82558484B008B8C7D /* Sources */,
+				2C1277D92558484B008B8C7D /* Frameworks */,
+				2C1277DA2558484B008B8C7D /* Resources */,
 			);
 			buildRules = (
 			);
@@ -207,28 +184,27 @@
 			);
 			name = Rede;
 			packageProductDependencies = (
-				2C1F22052538ABCB00CB25A8 /* DataField */,
-				2C30C234253A0AA6002577D8 /* LazyViewSwiftUI */,
+				2CF72D99255988A8002381AD /* DataField */,
 			);
 			productName = Rede;
-			productReference = 2C1F21BB25389F2600CB25A8 /* Rede.app */;
+			productReference = 2C1277DC2558484B008B8C7D /* Rede.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		2C1F21B325389F2600CB25A8 /* Project object */ = {
+		2C1277D42558484B008B8C7D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
-					2C1F21BA25389F2600CB25A8 = {
+					2C1277DB2558484B008B8C7D = {
 						CreatedOnToolsVersion = 12.0.1;
 					};
 				};
 			};
-			buildConfigurationList = 2C1F21B625389F2600CB25A8 /* Build configuration list for PBXProject "Rede" */;
+			buildConfigurationList = 2C1277D72558484B008B8C7D /* Build configuration list for PBXProject "Rede" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -236,63 +212,61 @@
 				en,
 				Base,
 			);
-			mainGroup = 2C1F21B225389F2600CB25A8;
+			mainGroup = 2C1277D32558484B008B8C7D;
 			packageReferences = (
-				2C1F22042538ABCB00CB25A8 /* XCRemoteSwiftPackageReference "data-field" */,
-				2C30C233253A0AA6002577D8 /* XCRemoteSwiftPackageReference "Lazy-View-SwiftUI" */,
+				2CF72D98255988A8002381AD /* XCRemoteSwiftPackageReference "data-field" */,
 			);
-			productRefGroup = 2C1F21BC25389F2600CB25A8 /* Products */;
+			productRefGroup = 2C1277DD2558484B008B8C7D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2C1F21BA25389F2600CB25A8 /* Rede */,
+				2C1277DB2558484B008B8C7D /* Rede */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		2C1F21B925389F2600CB25A8 /* Resources */ = {
+		2C1277DA2558484B008B8C7D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C1F21C625389F2900CB25A8 /* Preview Assets.xcassets in Resources */,
-				2C1F21C325389F2900CB25A8 /* Assets.xcassets in Resources */,
+				2C1277E42558484E008B8C7D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2C1F21B725389F2600CB25A8 /* Sources */ = {
+		2C1277D82558484B008B8C7D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C1F22022538AB4E00CB25A8 /* Label+Init.swift in Sources */,
-				2C1F21FB2538AAE400CB25A8 /* FoldersEditor.swift in Sources */,
-				2C1F21F12538A6F500CB25A8 /* Preview Data.swift in Sources */,
-				2CB7D94025406EF6001BEABD /* Binding+Default.swift in Sources */,
-				2C5CDE3E2540897D00D9E2C2 /* MutableForEach.swift in Sources */,
-				2C1F21D925389F5A00CB25A8 /* Bookmark.swift in Sources */,
-				2C727C242539CCE000C0507C /* Storage.swift in Sources */,
-				2C1F21FA2538AAE400CB25A8 /* FolderEditor.swift in Sources */,
-				2C1F21ED2538A58200CB25A8 /* Home.swift in Sources */,
-				2C1F21F92538AAE400CB25A8 /* SettingsView.swift in Sources */,
-				2C6C2B5B2539FA8400CD1B3F /* FolderDetail.swift in Sources */,
-				2C1F21BF25389F2600CB25A8 /* App.swift in Sources */,
-				2C1F21E62538A33200CB25A8 /* Settings.swift in Sources */,
-				2C6C2B5C2539FA8400CD1B3F /* BookmarkRow.swift in Sources */,
-				2C810121253C59500037ABD8 /* RandomAccessCollection+Indexed.swift in Sources */,
-				2C1F22092538ACFE00CB25A8 /* SFSymbols.swift in Sources */,
-				2C1F21D725389F5A00CB25A8 /* Folder.swift in Sources */,
-				2C45A707253A2DE10048CB47 /* Icon.swift in Sources */,
-				2C1F21FC2538AAE400CB25A8 /* IconPicker.swift in Sources */,
+				2C12780625584D88008B8C7D /* Home.FolderRow.swift in Sources */,
+				2C12780225584B65008B8C7D /* Preview Data.swift in Sources */,
+				2CF72D9125597A46002381AD /* BookmarkEditor.swift in Sources */,
+				2C12780A25584ED7008B8C7D /* FolderDetail.swift in Sources */,
+				2C1277FA25584970008B8C7D /* Folder.swift in Sources */,
+				2C1277F825584970008B8C7D /* Icon.swift in Sources */,
+				2C2224DE255938BF000F53C6 /* FolderMerger.swift in Sources */,
+				2C2224D625592F21000F53C6 /* SFSymbols.swift in Sources */,
+				2C1277E22558484B008B8C7D /* Home.swift in Sources */,
+				2C2224E5255944A8000F53C6 /* Row.swift in Sources */,
+				2C12780D25585078008B8C7D /* FolderDetail.BookmarkRow.swift in Sources */,
+				2C1277FD25584970008B8C7D /* Storage.swift in Sources */,
+				2CE33FA725585B7C006E2254 /* FolderEditor.swift in Sources */,
+				2C1277E02558484B008B8C7D /* RedeApp.swift in Sources */,
+				2CF72DA125599866002381AD /* URL+LosslessStringConvertible.swift in Sources */,
+				2C1277FB25584970008B8C7D /* Bookmark.swift in Sources */,
+				2CF72D9425598467002381AD /* FolderPicker.swift in Sources */,
+				2C2224DA255936C6000F53C6 /* Collection+Safe.swift in Sources */,
+				2CE33FA42558568C006E2254 /* RandomAccessCollection+Indexed.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		2C1F21C825389F2900CB25A8 /* Debug */ = {
+		2C1277E92558484E008B8C7D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -353,7 +327,7 @@
 			};
 			name = Debug;
 		};
-		2C1F21C925389F2900CB25A8 /* Release */ = {
+		2C1277EA2558484E008B8C7D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -408,7 +382,7 @@
 			};
 			name = Release;
 		};
-		2C1F21CB25389F2900CB25A8 /* Debug */ = {
+		2C1277EC2558484E008B8C7D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -426,11 +400,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.marcusrossel.Rede;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		2C1F21CC25389F2900CB25A8 /* Release */ = {
+		2C1277ED2558484E008B8C7D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -448,27 +422,27 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.marcusrossel.Rede;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2C1F21B625389F2600CB25A8 /* Build configuration list for PBXProject "Rede" */ = {
+		2C1277D72558484B008B8C7D /* Build configuration list for PBXProject "Rede" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2C1F21C825389F2900CB25A8 /* Debug */,
-				2C1F21C925389F2900CB25A8 /* Release */,
+				2C1277E92558484E008B8C7D /* Debug */,
+				2C1277EA2558484E008B8C7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2C1F21CA25389F2900CB25A8 /* Build configuration list for PBXNativeTarget "Rede" */ = {
+		2C1277EB2558484E008B8C7D /* Build configuration list for PBXNativeTarget "Rede" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2C1F21CB25389F2900CB25A8 /* Debug */,
-				2C1F21CC25389F2900CB25A8 /* Release */,
+				2C1277EC2558484E008B8C7D /* Debug */,
+				2C1277ED2558484E008B8C7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -476,7 +450,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2C1F22042538ABCB00CB25A8 /* XCRemoteSwiftPackageReference "data-field" */ = {
+		2CF72D98255988A8002381AD /* XCRemoteSwiftPackageReference "data-field" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/marcusrossel/data-field";
 			requirement = {
@@ -484,28 +458,15 @@
 				minimumVersion = 0.3.2;
 			};
 		};
-		2C30C233253A0AA6002577D8 /* XCRemoteSwiftPackageReference "Lazy-View-SwiftUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/joehinkle11/Lazy-View-SwiftUI";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2C1F22052538ABCB00CB25A8 /* DataField */ = {
+		2CF72D99255988A8002381AD /* DataField */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2C1F22042538ABCB00CB25A8 /* XCRemoteSwiftPackageReference "data-field" */;
+			package = 2CF72D98255988A8002381AD /* XCRemoteSwiftPackageReference "data-field" */;
 			productName = DataField;
-		};
-		2C30C234253A0AA6002577D8 /* LazyViewSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2C30C233253A0AA6002577D8 /* XCRemoteSwiftPackageReference "Lazy-View-SwiftUI" */;
-			productName = LazyViewSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 2C1F21B325389F2600CB25A8 /* Project object */;
+	rootObject = 2C1277D42558484B008B8C7D /* Project object */;
 }

@@ -9,15 +9,6 @@
           "revision": "ff785c19bf568b0205748b6e7449a1a79045cb85",
           "version": "0.3.2"
         }
-      },
-      {
-        "package": "LazyViewSwiftUI",
-        "repositoryURL": "https://github.com/joehinkle11/Lazy-View-SwiftUI",
-        "state": {
-          "branch": null,
-          "revision": "1a26f8f0fe90061cdca98f4ce52df9f191920153",
-          "version": "1.0.0"
-        }
       }
     ]
   },

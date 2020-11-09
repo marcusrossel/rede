@@ -12,7 +12,6 @@ import SwiftUI
 final class Storage: ObservableObject {
 
     @Published var folders: [Folder] = []
-    @Published var settings = Settings()
     
     private init() { load() }
     
@@ -24,10 +23,6 @@ final class Storage: ObservableObject {
     private static let encoder = JSONEncoder()
     private static let decoder = JSONDecoder()
     
-    func isValid(folderName newName: String, for folder: Folder? = nil) -> Bool {
-        !newName.isEmpty && folders.allSatisfy { $0.name != newName || folder?.name == newName }
-    }
-    
     func load() {
         if let data = try? String(contentsOf: File.folders.path).data(using: .utf8) {
             if let container = try? Self.decoder.decode(Container<[Folder]>.self, from: data) {
@@ -36,20 +31,11 @@ final class Storage: ObservableObject {
                 fatalError("Corrupted data.")
             }
         }
-        
-        if let data = try? String(contentsOf: File.settings.path).data(using: .utf8) {
-            if let container = try? Self.decoder.decode(Container<Settings>.self, from: data) {
-                settings = container.data
-            } else {
-                fatalError("Corrupted data.")
-            }
-        }
     }
     
     func save() throws {
         let tasks: [File: Data] = try [
-            .folders: Self.encoder.encode(Container(version: .one, data: folders)),
-            .settings: Self.encoder.encode(Container(version: .one, data: settings))
+            .folders: Self.encoder.encode(Container(version: .one, data: folders))
         ]
         
         for (file, data) in tasks {
@@ -64,8 +50,7 @@ final class Storage: ObservableObject {
 fileprivate enum File: String, Hashable {
     
     case folders
-    case settings
-    
+
     var path: URL { Storage.directory.appendingPathComponent("\(rawValue).json") }
 }
 
