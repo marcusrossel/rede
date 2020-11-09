@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+#warning("CRASH: Open folder, leave it again, delete it.")
+// Idea 1: When indexing bindings, always use safe indexing with force unwrapping.
+// Idea 2: Move away from an index-based model, to an ID-based model.
+
 struct Home: View {
     
     @StateObject var storage: Storage = .shared
@@ -18,70 +22,106 @@ struct Home: View {
     @State private var newFolder = Folder(name: "")
     
     var body: some View {
-        List {
-            ForEach(storage.folders.indexed()) { row in
-                FolderRow(folder: $storage.folders[row.index])
-                    .contextMenu { isReordering ? nil : contextMenu(for: row) }
-            }
-            .onDelete(perform: isReordering ? nil : onDelete(offsets:))
-            .onMove(perform: onMove(offsets:destination:))
-        }
-        .listStyle(InsetGroupedListStyle())
-        .navigationBarTitle("Rede")
-        .navigationBarItems(
-            leading: isReordering
-                ? AnyView(Button("Done") { withAnimation { isReordering = false } })
-                : AnyView(EmptyView()),
-            trailing:
-                Menu {
+        VStack {
+            if storage.folders.isEmpty {
+                HStack {
+                    Text("No folders yet? Try adding one!")
+                        .fontWeight(.bold)
+                        .foregroundColor(.secondary)
                     Button {
                         sheet = .newFolder
                     } label: {
-                        Label("New Folder", systemImage: "folder.fill.badge.plus")
+                        Image(systemName: "folder.fill.badge.plus")
+                            .renderingMode(.original)
+                    }
+                }
+                .font(.title3)
+                .multilineTextAlignment(.center)
+                .padding()
+            }
+            
+            List {
+                ForEach(storage.folders.indexed()) { row in
+                    let binding = Binding<Folder> {
+                        storage.folders[row.index]
+                    } set: {
+                        storage.folders[row.index] = $0
                     }
                     
-                    if storage.folders.count > 1 {
-                        Button {
-                            withAnimation { isReordering = true }
-                        } label: {
-                            Label("Reorder Folders", systemImage: "rectangle.arrowtriangle.2.outward")
+                    FolderRow(folder: binding)
+                        .contextMenu { isReordering ? nil : contextMenu(for: row) }
+                }
+                .onDelete(perform: isReordering ? nil : onDelete(offsets:))
+                .onMove(perform: onMove(offsets:destination:))
+            }
+            .listStyle(InsetGroupedListStyle())
+            .environment(\.editMode, .constant(isReordering ? .active : .inactive))
+            .sheet(item: $sheet) { sheet in
+                switch sheet {
+                case .newFolder:
+                    FolderEditor(folder: $newFolder) { completion in
+                        guard case .done = completion else { return }
+                        storage.folders.insert(newFolder, at: 0)
+                        newFolder = Folder(name: "")
+                    }
+                case .edit(let row):
+                    let binding = Binding<Folder> {
+                        storage.folders[row.index]
+                    } set: {
+                        storage.folders[row.index] = $0
+                    }
+                    
+                    FolderEditor(folder: binding)
+                case .merge(let row):
+                    FolderMerger(source: row)
+                }
+            }
+            .actionSheet(item: $rowInDeletion) { row in
+                ActionSheet(
+                    title: Text("Delete \"\(row.element.name)\""),
+                    message: Text("This will also delete all of the folder's bookmarks."),
+                    buttons: [
+                        .destructive(Text("Delete")) {
+                            _ = withAnimation { storage.folders.remove(at: row.index) }
+                        },
+                        storage.folders.count <= 1 ? nil : .default(Text("Merge Into Other Folder")) {
+                            sheet = .merge(row: row)
+                        },
+                        .cancel()
+                    ].compactMap { $0 }
+                )
+            }
+            .navigationBarItems(leading:
+                Group {
+                    if isReordering {
+                        Button("Done") {
+                            withAnimation { isReordering = false }
                         }
                     }
-
-                } label: {
-                    Image(systemName: "ellipsis.circle.fill")
                 }
-        )
-        .environment(\.editMode, .constant(isReordering ? .active : .inactive))
-        .sheet(item: $sheet) { sheet in
-            switch sheet {
-            case .newFolder:
-                FolderEditor(folder: $newFolder) { completion in
-                    guard case .done = completion else { return }
-                    storage.folders.insert(newFolder, at: 0)
-                    newFolder = Folder(name: "")
-                }
-            case .edit(let row):
-                FolderEditor(folder: $storage.folders[row.index])
-            case .merge(let row):
-                FolderMerger(source: row)
-            }
-        }
-        .actionSheet(item: $rowInDeletion) { row in
-            ActionSheet(
-                title: Text("Delete \"\(row.element.name)\""),
-                message: Text("This will also delete all of the folder's bookmarks."),
-                buttons: [
-                    .destructive(Text("Delete")) {
-                        _ = withAnimation { storage.folders.remove(at: row.index) }
-                    },
-                    storage.folders.count <= 1 ? nil : .default(Text("Merge Into Other Folder")) {
-                        sheet = .merge(row: row)
-                    },
-                    .cancel()
-                ].compactMap { $0 }
             )
         }
+        .navigationBarTitle("Rede")
+        .navigationBarItems(trailing:
+            Menu {
+                Button {
+                    sheet = .newFolder
+                } label: {
+                    Label("New Folder", systemImage: "folder.fill.badge.plus")
+                }
+                
+                if storage.folders.count > 1 {
+                    Button {
+                        withAnimation { isReordering = true }
+                    } label: {
+                        Label("Reorder Folders", systemImage: "rectangle.arrowtriangle.2.outward")
+                    }
+                }
+
+            } label: {
+                Image(systemName: "ellipsis.circle.fill")
+            }
+        )
     }
     
     private func onDelete(offsets: IndexSet) {

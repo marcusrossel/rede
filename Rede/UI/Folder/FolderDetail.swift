@@ -36,19 +36,26 @@ struct FolderDetail: View {
     @State private var isReordering = false
     
     var body: some View {
-        if unreadRows.isEmpty && readRows.isEmpty {
-            VStack(spacing: 16) {
-                Image(systemName: "bookmark.slash")
-                    .font(.system(.largeTitle))
-                Text("No Bookmarks")
-                    .fontWeight(.bold)
-                    .font(.title3)
+        VStack {
+            if unreadRows.isEmpty && readRows.isEmpty {
+                Spacer()
+                
+                HStack {
+                    Text("No bookmarks yet? Try adding one!")
+                        .fontWeight(.bold)
+                        .foregroundColor(.secondary)
+                    Button {
+                        #warning("Unimplemented.")
+                    } label: {
+                        Image(systemName: "plus.circle.fill")
+                            .renderingMode(.original)
+                    }
+                }
+                .font(.title3)
+                .multilineTextAlignment(.center)
+                .padding()
             }
-            .foregroundColor(.secondary)
-            .multilineTextAlignment(.center)
-            .padding()
-            .navigationBarTitle(folder.wrappedValue.name, displayMode: .inline)
-        } else {
+            
             List {
                 if !unreadRows.isEmpty {
                     Section(header: Text("Unread")) {
@@ -72,12 +79,12 @@ struct FolderDetail: View {
                 }
             }
             .listStyle(InsetGroupedListStyle())
-            .navigationBarTitle(folder.wrappedValue.name, displayMode: .inline)
             .navigationBarItems(trailing:
                 Group {
                     if isReordering {
                         Button("Done") { withAnimation { isReordering = false } }
                     } else {
+                        EmptyView()
                         Picker(selection: folder.sorting, label: Image(systemName: "arrow.up.arrow.down.circle.fill")) {
                             ForEach(Folder.Sorting.allCases) { sorting in
                                 Label(sorting.rawValue, systemImage: sorting.iconName)
@@ -93,6 +100,7 @@ struct FolderDetail: View {
                 BookmarkEditor(bookmark: folder.bookmarks[row.index])
             }
         }
+        .navigationBarTitle(folder.wrappedValue.name, displayMode: .inline)
     }
     
     private func delete(atOffsets offsets: IndexSet, areRead: Bool) {
@@ -101,9 +109,10 @@ struct FolderDetail: View {
     }
     
     private func onMove(offsets: IndexSet, destination: Int) {
-        #warning("Is this broken?")
+        #warning("CRASH: Move an item is moved to the end of the list.")
+        // Figure out what the mechanism is for how the destination index is chosen.
         let properOffsets = IndexSet(offsets.map { unreadRows[$0].index })
-        let properDestination = unreadRows[safe: destination]?.index ?? folder.wrappedValue.bookmarks.endIndex
+        let properDestination = unreadRows[destination].index
         folder.wrappedValue.bookmarks.move(fromOffsets: properOffsets, toOffset: properDestination)
     }
     
