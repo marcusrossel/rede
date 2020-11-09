@@ -33,7 +33,7 @@ extension Folder {
         
         var iconName: String {
             switch self {
-            case .manual: return "hand.tap.fill"
+            case .manual: return "rectangle.arrowtriangle.2.outward"
             case .byDate: return "calendar.badge.clock"
             case .byTitle: return "abc"
             }

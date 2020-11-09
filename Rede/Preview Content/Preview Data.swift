@@ -19,7 +19,8 @@ extension URL {
         URL(string: "https://engineering.shopify.com/blogs/engineering/what-is-nix")!,
         URL(string: "http://marcusrossel.com/2020-07-13/counting-complexity")!,
         URL(string: "https://www.youtube.com/watch?v=7pSqk-XV2QM")!,
-        URL(string: "https://markmap.js.org")!
+        URL(string: "https://markmap.js.org")!,
+        URL(string: "http://marcusrossel.com")!
     ]
 }
 
@@ -71,6 +72,11 @@ extension Bookmark {
             title: "markmap-lib",
             url: URL.previewData[7],
             additionDate: Date().addingTimeInterval(-2 * day)
+        ),
+        Bookmark(
+            title: "marcus'",
+            url: URL.previewData[8],
+            additionDate: Date().addingTimeInterval(-1 * day)
         )
     ]
 }
@@ -86,7 +92,6 @@ extension Folder {
         Folder(
             name: "Programming",
             bookmarks: Array(Bookmark.previewData[0...2]),
-            sorting: .manual,
             icon: Icon(name: "command", color: .green)
         ),
         Folder(
@@ -97,18 +102,19 @@ extension Folder {
         Folder(
             name: "Math",
             bookmarks: Array(Bookmark.previewData[4...5]),
-            sorting: .manual,
+            sorting: .byTitle,
             icon: Icon(name: "number", color: .red)
         ),
         Folder(
             name: "Videos",
             bookmarks: Array(Bookmark.previewData[6...6]),
-            sorting: .manual,
+            sorting: .byDate,
             icon: Icon(name: "tropicalstorm", color: .blue)
         ),
         Folder(
             name: "Tools",
-            bookmarks: Array(Bookmark.previewData[7...7]),
+            bookmarks: Array(Bookmark.previewData[7...8]),
+            sorting: .byDate,
             icon: Icon(name: "hammer.fill", color: .white)
         )
     ]

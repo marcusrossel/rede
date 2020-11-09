@@ -73,9 +73,20 @@ struct FolderDetail: View {
             }
             .listStyle(InsetGroupedListStyle())
             .navigationBarTitle(folder.wrappedValue.name, displayMode: .inline)
-            .navigationBarItems(trailing: isReordering
-                ? AnyView(Button("Done") { withAnimation { isReordering = false } })
-                : AnyView(EmptyView())
+            .navigationBarItems(trailing:
+                Group {
+                    if isReordering {
+                        Button("Done") { withAnimation { isReordering = false } }
+                    } else {
+                        Picker(selection: folder.sorting, label: Image(systemName: "arrow.up.arrow.down.circle.fill")) {
+                            ForEach(Folder.Sorting.allCases) { sorting in
+                                Label(sorting.rawValue, systemImage: sorting.iconName)
+                                    .tag(sorting)
+                            }
+                        }
+                        .pickerStyle(MenuPickerStyle())
+                    }
+                }
             )
             .environment(\.editMode, .constant(isReordering ? .active : .inactive))
             .sheet(item: $rowInEdit) { row in
@@ -90,7 +101,7 @@ struct FolderDetail: View {
     }
     
     private func onMove(offsets: IndexSet, destination: Int) {
-        #warning("This is broken?")
+        #warning("Is this broken?")
         let properOffsets = IndexSet(offsets.map { unreadRows[$0].index })
         let properDestination = unreadRows[safe: destination]?.index ?? folder.wrappedValue.bookmarks.endIndex
         folder.wrappedValue.bookmarks.move(fromOffsets: properOffsets, toOffset: properDestination)

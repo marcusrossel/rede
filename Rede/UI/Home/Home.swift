@@ -15,6 +15,8 @@ struct Home: View {
     @State private var rowInDeletion: Row<Folder>? = nil
     @State private var isReordering = false
     
+    @State private var newFolder = Folder(name: "")
+    
     var body: some View {
         List {
             ForEach(storage.folders.indexed()) { row in
@@ -33,7 +35,7 @@ struct Home: View {
             trailing:
                 Menu {
                     Button {
-                        
+                        sheet = .newFolder
                     } label: {
                         Label("New Folder", systemImage: "folder.fill.badge.plus")
                     }
@@ -52,9 +54,17 @@ struct Home: View {
         )
         .environment(\.editMode, .constant(isReordering ? .active : .inactive))
         .sheet(item: $sheet) { sheet in
-            switch sheet.style {
-            case .edit:  FolderEditor(folder: $storage.folders[sheet.row.index])
-            case .merge: FolderMerger(source: sheet.row)
+            switch sheet {
+            case .newFolder:
+                FolderEditor(folder: $newFolder) { completion in
+                    guard case .done = completion else { return }
+                    storage.folders.insert(newFolder, at: 0)
+                    newFolder = Folder(name: "")
+                }
+            case .edit(let row):
+                FolderEditor(folder: $storage.folders[row.index])
+            case .merge(let row):
+                FolderMerger(source: row)
             }
         }
         .actionSheet(item: $rowInDeletion) { row in
@@ -108,20 +118,11 @@ struct Home: View {
 
 extension Home {
     
-    struct Sheet: Identifiable, Hashable {
+    enum Sheet: Identifiable, Hashable {
         
-        enum Style: Hashable { case edit, merge }
-        
-        static func edit(row: Row<Folder>) -> Sheet  { Sheet(style: .edit,  row: row) }
-        static func merge(row: Row<Folder>) -> Sheet { Sheet(style: .merge, row: row) }
-        
-        let style: Style
-        let row: Row<Folder>
-        
-        private init(style: Style, row: Row<Folder>) {
-            self.style = style
-            self.row = row
-        }
+        case newFolder
+        case edit(row: Row<Folder>)
+        case merge(row: Row<Folder>)
         
         var id: Sheet { self }
     }

@@ -6,14 +6,17 @@
 //
 
 import SwiftUI
+import Combine
 
 struct FolderEditor: View {
     
-    init(folder: Binding<Folder>) {
-        let model = Model(folder: folder)
+    enum Completion { case done, cancel }
+    
+    init(folder: Binding<Folder>, onCompletion: ((Completion) -> Void)? = nil) {
+        let model = Model(folder: folder, onCompletion: onCompletion)
         _model = StateObject(wrappedValue: model)
     }
-    
+
     @StateObject private var model: Model
     
     @Environment(\.presentationMode) private var presentationMode
@@ -31,13 +34,22 @@ struct FolderEditor: View {
                     .foregroundColor(model.folder.icon.color)
                     .font(.system(size: 80))
                 
-                TextField("Folder Name", text: $model.folder.name)
-                    .font(.system(size: 24))
-                    .multilineTextAlignment(.center)
-                    .padding(8)
-                    .background(Color(.secondarySystemBackground))
-                    .cornerRadius(12)
-                    .padding()
+                HStack {
+                    TextField("Folder Name", text: $model.folder.name)
+                        .font(.system(size: 24))
+                        .multilineTextAlignment(.center)
+                        .padding(8)
+                        .background(Color(.secondarySystemBackground))
+                        .cornerRadius(12)
+                        .padding(model.currentNameIsValid ? .all : [.top, .bottom, .leading])
+                    
+                    if !model.currentNameIsValid {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                            .renderingMode(.original)
+                            .font(.system(size: 24))
+                            .padding([.top, .bottom, .trailing])
+                    }
+                }
                 
                 LazyVGrid(columns: columns, spacing: gridSpacing) {
                     ForEach(defaultColors, id: \.self) { color in
@@ -65,7 +77,7 @@ struct FolderEditor: View {
                 }
                 .padding([.leading, .trailing])
             }
-            .navigationBarTitle("Edit Folder", displayMode: .inline)
+            .navigationBarTitle(model.folderIsNew ? "New Folder" : "Edit Folder", displayMode: .inline)
             .navigationBarItems(
                 leading:
                     Button {
@@ -79,7 +91,7 @@ struct FolderEditor: View {
                     } label: {
                         Text("Done")
                     }
-                    .disabled(model.folder.name.isEmpty)
+                    .disabled(!model.currentNameIsValid)
             )
         }
     }
@@ -90,22 +102,40 @@ struct FolderEditor: View {
 extension FolderEditor {
     
     fileprivate final class Model: ObservableObject {
-        
-        enum Completion { case done, cancel }
     
+        @Published private var storage: Storage = .shared
+        
         @Binding private var original: Folder
         @Published var folder: Folder
         
         private(set) var onCompletion: (Completion, Binding<PresentationMode>) -> Void = { _, _ in }
         
-        init(folder: Binding<Folder>) {
+        @Published var currentNameIsValid: Bool
+        let folderIsNew: Bool
+        
+        private var subscription: AnyCancellable?
+        
+        init(folder: Binding<Folder>, onCompletion: ((Completion) -> Void)? = nil) {
             _original = folder
             self.folder = folder.wrappedValue
             
+            folderIsNew = folder.wrappedValue.name.isEmpty
+            currentNameIsValid = !folderIsNew
+            
+            subscription = $folder
+                .map(\.name)
+                .map(isAvailable(name:))
+                .sink { [weak self] in self?.currentNameIsValid = $0 }
+            
             self.onCompletion = { [weak self] completion, presentationMode in
                 if let self = self, case .done = completion { folder.wrappedValue = self.folder }
+                onCompletion?(completion)
                 presentationMode.wrappedValue.dismiss()
             }
+        }
+        
+        private func isAvailable(name: String) -> Bool {
+            !name.isEmpty && (name == folder.name || storage.folders.allSatisfy { $0.name != name })
         }
     }
 }
