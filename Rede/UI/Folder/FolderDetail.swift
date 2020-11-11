@@ -27,7 +27,10 @@ struct FolderDetail: View {
     
     private var unreadRows: [Row<Bookmark>] {
         let filtered = folder.bookmarks.indexed()
-            .filter { $0.element.readDate == nil }
+            .filter {
+                $0.element.readDate == nil &&
+                !$0.element.title.isEmpty // Filters out the new bookmark while it's editing.
+            }
             
         switch folder.sorting {
         case .manual:
@@ -40,8 +43,10 @@ struct FolderDetail: View {
         folder.bookmarks.indexed().filter { $0.element.readDate != nil }
     }
     
-    @State private var rowInEdit: Row<Bookmark>?
+    @State private var sheet: Sheet?
     @State private var isReordering = false
+    
+    @State private var newBookmark = Bookmark(title: "", url: URL(string: "https://your.url")!)
     
     var body: some View {
         VStack {
@@ -50,7 +55,8 @@ struct FolderDetail: View {
                 
                 VStack(spacing: 12) {
                     Button {
-                        #warning("Unimplemented.")
+                        folder.bookmarks.insert(newBookmark, at: 0)
+                        sheet = .newBookmark
                     } label: {
                         Image(systemName: "bookmark.fill")
                             .font(.system(size: 50))
@@ -76,8 +82,10 @@ struct FolderDetail: View {
                 if !unreadRows.isEmpty {
                     Section(header: Text("Unread")) {
                         ForEach(unreadRows) { row in
-                            BookmarkRow(bookmark: row.element)
-                                .contextMenu { isReordering ? nil : contextMenu(for: row) }
+                            if row.element != newBookmark {
+                                BookmarkRow(bookmark: row.element)
+                                    .contextMenu { isReordering ? nil : contextMenu(for: row) }
+                            }
                         }
                         .onDelete(perform: isReordering ? nil : { delete(atOffsets: $0, areRead: false) })
                         .onMove(perform: onMove(offsets:destination:))
@@ -111,8 +119,16 @@ struct FolderDetail: View {
                 }
             )
             .environment(\.editMode, .constant(isReordering ? .active : .inactive))
-            .sheet(item: $rowInEdit) { row in
-                BookmarkEditor(row: row, in: $folder)
+            .sheet(item: $sheet) { sheet in
+                switch sheet {
+                case .newBookmark:
+                    BookmarkEditor(row: Row(index: 0, element: newBookmark), in: $folder) { completion in
+                        if case .cancel = completion { folder.bookmarks.remove(at: 0) }
+                        newBookmark = Bookmark(title: "", url: URL(string: "https://your.url")!)
+                    }
+                case .edit(let row):
+                    BookmarkEditor(row: row, in: $folder)
+                }
             }
         }
         .navigationBarTitle(folder.name, displayMode: .inline)
@@ -156,7 +172,7 @@ struct FolderDetail: View {
                 Image(systemName: "star\(row.element.isFavorite ? "" : ".fill")")
             }
             
-            Button { rowInEdit = row } label: {
+            Button { sheet = .edit(row: row) } label: {
                 Text("Edit")
                 Image(systemName: "slider.horizontal.3")
             }
@@ -175,5 +191,18 @@ struct FolderDetail: View {
                 Image(systemName: "minus.circle.fill")
             }
         }
+    }
+}
+
+// MARK: Sheet
+
+extension FolderDetail {
+    
+    enum Sheet: Identifiable, Hashable {
+        
+        case newBookmark
+        case edit(row: Row<Bookmark>)
+        
+        var id: Sheet { self }
     }
 }

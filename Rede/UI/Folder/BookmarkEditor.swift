@@ -10,8 +10,10 @@ import DataField
 
 struct BookmarkEditor: View {
     
-    init(row: Row<Bookmark>, in folder: Binding<Folder>) {
-        let model = Model(row: row, in: folder)
+    enum Completion { case done, cancel }
+    
+    init(row: Row<Bookmark>, in folder: Binding<Folder>, onCompletion: ((Completion) -> Void)? = nil) {
+        let model = Model(row: row, in: folder, onCompletion: onCompletion)
         _model = StateObject(wrappedValue: model)
     }
     
@@ -102,7 +104,7 @@ struct BookmarkEditor: View {
                 
                 FolderPicker(title: "Folder", selection: $model.folderRow)
             }
-            .navigationBarTitle("Edit Bookmark", displayMode: .inline)
+            .navigationBarTitle("\(model.bookmarkIsNew ? "New" : "Edit") Bookmark", displayMode: .inline)
             .navigationBarItems(
                 leading:
                     Button {
@@ -128,8 +130,6 @@ extension BookmarkEditor {
     
     fileprivate final class Model: ObservableObject {
         
-        enum Completion { case done, cancel }
-        
         private let storage: Storage = .shared
     
         private let indexOfBookmarkInEdit: Int
@@ -137,10 +137,12 @@ extension BookmarkEditor {
         
         @Published var bookmark: Bookmark
         @Published var folderRow: Row<Folder>
+        
+        let bookmarkIsNew: Bool
 
         private(set) var onCompletion: (Completion, Binding<PresentationMode>) -> Void = { _, _ in }
         
-        init(row: Row<Bookmark>, in folder: Binding<Folder>) {
+        init(row: Row<Bookmark>, in folder: Binding<Folder>, onCompletion: ((Completion) -> Void)? = nil) {
             guard let folderIndex = storage.folders.firstIndex(of: folder.wrappedValue) else {
                 fatalError("Assumption of '\(Self.self)' broken")
             }
@@ -151,8 +153,14 @@ extension BookmarkEditor {
             self.bookmark = row.element
             self.folderRow = Row(index: indexOfFolderInEdit, element: folder.wrappedValue)
             
+            bookmarkIsNew = row.element.title.isEmpty
+            
             self.onCompletion = { [weak self] completion, presentationMode in
-                defer { presentationMode.wrappedValue.dismiss() }
+                defer {
+                    onCompletion?(completion)
+                    presentationMode.wrappedValue.dismiss()
+                }
+                
                 guard let self = self, case .done = completion else { return }
                 
                 self.storage.folders[self.indexOfFolderInEdit].bookmarks[self.indexOfBookmarkInEdit] = self.bookmark
@@ -161,6 +169,8 @@ extension BookmarkEditor {
                     self.storage.folders[self.indexOfFolderInEdit].bookmarks.remove(at: self.indexOfBookmarkInEdit)
                     self.storage.folders[self.folderRow.index].bookmarks.insert(self.bookmark, at: 0)
                 }
+                
+                
             }
         }
     }

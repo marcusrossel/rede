@@ -46,7 +46,7 @@ extension FolderDetail {
                         .font(.footnote)
                 }
                 
-                Group {
+                HStack(spacing: 3) {
                     Image(systemName: "safari")
                     Image(systemName: "chevron.forward")
                 }

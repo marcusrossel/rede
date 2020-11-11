@@ -30,7 +30,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     private let storage: Storage = .shared
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        // TESTING
+        #warning("TEST DATA")
         storage.folders = Folder.previewData
         
         return true
