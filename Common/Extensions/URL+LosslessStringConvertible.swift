@@ -19,5 +19,5 @@ extension URL: LosslessStringConvertible {
         else { return nil }
         
         self = url
-    }
+    }    
 }

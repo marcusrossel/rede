@@ -21,9 +21,9 @@ struct RedeApp: App {
         }
         .onChange(of: scenePhase) { newPhase in
             switch newPhase {
-            case .active:                storage.folders = Folder.previewData
-            case .inactive, .background: try? storage.save()
-            @unknown default:            break
+            case .active:     storage.load()
+            case .background: try? storage.save()
+            default:          break
             }
         }
     }

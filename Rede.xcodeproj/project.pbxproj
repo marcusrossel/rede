@@ -23,7 +23,10 @@
 		2C2224D625592F21000F53C6 /* SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2224D525592F21000F53C6 /* SFSymbols.swift */; };
 		2C2224DE255938BF000F53C6 /* FolderMerger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2224DD255938BF000F53C6 /* FolderMerger.swift */; };
 		2C2224E5255944A8000F53C6 /* Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2224E4255944A8000F53C6 /* Row.swift */; };
-		2C73A9C9255C2EAA00026565 /* ShareExtensionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73A9C8255C2EAA00026565 /* ShareExtensionController.swift */; };
+		2C24E1E4255C492100722B9C /* ShareExtension.Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C24E1E3255C492100722B9C /* ShareExtension.Sheet.swift */; };
+		2C24E1EF255C512900722B9C /* ShareExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C24E1EE255C512900722B9C /* ShareExtension.swift */; };
+		2C24E1F5255C517E00722B9C /* ShareExtension.Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C24E1F4255C517E00722B9C /* ShareExtension.Model.swift */; };
+		2C73A9C9255C2EAA00026565 /* ShareExtension.Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73A9C8255C2EAA00026565 /* ShareExtension.Controller.swift */; };
 		2C73A9D0255C2EAA00026565 /* Share Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2C73A9C6255C2EAA00026565 /* Share Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2C73A9DB255C2FC200026565 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1277F725584970008B8C7D /* Storage.swift */; };
 		2C73A9DE255C2FD600026565 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1277F125584970008B8C7D /* Icon.swift */; };
@@ -44,6 +47,8 @@
 		2CF72D9425598467002381AD /* FolderPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF72D9325598467002381AD /* FolderPicker.swift */; };
 		2CF72D9A255988A8002381AD /* DataField in Frameworks */ = {isa = PBXBuildFile; productRef = 2CF72D99255988A8002381AD /* DataField */; };
 		2CF72DA125599866002381AD /* URL+LosslessStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF72DA025599866002381AD /* URL+LosslessStringConvertible.swift */; };
+		2CF83372255C55EC00445A1A /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 2CF83371255C55EC00445A1A /* SwiftSoup */; };
+		2CF8337D255C574B00445A1A /* DataField in Frameworks */ = {isa = PBXBuildFile; productRef = 2CF8337C255C574B00445A1A /* DataField */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,8 +94,11 @@
 		2C2224D525592F21000F53C6 /* SFSymbols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
 		2C2224DD255938BF000F53C6 /* FolderMerger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderMerger.swift; sourceTree = "<group>"; };
 		2C2224E4255944A8000F53C6 /* Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Row.swift; sourceTree = "<group>"; };
+		2C24E1E3255C492100722B9C /* ShareExtension.Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtension.Sheet.swift; sourceTree = "<group>"; };
+		2C24E1EE255C512900722B9C /* ShareExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtension.swift; sourceTree = "<group>"; };
+		2C24E1F4255C517E00722B9C /* ShareExtension.Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtension.Model.swift; sourceTree = "<group>"; };
 		2C73A9C6255C2EAA00026565 /* Share Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Share Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C73A9C8255C2EAA00026565 /* ShareExtensionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtensionController.swift; sourceTree = "<group>"; };
+		2C73A9C8255C2EAA00026565 /* ShareExtension.Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtension.Controller.swift; sourceTree = "<group>"; };
 		2C73A9CD255C2EAA00026565 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C73A9D7255C2F5600026565 /* Rede.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Rede.entitlements; sourceTree = "<group>"; };
 		2CB3CE51255BC8160007419F /* Collection+Safe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+Safe.swift"; sourceTree = "<group>"; };
@@ -114,6 +122,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CF83372255C55EC00445A1A /* SwiftSoup in Frameworks */,
+				2CF8337D255C574B00445A1A /* DataField in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +147,7 @@
 				2C1277DE2558484B008B8C7D /* App */,
 				2C73A9C7255C2EAA00026565 /* Share Extension */,
 				2C1277DD2558484B008B8C7D /* Products */,
+				2CF83370255C55EC00445A1A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -203,7 +214,10 @@
 			isa = PBXGroup;
 			children = (
 				2C73A9CD255C2EAA00026565 /* Info.plist */,
-				2C73A9C8255C2EAA00026565 /* ShareExtensionController.swift */,
+				2C24E1EE255C512900722B9C /* ShareExtension.swift */,
+				2C24E1E3255C492100722B9C /* ShareExtension.Sheet.swift */,
+				2C24E1F4255C517E00722B9C /* ShareExtension.Model.swift */,
+				2C73A9C8255C2EAA00026565 /* ShareExtension.Controller.swift */,
 			);
 			path = "Share Extension";
 			sourceTree = "<group>";
@@ -240,6 +254,13 @@
 				2C1E80832559F726000CA8E4 /* Binding+Safe.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2CF83370255C55EC00445A1A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,6 +301,10 @@
 			dependencies = (
 			);
 			name = "Share Extension";
+			packageProductDependencies = (
+				2CF83371255C55EC00445A1A /* SwiftSoup */,
+				2CF8337C255C574B00445A1A /* DataField */,
+			);
 			productName = "Share Extension";
 			productReference = 2C73A9C6255C2EAA00026565 /* Share Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -312,6 +337,7 @@
 			mainGroup = 2C1277D32558484B008B8C7D;
 			packageReferences = (
 				2CF72D98255988A8002381AD /* XCRemoteSwiftPackageReference "data-field" */,
+				2C24E1E9255C4D9300722B9C /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = 2C1277DD2558484B008B8C7D /* Products */;
 			projectDirPath = "";
@@ -378,12 +404,15 @@
 				2C73A9DE255C2FD600026565 /* Icon.swift in Sources */,
 				2C73A9E0255C2FD600026565 /* Folder.swift in Sources */,
 				2C73AA02255C439D00026565 /* URL+LosslessStringConvertible.swift in Sources */,
+				2C24E1E4255C492100722B9C /* ShareExtension.Sheet.swift in Sources */,
 				2C73AA01255C439D00026565 /* RandomAccessCollection+Indexed.swift in Sources */,
 				2C73AA03255C439D00026565 /* Collection+Safe.swift in Sources */,
 				2C73AA04255C439D00026565 /* Binding+Safe.swift in Sources */,
-				2C73A9C9255C2EAA00026565 /* ShareExtensionController.swift in Sources */,
+				2C24E1EF255C512900722B9C /* ShareExtension.swift in Sources */,
+				2C73A9C9255C2EAA00026565 /* ShareExtension.Controller.swift in Sources */,
 				2C73A9FB255C434F00026565 /* FolderPicker.swift in Sources */,
 				2C73A9DB255C2FC200026565 /* Storage.swift in Sources */,
+				2C24E1F5255C517E00722B9C /* ShareExtension.Model.swift in Sources */,
 				2C73AA07255C43A000026565 /* Preview Data.swift in Sources */,
 				2C73A9FE255C436F00026565 /* Row.swift in Sources */,
 				2C73A9DF255C2FD600026565 /* Bookmark.swift in Sources */,
@@ -640,6 +669,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2C24E1E9255C4D9300722B9C /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.2;
+			};
+		};
 		2CF72D98255988A8002381AD /* XCRemoteSwiftPackageReference "data-field" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/marcusrossel/data-field";
@@ -652,6 +689,16 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		2CF72D99255988A8002381AD /* DataField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CF72D98255988A8002381AD /* XCRemoteSwiftPackageReference "data-field" */;
+			productName = DataField;
+		};
+		2CF83371255C55EC00445A1A /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C24E1E9255C4D9300722B9C /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+		2CF8337C255C574B00445A1A /* DataField */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2CF72D98255988A8002381AD /* XCRemoteSwiftPackageReference "data-field" */;
 			productName = DataField;

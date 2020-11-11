@@ -13,7 +13,7 @@ final class Storage: ObservableObject {
 
     @Published var folders: [Folder] = []
     
-    private init() { load() }
+    private init() { }
     
     static let shared = Storage()
     
