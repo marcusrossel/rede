@@ -25,8 +25,9 @@ extension Home {
                     
                     Spacer()
                     
-                    if row.element.bookmarks.count != 0 {
-                        Text("\(row.element.bookmarks.count)")
+                    let unreadBookmarks = row.element.bookmarks.filter { $0.readDate == nil }.count
+                    if unreadBookmarks != 0 {
+                        Text("\(unreadBookmarks)")
                             .font(.callout)
                             .foregroundColor(.secondary)
                     }

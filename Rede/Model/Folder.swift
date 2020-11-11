@@ -44,7 +44,7 @@ extension Folder {
                 switch self {
                 case .manual: return true
                 case .byDate: return lhs.additionDate > rhs.additionDate
-                case .byTitle: return lhs.title < rhs.title
+                case .byTitle: return lhs.title.lowercased() < rhs.title.lowercased()
                 }
             }
         }

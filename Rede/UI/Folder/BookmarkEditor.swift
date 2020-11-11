@@ -51,7 +51,7 @@ struct BookmarkEditor: View {
                 }
                 .font(.footnote)
                 .padding([.leading, .trailing], 32)
-                .padding(.bottom, 20)
+                .padding(.bottom, 14)
                 
                 HStack {
                     Spacer()
@@ -64,6 +64,7 @@ struct BookmarkEditor: View {
                     } label: {
                         VStack(spacing: 10) {
                             Image(systemName: "book\(model.bookmark.readDate == nil ? "" : ".fill")")
+                                .rotation3DEffect(bookRotation, axis: (x: 0, y: 1, z: 0))
                                 .foregroundColor(Color(#colorLiteral(red: 1, green: 0.2635219395, blue: 0.2254285514, alpha: 1)))
                                 .font(.system(size: 30))
 
@@ -86,9 +87,9 @@ struct BookmarkEditor: View {
                     } label: {
                         VStack(spacing: 10) {
                             Image(systemName: "star\(model.bookmark.isFavorite ? ".fill" : "")")
+                                .rotationEffect(starRotation)
                                 .foregroundColor(Color(#colorLiteral(red: 1, green: 0.8410827518, blue: 0.05768922716, alpha: 1)))
                                 .font(.system(size: 30))
-                                .rotationEffect(starRotation)
 
                             Text("Favorite")
                                 .font(.footnote)

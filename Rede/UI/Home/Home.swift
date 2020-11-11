@@ -56,36 +56,36 @@ struct Home: View {
                 }
             }
             .actionSheet(item: $rowInDeletion, content: actionSheet(for:))
-            .navigationBarItems(leading:
+        }
+        .navigationBarTitle("Rede")
+        .navigationBarItems(
+            leading:
                 Group {
                     if isReordering {
                         Button("Done") {
                             withAnimation { isReordering = false }
                         }
                     }
-                }
-            )
-        }
-        .navigationBarTitle("Rede")
-        .navigationBarItems(trailing:
-            Menu {
-                Button {
-                    sheet = .newFolder
-                } label: {
-                    Label("New Folder", systemImage: "folder.fill.badge.plus")
-                }
-                
-                if storage.folders.count > 1 {
+                },
+            trailing:
+                Menu {
                     Button {
-                        withAnimation { isReordering = true }
+                        sheet = .newFolder
                     } label: {
-                        Label("Reorder Folders", systemImage: "rectangle.arrowtriangle.2.outward")
+                        Label("New Folder", systemImage: "folder.fill.badge.plus")
                     }
-                }
 
-            } label: {
-                Image(systemName: "ellipsis.circle.fill")
-            }
+                    if storage.folders.count > 1 {
+                        Button {
+                            withAnimation { isReordering = true }
+                        } label: {
+                            Label("Reorder Folders", systemImage: "rectangle.arrowtriangle.2.outward")
+                        }
+                    }
+
+                } label: {
+                    Image(systemName: "ellipsis.circle.fill")
+                }
         )
     }
     
@@ -135,7 +135,9 @@ struct Home: View {
             buttons: [
                 .destructive(Text("Delete")), // Cf. `onDelete(offsets:)`.
                 
-                storage.folders.count <= 1
+                // The count here has to be 0, since folders that are in the process of deletion are
+                // already removed from the list of folders.
+                storage.folders.count == 0
                     ? nil
                     : .default(Text("Merge Into Other Folder")) { sheet = .merge(row: row) },
                 
