@@ -9,27 +9,35 @@ import SwiftUI
 
 struct FolderDetail: View {
     
-    // This binding is passed via a navigation link. Bindings and navigation links don't interact well:
-    // https://forums.swift.org/t/swiftui-bindings-does-reading-them-in-body-mean-view-will-re-render/34600/10
-    // So in the meantime access the storage from this view directly.
-    @Binding var _folder: Folder
-    @StateObject private var storage: Storage = .shared
-    private var folder: Binding<Folder> {
-        Binding {
-            storage.folders.first { $0.id == _folder.id }!
+    init(row: Row<Folder>) {
+        _storage = StateObject(wrappedValue: Storage.shared)
+        
+        // This is really a manual implementation of `Binding.suscript(safe:)`.
+        _folder = Binding<Folder> {
+            guard Storage.shared.folders.indices.contains(row.index) else { return row.element }
+            return Storage.shared.folders[row.index]
         } set: { newValue in
-            let index = storage.folders.firstIndex { $0.id == newValue.id }!
-            storage.folders[index] = newValue
+            guard Storage.shared.folders.indices.contains(row.index) else { return }
+            Storage.shared.folders[row.index] = newValue
         }
     }
     
+    @StateObject private var storage: Storage
+    @Binding private var folder: Folder
+    
     private var unreadRows: [Row<Bookmark>] {
-        folder.wrappedValue.bookmarks.indexed()
+        let filtered = folder.bookmarks.indexed()
             .filter { $0.element.readDate == nil }
-            .sorted { lhs, rhs in folder.wrappedValue.sorting.predicate(lhs.element, rhs.element) }
+            
+        switch folder.sorting {
+        case .manual:
+            return filtered
+        default:
+            return filtered.sorted { lhs, rhs in folder.sorting.predicate(lhs.element, rhs.element) }
+        }
     }
     private var readRows: [Row<Bookmark>] {
-        folder.wrappedValue.bookmarks.indexed().filter { $0.element.readDate != nil }
+        folder.bookmarks.indexed().filter { $0.element.readDate != nil }
     }
     
     @State private var rowInEdit: Row<Bookmark>?
@@ -84,8 +92,7 @@ struct FolderDetail: View {
                     if isReordering {
                         Button("Done") { withAnimation { isReordering = false } }
                     } else {
-                        EmptyView()
-                        Picker(selection: folder.sorting, label: Image(systemName: "arrow.up.arrow.down.circle.fill")) {
+                        Picker(selection: $folder.sorting, label: Image(systemName: "arrow.up.arrow.down.circle.fill")) {
                             ForEach(Folder.Sorting.allCases) { sorting in
                                 Label(sorting.rawValue, systemImage: sorting.iconName)
                                     .tag(sorting)
@@ -97,23 +104,30 @@ struct FolderDetail: View {
             )
             .environment(\.editMode, .constant(isReordering ? .active : .inactive))
             .sheet(item: $rowInEdit) { row in
-                BookmarkEditor(bookmark: folder.bookmarks[row.index])
+                BookmarkEditor(bookmark: $folder.bookmarks[safe: row.index])
             }
         }
-        .navigationBarTitle(folder.wrappedValue.name, displayMode: .inline)
+        .navigationBarTitle(folder.name, displayMode: .inline)
     }
     
     private func delete(atOffsets offsets: IndexSet, areRead: Bool) {
         let properOffsets = IndexSet(offsets.map { (areRead ? readRows[$0] : unreadRows[$0]).index })
-        folder.wrappedValue.bookmarks.remove(atOffsets: properOffsets)
+        folder.bookmarks.remove(atOffsets: properOffsets)
     }
     
     private func onMove(offsets: IndexSet, destination: Int) {
-        #warning("CRASH: Move an item is moved to the end of the list.")
-        // Figure out what the mechanism is for how the destination index is chosen.
+        let moveIsUp = offsets.contains { $0 < destination }
+        
+        // When moving items up the list (towards higher indices), the destination is 1 too high.
+        // When moving items down the list (towards lower indices), the destination is fine.
+        //
+        // Since `move(fromOffsets:toOffsets)` requires the destination to be overshot by 1, and
+        // we've explicitly removed that overshoot due to index mapping, we need to reintroduce it
+        // in the final "proper" destination.
+        let properDestination = unreadRows[destination + (moveIsUp ? -1 : 0)].index + (moveIsUp ? 1 : 0)
         let properOffsets = IndexSet(offsets.map { unreadRows[$0].index })
-        let properDestination = unreadRows[destination].index
-        folder.wrappedValue.bookmarks.move(fromOffsets: properOffsets, toOffset: properDestination)
+        
+        folder.bookmarks.move(fromOffsets: properOffsets, toOffset: properDestination)
     }
     
     private func contextMenu(for row: Row<Bookmark>) -> some View {
@@ -121,14 +135,14 @@ struct FolderDetail: View {
             let isUnread = row.element.readDate == nil
             
             Button {
-                folder.wrappedValue.bookmarks[row.index].readDate = isUnread ? Date() : nil
+                folder.bookmarks[row.index].readDate = isUnread ? Date() : nil
             } label: {
                 Text("Mark As \(isUnread ? "Read" : "Unread")")
                 Image(systemName: "bookmark\(isUnread ? ".fill" : "")")
             }
             
             Button {
-                folder.wrappedValue.bookmarks[row.index].isFavorite.toggle()
+                folder.bookmarks[row.index].isFavorite.toggle()
             } label: {
                 Text(row.element.isFavorite ? "Unfavorite" : "Favorite")
                 Image(systemName: "star\(row.element.isFavorite ? "" : ".fill")")
@@ -139,7 +153,7 @@ struct FolderDetail: View {
                 Image(systemName: "slider.horizontal.3")
             }
             
-            if isUnread && unreadRows.count > 1 && folder.wrappedValue.sorting == .manual {
+            if isUnread && unreadRows.count > 1 && folder.sorting == .manual {
                 Button { withAnimation { isReordering = true } } label: {
                     Text("Reorder")
                     Image(systemName: "rectangle.arrowtriangle.2.outward")
@@ -147,7 +161,7 @@ struct FolderDetail: View {
             }
             
             Button {
-                folder.wrappedValue.bookmarks.remove(at: row.index)
+                folder.bookmarks.remove(at: row.index)
             } label: {
                 Text("Delete")
                 Image(systemName: "minus.circle.fill")

@@ -135,7 +135,8 @@ extension FolderEditor {
         }
         
         private func isAvailable(name: String) -> Bool {
-            !name.isEmpty && (name == folder.name || storage.folders.allSatisfy { $0.name != name })
+            !name.isEmpty &&
+            (name == original.name || storage.folders.allSatisfy { $0.name != name })
         }
     }
 }

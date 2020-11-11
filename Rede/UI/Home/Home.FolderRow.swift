@@ -11,22 +11,22 @@ extension Home {
     
     struct FolderRow: View {
         
-        @Binding var folder: Folder
+        let row: Row<Folder>
         
         var body: some View {
-            NavigationLink(destination: FolderDetail(_folder: $folder)) {
+            NavigationLink(destination: FolderDetail(row: row)) {
                 HStack {
                     Label {
-                        Text(folder.name)
+                        Text(row.element.name)
                     } icon: {
-                        Image(systemName: folder.icon.name)
-                            .foregroundColor(folder.icon.color)
+                        Image(systemName: row.element.icon.name)
+                            .foregroundColor(row.element.icon.color)
                     }
                     
                     Spacer()
                     
-                    if folder.bookmarks.count != 0 {
-                        Text("\(folder.bookmarks.count)")
+                    if row.element.bookmarks.count != 0 {
+                        Text("\(row.element.bookmarks.count)")
                             .font(.callout)
                             .foregroundColor(.secondary)
                     }

@@ -18,10 +18,12 @@
 		2C12780625584D88008B8C7D /* Home.FolderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C12780525584D88008B8C7D /* Home.FolderRow.swift */; };
 		2C12780A25584ED7008B8C7D /* FolderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C12780925584ED7008B8C7D /* FolderDetail.swift */; };
 		2C12780D25585078008B8C7D /* FolderDetail.BookmarkRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C12780C25585078008B8C7D /* FolderDetail.BookmarkRow.swift */; };
+		2C1E80802559F36E000CA8E4 /* Home.NoFolders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1E807F2559F36E000CA8E4 /* Home.NoFolders.swift */; };
+		2C1E80842559F726000CA8E4 /* Binding+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1E80832559F726000CA8E4 /* Binding+Safe.swift */; };
 		2C2224D625592F21000F53C6 /* SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2224D525592F21000F53C6 /* SFSymbols.swift */; };
-		2C2224DA255936C6000F53C6 /* Collection+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2224D9255936C6000F53C6 /* Collection+Safe.swift */; };
 		2C2224DE255938BF000F53C6 /* FolderMerger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2224DD255938BF000F53C6 /* FolderMerger.swift */; };
 		2C2224E5255944A8000F53C6 /* Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2224E4255944A8000F53C6 /* Row.swift */; };
+		2CB3CE52255BC8160007419F /* Collection+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB3CE51255BC8160007419F /* Collection+Safe.swift */; };
 		2CE33FA42558568C006E2254 /* RandomAccessCollection+Indexed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE33FA32558568C006E2254 /* RandomAccessCollection+Indexed.swift */; };
 		2CE33FA725585B7C006E2254 /* FolderEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE33FA625585B7C006E2254 /* FolderEditor.swift */; };
 		2CF72D9125597A46002381AD /* BookmarkEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF72D9025597A46002381AD /* BookmarkEditor.swift */; };
@@ -44,10 +46,12 @@
 		2C12780525584D88008B8C7D /* Home.FolderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.FolderRow.swift; sourceTree = "<group>"; };
 		2C12780925584ED7008B8C7D /* FolderDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetail.swift; sourceTree = "<group>"; };
 		2C12780C25585078008B8C7D /* FolderDetail.BookmarkRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetail.BookmarkRow.swift; sourceTree = "<group>"; };
+		2C1E807F2559F36E000CA8E4 /* Home.NoFolders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.NoFolders.swift; sourceTree = "<group>"; };
+		2C1E80832559F726000CA8E4 /* Binding+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Safe.swift"; sourceTree = "<group>"; };
 		2C2224D525592F21000F53C6 /* SFSymbols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
-		2C2224D9255936C6000F53C6 /* Collection+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Safe.swift"; sourceTree = "<group>"; };
 		2C2224DD255938BF000F53C6 /* FolderMerger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderMerger.swift; sourceTree = "<group>"; };
 		2C2224E4255944A8000F53C6 /* Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Row.swift; sourceTree = "<group>"; };
+		2CB3CE51255BC8160007419F /* Collection+Safe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+Safe.swift"; sourceTree = "<group>"; };
 		2CE33FA32558568C006E2254 /* RandomAccessCollection+Indexed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RandomAccessCollection+Indexed.swift"; sourceTree = "<group>"; };
 		2CE33FA625585B7C006E2254 /* FolderEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderEditor.swift; sourceTree = "<group>"; };
 		2CF72D9025597A46002381AD /* BookmarkEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkEditor.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				2C1277E12558484B008B8C7D /* Home.swift */,
+				2C1E807F2559F36E000CA8E4 /* Home.NoFolders.swift */,
 				2C12780525584D88008B8C7D /* Home.FolderRow.swift */,
 				2CE33FA625585B7C006E2254 /* FolderEditor.swift */,
 				2C2224DD255938BF000F53C6 /* FolderMerger.swift */,
@@ -161,8 +166,9 @@
 			isa = PBXGroup;
 			children = (
 				2CE33FA32558568C006E2254 /* RandomAccessCollection+Indexed.swift */,
-				2C2224D9255936C6000F53C6 /* Collection+Safe.swift */,
 				2CF72DA025599866002381AD /* URL+LosslessStringConvertible.swift */,
+				2CB3CE51255BC8160007419F /* Collection+Safe.swift */,
+				2C1E80832559F726000CA8E4 /* Binding+Safe.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -253,12 +259,14 @@
 				2C2224E5255944A8000F53C6 /* Row.swift in Sources */,
 				2C12780D25585078008B8C7D /* FolderDetail.BookmarkRow.swift in Sources */,
 				2C1277FD25584970008B8C7D /* Storage.swift in Sources */,
+				2CB3CE52255BC8160007419F /* Collection+Safe.swift in Sources */,
 				2CE33FA725585B7C006E2254 /* FolderEditor.swift in Sources */,
 				2C1277E02558484B008B8C7D /* RedeApp.swift in Sources */,
 				2CF72DA125599866002381AD /* URL+LosslessStringConvertible.swift in Sources */,
+				2C1E80842559F726000CA8E4 /* Binding+Safe.swift in Sources */,
 				2C1277FB25584970008B8C7D /* Bookmark.swift in Sources */,
 				2CF72D9425598467002381AD /* FolderPicker.swift in Sources */,
-				2C2224DA255936C6000F53C6 /* Collection+Safe.swift in Sources */,
+				2C1E80802559F36E000CA8E4 /* Home.NoFolders.swift in Sources */,
 				2CE33FA42558568C006E2254 /* RandomAccessCollection+Indexed.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -400,7 +408,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.marcusrossel.Rede;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -422,7 +430,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.marcusrossel.Rede;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

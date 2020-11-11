@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-#warning("CRASH: Open folder, leave it again, delete it.")
-// Idea 1: When indexing bindings, always use safe indexing with force unwrapping.
-// Idea 2: Move away from an index-based model, to an ID-based model.
-
 struct Home: View {
     
     @StateObject var storage: Storage = .shared
@@ -24,31 +20,14 @@ struct Home: View {
     var body: some View {
         VStack {
             if storage.folders.isEmpty {
-                HStack {
-                    Text("No folders yet? Try adding one!")
-                        .fontWeight(.bold)
-                        .foregroundColor(.secondary)
-                    Button {
-                        sheet = .newFolder
-                    } label: {
-                        Image(systemName: "folder.fill.badge.plus")
-                            .renderingMode(.original)
-                    }
+                NoFolders /*onTapGesture:*/ {
+                    sheet = .newFolder
                 }
-                .font(.title3)
-                .multilineTextAlignment(.center)
-                .padding()
             }
             
             List {
                 ForEach(storage.folders.indexed()) { row in
-                    let binding = Binding<Folder> {
-                        storage.folders[row.index]
-                    } set: {
-                        storage.folders[row.index] = $0
-                    }
-                    
-                    FolderRow(folder: binding)
+                    FolderRow(row: row)
                         .contextMenu { isReordering ? nil : contextMenu(for: row) }
                 }
                 .onDelete(perform: isReordering ? nil : onDelete(offsets:))
@@ -76,21 +55,7 @@ struct Home: View {
                     FolderMerger(source: row)
                 }
             }
-            .actionSheet(item: $rowInDeletion) { row in
-                ActionSheet(
-                    title: Text("Delete \"\(row.element.name)\""),
-                    message: Text("This will also delete all of the folder's bookmarks."),
-                    buttons: [
-                        .destructive(Text("Delete")) {
-                            _ = withAnimation { storage.folders.remove(at: row.index) }
-                        },
-                        storage.folders.count <= 1 ? nil : .default(Text("Merge Into Other Folder")) {
-                            sheet = .merge(row: row)
-                        },
-                        .cancel()
-                    ].compactMap { $0 }
-                )
-            }
+            .actionSheet(item: $rowInDeletion, content: actionSheet(for:))
             .navigationBarItems(leading:
                 Group {
                     if isReordering {
@@ -127,9 +92,12 @@ struct Home: View {
     private func onDelete(offsets: IndexSet) {
         guard let index = offsets.first, let folder = storage.folders[safe: index] else { return }
         
-        if folder.bookmarks.isEmpty {
-            _ = withAnimation { storage.folders.remove(at: index) }
-        } else {
+        // To avoid buggy animations on swipe to delete, the row is deleted right away, but retained
+        // in `rowInDeletion`, so it can be restored if the user aborts the action.
+        // This should also fix a broken layout constraint issue.
+        storage.folders.remove(at: index)
+        
+        if !folder.bookmarks.isEmpty {
             rowInDeletion = Row(index: index, element: folder)
         }
     }
@@ -145,11 +113,39 @@ struct Home: View {
                 Image(systemName: "slider.horizontal.3")
             }
             
-            Button { rowInDeletion = row } label: {
+            Button {
+                // Cf. `onDelete(offsets:)`.
+                //
+                // TODO: Figure out how to make this animation nicer.
+                _ = withAnimation {
+                    storage.folders.remove(at: row.index)
+                }
+                rowInDeletion = row
+            } label: {
                 Text("Delete")
                 Image(systemName: "minus.circle.fill")
             }
         }
+    }
+    
+    private func actionSheet(for row: Row<Folder>) -> ActionSheet {
+        ActionSheet(
+            title: Text("Delete \"\(row.element.name)\""),
+            message: Text("This will also delete all of the folder's bookmarks."),
+            buttons: [
+                .destructive(Text("Delete")), // Cf. `onDelete(offsets:)`.
+                
+                storage.folders.count <= 1
+                    ? nil
+                    : .default(Text("Merge Into Other Folder")) { sheet = .merge(row: row) },
+                
+                .cancel {
+                    withAnimation {
+                        storage.folders.insert(row.element, at: row.index)
+                    }
+                }
+            ].compactMap { $0 }
+        )
     }
 }
 

@@ -94,7 +94,7 @@ extension Folder {
             bookmarks: Array(Bookmark.previewData[0...2]),
             icon: Icon(name: "command", color: .green)
         ),
-        /*Folder(
+        Folder(
             name: "Social",
             bookmarks: Array(Bookmark.previewData[3...3]),
             icon: Icon(name: "person.fill", color: .yellow)
@@ -116,6 +116,6 @@ extension Folder {
             bookmarks: Array(Bookmark.previewData[7...8]),
             sorting: .byDate,
             icon: Icon(name: "hammer.fill", color: .white)
-        )*/
+        )
     ]
 }

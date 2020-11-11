@@ -9,10 +9,15 @@ import SwiftUI
 
 struct FolderPicker: View {
     
+    init(selection: Binding<Row<Folder>?>, excluded: Set<Row<Folder>> = []) {
+        _selection = selection
+        self.excluded = excluded
+    }
+    
     @StateObject private var storage: Storage = .shared
     
-    @Binding var selection: Row<Folder>?
-    let excluded: Set<Row<Folder>>
+    @Binding private var selection: Row<Folder>?
+    private let excluded: Set<Row<Folder>>
     
     var body: some View {
         List {

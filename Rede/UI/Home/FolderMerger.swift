@@ -24,7 +24,7 @@ struct FolderMerger: View {
                     .foregroundColor(.secondary)
                     .padding([.leading, .trailing, .top])
                 
-                FolderPicker(selection: $destination, excluded: [source])
+                FolderPicker(selection: $destination)
             }
             .navigationBarTitle(Text("Merge \"\(source.element.name)\""), displayMode: .inline)
             .navigationBarItems(
@@ -38,8 +38,7 @@ struct FolderMerger: View {
                     Button {
                         presentationMode.wrappedValue.dismiss()
                         guard let destination = destination else { return }
-                        storage.folders[destination.index].bookmarks += storage.folders[source.index].bookmarks
-                            storage.folders.remove(at: source.index)
+                        storage.folders[destination.index].bookmarks += source.element.bookmarks
                     } label: {
                         Text("Merge")
                     }
