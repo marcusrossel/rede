@@ -1,6 +1,6 @@
 //
 //  Collection+Safe.swift
-//  Rede
+//  Rede / Common
 //
 //  Created by Marcus Rossel on 09.11.20.
 //

@@ -1,6 +1,6 @@
 //
 //  SFSymbols.swift
-//  Rede
+//  Rede / App
 //
 //  Created by Marcus Rossel on 03.10.20.
 //

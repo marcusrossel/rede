@@ -1,6 +1,6 @@
 //
 //  RandomAccessCollection+Indexed.swift
-//  Rede
+//  Rede / Common
 //
 //  Created by Marcus Rossel on 18.10.20.
 //

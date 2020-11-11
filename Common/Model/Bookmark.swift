@@ -1,6 +1,6 @@
 //
 //  Bookmark.swift
-//  Rede
+//  Rede / Common
 //
 //  Created by Marcus Rossel on 29.08.20.
 //

@@ -23,6 +23,12 @@
 		2C2224D625592F21000F53C6 /* SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2224D525592F21000F53C6 /* SFSymbols.swift */; };
 		2C2224DE255938BF000F53C6 /* FolderMerger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2224DD255938BF000F53C6 /* FolderMerger.swift */; };
 		2C2224E5255944A8000F53C6 /* Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2224E4255944A8000F53C6 /* Row.swift */; };
+		2C73A9C9255C2EAA00026565 /* ShareExtensionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73A9C8255C2EAA00026565 /* ShareExtensionController.swift */; };
+		2C73A9D0255C2EAA00026565 /* Share Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2C73A9C6255C2EAA00026565 /* Share Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2C73A9DB255C2FC200026565 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1277F725584970008B8C7D /* Storage.swift */; };
+		2C73A9DE255C2FD600026565 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1277F125584970008B8C7D /* Icon.swift */; };
+		2C73A9DF255C2FD600026565 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1277F425584970008B8C7D /* Bookmark.swift */; };
+		2C73A9E0255C2FD600026565 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1277F325584970008B8C7D /* Folder.swift */; };
 		2CB3CE52255BC8160007419F /* Collection+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB3CE51255BC8160007419F /* Collection+Safe.swift */; };
 		2CE33FA42558568C006E2254 /* RandomAccessCollection+Indexed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE33FA32558568C006E2254 /* RandomAccessCollection+Indexed.swift */; };
 		2CE33FA725585B7C006E2254 /* FolderEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE33FA625585B7C006E2254 /* FolderEditor.swift */; };
@@ -31,6 +37,30 @@
 		2CF72D9A255988A8002381AD /* DataField in Frameworks */ = {isa = PBXBuildFile; productRef = 2CF72D99255988A8002381AD /* DataField */; };
 		2CF72DA125599866002381AD /* URL+LosslessStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF72DA025599866002381AD /* URL+LosslessStringConvertible.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2C73A9CE255C2EAA00026565 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2C1277D42558484B008B8C7D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C73A9C5255C2EAA00026565;
+			remoteInfo = "Share Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2C73A9D1255C2EAA00026565 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2C73A9D0255C2EAA00026565 /* Share Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2C1277DC2558484B008B8C7D /* Rede.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rede.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +81,10 @@
 		2C2224D525592F21000F53C6 /* SFSymbols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
 		2C2224DD255938BF000F53C6 /* FolderMerger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderMerger.swift; sourceTree = "<group>"; };
 		2C2224E4255944A8000F53C6 /* Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Row.swift; sourceTree = "<group>"; };
+		2C73A9C6255C2EAA00026565 /* Share Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Share Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C73A9C8255C2EAA00026565 /* ShareExtensionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtensionController.swift; sourceTree = "<group>"; };
+		2C73A9CD255C2EAA00026565 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C73A9D7255C2F5600026565 /* Rede.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Rede.entitlements; sourceTree = "<group>"; };
 		2CB3CE51255BC8160007419F /* Collection+Safe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+Safe.swift"; sourceTree = "<group>"; };
 		2CE33FA32558568C006E2254 /* RandomAccessCollection+Indexed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RandomAccessCollection+Indexed.swift"; sourceTree = "<group>"; };
 		2CE33FA625585B7C006E2254 /* FolderEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderEditor.swift; sourceTree = "<group>"; };
@@ -65,6 +99,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CF72D9A255988A8002381AD /* DataField in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C73A9C3255C2EAA00026565 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,7 +125,9 @@
 		2C1277D32558484B008B8C7D = {
 			isa = PBXGroup;
 			children = (
-				2C1277DE2558484B008B8C7D /* Rede */,
+				2C73A9DA255C2FAD00026565 /* Common */,
+				2C1277DE2558484B008B8C7D /* App */,
+				2C73A9C7255C2EAA00026565 /* Share Extension */,
 				2C1277DD2558484B008B8C7D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -93,23 +136,23 @@
 			isa = PBXGroup;
 			children = (
 				2C1277DC2558484B008B8C7D /* Rede.app */,
+				2C73A9C6255C2EAA00026565 /* Share Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2C1277DE2558484B008B8C7D /* Rede */ = {
+		2C1277DE2558484B008B8C7D /* App */ = {
 			isa = PBXGroup;
 			children = (
-				2C1277DF2558484B008B8C7D /* RedeApp.swift */,
-				2C12780425584D6C008B8C7D /* UI */,
-				2C1277F025584970008B8C7D /* Model */,
-				2C1277F625584970008B8C7D /* Persistence */,
-				2CE33FA225585672006E2254 /* Extensions */,
-				2C1277E32558484E008B8C7D /* Assets.xcassets */,
 				2C1277E82558484E008B8C7D /* Info.plist */,
-				2C1277E52558484E008B8C7D /* Preview Content */,
+				2C1277DF2558484B008B8C7D /* RedeApp.swift */,
+				2C2224E4255944A8000F53C6 /* Row.swift */,
+				2C2224D525592F21000F53C6 /* SFSymbols.swift */,
+				2CF72D9325598467002381AD /* FolderPicker.swift */,
+				2C2224DC255938AE000F53C6 /* Home */,
+				2C04B4C12559655800A34D35 /* Folder */,
 			);
-			path = Rede;
+			path = App;
 			sourceTree = "<group>";
 		};
 		2C1277E52558484E008B8C7D /* Preview Content */ = {
@@ -126,7 +169,6 @@
 				2C1277F325584970008B8C7D /* Folder.swift */,
 				2C1277F125584970008B8C7D /* Icon.swift */,
 				2C1277F425584970008B8C7D /* Bookmark.swift */,
-				2C2224D525592F21000F53C6 /* SFSymbols.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -139,17 +181,6 @@
 			path = Persistence;
 			sourceTree = "<group>";
 		};
-		2C12780425584D6C008B8C7D /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				2C2224E4255944A8000F53C6 /* Row.swift */,
-				2CF72D9325598467002381AD /* FolderPicker.swift */,
-				2C2224DC255938AE000F53C6 /* Home */,
-				2C04B4C12559655800A34D35 /* Folder */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
 		2C2224DC255938AE000F53C6 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +191,28 @@
 				2C2224DD255938BF000F53C6 /* FolderMerger.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		2C73A9C7255C2EAA00026565 /* Share Extension */ = {
+			isa = PBXGroup;
+			children = (
+				2C73A9CD255C2EAA00026565 /* Info.plist */,
+				2C73A9C8255C2EAA00026565 /* ShareExtensionController.swift */,
+			);
+			path = "Share Extension";
+			sourceTree = "<group>";
+		};
+		2C73A9DA255C2FAD00026565 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				2C1277F025584970008B8C7D /* Model */,
+				2C1277F625584970008B8C7D /* Persistence */,
+				2CE33FA225585672006E2254 /* Extensions */,
+				2C1277E52558484E008B8C7D /* Preview Content */,
+				2C73A9D7255C2F5600026565 /* Rede.entitlements */,
+				2C1277E32558484E008B8C7D /* Assets.xcassets */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		2CE33FA225585672006E2254 /* Extensions */ = {
@@ -183,10 +236,12 @@
 				2C1277D82558484B008B8C7D /* Sources */,
 				2C1277D92558484B008B8C7D /* Frameworks */,
 				2C1277DA2558484B008B8C7D /* Resources */,
+				2C73A9D1255C2EAA00026565 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2C73A9CF255C2EAA00026565 /* PBXTargetDependency */,
 			);
 			name = Rede;
 			packageProductDependencies = (
@@ -196,17 +251,37 @@
 			productReference = 2C1277DC2558484B008B8C7D /* Rede.app */;
 			productType = "com.apple.product-type.application";
 		};
+		2C73A9C5255C2EAA00026565 /* Share Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C73A9D4255C2EAA00026565 /* Build configuration list for PBXNativeTarget "Share Extension" */;
+			buildPhases = (
+				2C73A9C2255C2EAA00026565 /* Sources */,
+				2C73A9C3255C2EAA00026565 /* Frameworks */,
+				2C73A9C4255C2EAA00026565 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Share Extension";
+			productName = "Share Extension";
+			productReference = 2C73A9C6255C2EAA00026565 /* Share Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		2C1277D42558484B008B8C7D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
+				LastSwiftUpdateCheck = 1210;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
 					2C1277DB2558484B008B8C7D = {
 						CreatedOnToolsVersion = 12.0.1;
+					};
+					2C73A9C5255C2EAA00026565 = {
+						CreatedOnToolsVersion = 12.1;
 					};
 				};
 			};
@@ -227,6 +302,7 @@
 			projectRoot = "";
 			targets = (
 				2C1277DB2558484B008B8C7D /* Rede */,
+				2C73A9C5255C2EAA00026565 /* Share Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -237,6 +313,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C1277E42558484E008B8C7D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2C73A9C4255C2EAA00026565 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,7 +354,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2C73A9C2255C2EAA00026565 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C73A9DE255C2FD600026565 /* Icon.swift in Sources */,
+				2C73A9E0255C2FD600026565 /* Folder.swift in Sources */,
+				2C73A9C9255C2EAA00026565 /* ShareExtensionController.swift in Sources */,
+				2C73A9DB255C2FC200026565 /* Storage.swift in Sources */,
+				2C73A9DF255C2FD600026565 /* Bookmark.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2C73A9CF255C2EAA00026565 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2C73A9C5255C2EAA00026565 /* Share Extension */;
+			targetProxy = 2C73A9CE255C2EAA00026565 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		2C1277E92558484E008B8C7D /* Debug */ = {
@@ -393,13 +496,15 @@
 		2C1277EC2558484E008B8C7D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Common/Rede.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Rede/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Common/Preview Content\"";
 				DEVELOPMENT_TEAM = ACS45765XH;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Rede/Info.plist;
+				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -415,13 +520,15 @@
 		2C1277ED2558484E008B8C7D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Common/Rede.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Rede/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Common/Preview Content\"";
 				DEVELOPMENT_TEAM = ACS45765XH;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Rede/Info.plist;
+				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -429,6 +536,48 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.marcusrossel.Rede;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		2C73A9D2255C2EAA00026565 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Common/Rede.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ACS45765XH;
+				INFOPLIST_FILE = "Share Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.marcusrossel.Rede.Share-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		2C73A9D3255C2EAA00026565 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Common/Rede.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ACS45765XH;
+				INFOPLIST_FILE = "Share Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.marcusrossel.Rede.Share-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -451,6 +600,15 @@
 			buildConfigurations = (
 				2C1277EC2558484E008B8C7D /* Debug */,
 				2C1277ED2558484E008B8C7D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C73A9D4255C2EAA00026565 /* Build configuration list for PBXNativeTarget "Share Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C73A9D2255C2EAA00026565 /* Debug */,
+				2C73A9D3255C2EAA00026565 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

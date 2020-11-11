@@ -1,6 +1,6 @@
 //
 //  Home.FolderRow.swift
-//  Rede
+//  Rede / App
 //
 //  Created by Marcus Rossel on 08.11.20.
 //

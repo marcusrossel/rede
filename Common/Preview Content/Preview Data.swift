@@ -1,6 +1,6 @@
 //
 //  Preview Data.swift
-//  Rede
+//  Rede / Common
 //
 //  Created by Marcus Rossel on 22.09.20.
 //
