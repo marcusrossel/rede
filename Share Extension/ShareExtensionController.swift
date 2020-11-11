@@ -14,7 +14,7 @@ final class ShareExtensionController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let shareExtensionView = Text("\(Storage.shared.folders.map(\.name).joined(separator: ","))")
+        let shareExtensionView = Text("\(Storage.shared.folders.debugDescription)")
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.red)
         

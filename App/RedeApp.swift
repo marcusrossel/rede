@@ -7,12 +7,11 @@
 
 import SwiftUI
 
-// MARK: App
-
 @main
 struct RedeApp: App {
     
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @StateObject private var storage: Storage = .shared
+    @Environment(\.scenePhase) private var scenePhase
     
     var body: some Scene {
         WindowGroup {
@@ -20,19 +19,12 @@ struct RedeApp: App {
                 Home()
             }
         }
-    }
-}
-
-// MARK: App Delegate
-
-final class AppDelegate: NSObject, UIApplicationDelegate {
-    
-    private let storage: Storage = .shared
-    
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        #warning("TEST DATA")
-        storage.folders = Folder.previewData
-        
-        return true
+        .onChange(of: scenePhase) { newPhase in
+            switch newPhase {
+            case .active:                storage.folders = Folder.previewData
+            case .inactive, .background: try? storage.save()
+            @unknown default:            break
+            }
+        }
     }
 }
