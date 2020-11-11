@@ -24,7 +24,7 @@ struct FolderMerger: View {
                     .foregroundColor(.secondary)
                     .padding([.leading, .trailing, .top])
                 
-                FolderPicker(selection: $destination)
+                FolderPicker(title: "Destination", selection: $destination)
             }
             .navigationBarTitle(Text("Merge \"\(source.element.name)\""), displayMode: .inline)
             .navigationBarItems(

@@ -48,20 +48,28 @@ struct FolderDetail: View {
             if unreadRows.isEmpty && readRows.isEmpty {
                 Spacer()
                 
-                HStack {
-                    Text("No bookmarks yet? Try adding one!")
-                        .fontWeight(.bold)
-                        .foregroundColor(.secondary)
+                VStack(spacing: 12) {
                     Button {
                         #warning("Unimplemented.")
                     } label: {
-                        Image(systemName: "plus.circle.fill")
-                            .renderingMode(.original)
+                        Image(systemName: "bookmark.fill")
+                            .font(.system(size: 50))
+                            .foregroundColor(Color(#colorLiteral(red: 0.3895070553, green: 0.7931495309, blue: 0.4028683305, alpha: 1)))
+                            .overlay(
+                                Image(systemName: "plus")
+                                    .font(Font.system(size: 20).bold())
+                                    .padding(.bottom, 12)
+                                    .foregroundColor(Color(.systemBackground))
+                            )
                     }
+                    
+                    Text("No bookmarks yet?\nTry adding one!")
+                        .fontWeight(.bold)
+                        .font(.title3)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
                 }
-                .font(.title3)
-                .multilineTextAlignment(.center)
-                .padding()
+                .padding(40)
             }
             
             List {
@@ -104,7 +112,7 @@ struct FolderDetail: View {
             )
             .environment(\.editMode, .constant(isReordering ? .active : .inactive))
             .sheet(item: $rowInEdit) { row in
-                BookmarkEditor(bookmark: $folder.bookmarks[safe: row.index])
+                BookmarkEditor(row: row, in: $folder)
             }
         }
         .navigationBarTitle(folder.name, displayMode: .inline)
@@ -138,7 +146,7 @@ struct FolderDetail: View {
                 folder.bookmarks[row.index].readDate = isUnread ? Date() : nil
             } label: {
                 Text("Mark As \(isUnread ? "Read" : "Unread")")
-                Image(systemName: "bookmark\(isUnread ? ".fill" : "")")
+                Image(systemName: "book\(isUnread ? ".fill" : "")")
             }
             
             Button {

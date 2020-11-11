@@ -14,19 +14,26 @@ extension Home {
         let onTapGesture: () -> Void
         
         var body: some View {
-            HStack {
-                Text("No folders yet? Try adding one!")
-                    .fontWeight(.bold)
-                    .foregroundColor(.secondary)
-                
+            VStack(spacing: 12) {
                 Button(action: onTapGesture) {
-                    Image(systemName: "folder.fill.badge.plus")
-                        .renderingMode(.original)
+                    Image(systemName: "folder.fill")
+                        .font(.system(size: 45))
+                        .foregroundColor(Color(#colorLiteral(red: 0.3895070553, green: 0.7931495309, blue: 0.4028683305, alpha: 1)))
+                        .overlay(
+                            Image(systemName: "plus")
+                                .font(Font.system(size: 20).bold())
+                                .padding(.top, 15)
+                                .foregroundColor(Color(.systemBackground))
+                        )
                 }
+                
+                Text("No folders yet?\nTry adding one!")
+                    .fontWeight(.bold)
+                    .font(.title3)
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
             }
-            .font(.title3)
-            .multilineTextAlignment(.center)
-            .padding()
+            .padding(30)
         }
     }
 }
