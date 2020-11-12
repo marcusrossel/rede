@@ -40,7 +40,7 @@ extension ShareExtension {
                     
                     HStack {
                         DataField("URL", data: $model.url) { text in
-                            guard let url = URL(text) else { return (nil as URL??) }
+                            guard let url = URL(string: text) else { return (nil as URL??) }
                             return url
                         } dataToText: { url in
                             url?.absoluteString ?? ""
@@ -52,7 +52,8 @@ extension ShareExtension {
                     .padding([.leading, .trailing], 32)
                     .padding(.bottom, 14)
                     
-                    FolderPicker(title: "Destination", selection: $destination)
+                    #warning("HOOK")
+                    // FolderPicker(title: "Destination", selection: $destination)
                 }
                 .navigationBarTitle("New Bookmark", displayMode: .large)
                 .navigationBarItems(
@@ -62,7 +63,6 @@ extension ShareExtension {
                         Button("Save") {
                             let bookmark = Bookmark(title: model.websiteTitle!, url: model.url!)
                             storage.folders[destination!.index].bookmarks.insert(bookmark, at: 0)
-                            #warning("This is not working.")
                             try? storage.save()
                             model.dismissShareExtension()
                         }

@@ -9,20 +9,7 @@ import SwiftUI
 
 struct FolderPicker: View {
     
-    init(title: String, selection: Binding<Row<Folder>>) {
-        _selection = Binding<Row<Folder>?> {
-            selection.wrappedValue
-        } set: {
-            // The folder picker never writes `nil` values to the binding, so this is ok.
-            guard let newValue = $0 else { fatalError("Internal inconsistency in '\(Self.self)'") }
-            selection.wrappedValue = newValue
-        }
-        
-        self.title = title
-        self.excluded = []
-    }
-    
-    init(title: String, selection: Binding<Row<Folder>?>, excluded: Set<Row<Folder>> = []) {
+    init(title: String, selection: Binding<Folder.ID?>, excluded: Set<Folder.ID> = []) {
         _selection = selection
         self.title = title
         self.excluded = excluded
@@ -30,29 +17,31 @@ struct FolderPicker: View {
     
     @StateObject private var storage: Storage = .shared
     
-    @Binding private var selection: Row<Folder>?
+    @Binding private var selection: Folder.ID?
     private let title: String
-    private let excluded: Set<Row<Folder>>
+    private let excluded: Set<Folder.ID>
     
     var body: some View {
         List {
             Section(header: Text(title)) {
-                ForEach(storage.folders.indexed()) { row in
-                    if excluded.contains(row) { EmptyView() } else {
+                ForEach(storage.folders) { folder in
+                    if excluded.contains(folder.id) { EmptyView() } else {
                         HStack {
                             Label {
-                                Text(row.element.name)
+                                Text(folder.name)
                             } icon: {
-                                Image(systemName: row.element.icon.name)
-                                    .foregroundColor(row.element.icon.color)
+                                Image(systemName: folder.icon.name)
+                                    .foregroundColor(folder.icon.color)
                             }
                             
                             Spacer()
                         }
                         .contentShape(Rectangle())
-                        .onTapGesture { selection = row }
+                        .onTapGesture {
+                            selection = folder.id
+                        }
                         .listRowBackground(
-                            row == selection ? Color(.tertiarySystemBackground) : .clear
+                            folder.id == selection ? Color(.tertiarySystemBackground) : .clear
                         )
                     }
                 }

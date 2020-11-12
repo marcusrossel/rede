@@ -120,14 +120,28 @@ struct FolderDetail: View {
             )
             .environment(\.editMode, .constant(isReordering ? .active : .inactive))
             .sheet(item: $sheet) { sheet in
+                #warning("HOOK")
                 switch sheet {
                 case .newBookmark:
-                    BookmarkEditor(row: Row(index: 0, element: newBookmark), in: $folder) { completion in
-                        if case .cancel = completion { folder.bookmarks.remove(at: 0) }
+                    var _isFirstAccess = true
+                    let _hook = Binding<Bookmark?> {
+                        if _isFirstAccess {
+                            folder.bookmarks[0].folderID = folder.id
+                            _isFirstAccess = false
+                        }
+                        return folder.bookmarks[0]
+                    } set: {
+                        guard let newValue = $0 else { return }
+                        folder.bookmarks[0] = newValue
+                    }
+                    
+                    BookmarkEditor(title: "New Bookmark", bookmark: _hook) { action in
+                        if case .rejection = action { folder.bookmarks.remove(at: 0) }
                         newBookmark = Bookmark(title: "", url: URL(string: "https://your.url")!)
                     }
                 case .edit(let row):
-                    BookmarkEditor(row: row, in: $folder)
+                    let _hook = storage.bookmark(for: row.element.id, in: row.element.folderID)
+                    BookmarkEditor(title: "Edit Bookmark", bookmark: _hook)
                 }
             }
         }

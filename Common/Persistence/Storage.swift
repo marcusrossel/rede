@@ -49,7 +49,7 @@ final class Storage: ObservableObject {
 
 extension Storage {
     
-    func folder(for id: Folder.ID) -> Binding<Folder?> {
+    func folder(for id: Folder.ID?) -> Binding<Folder?> {
         Binding {
             self.folders.first { $0.id == id }
         } set: {
@@ -64,7 +64,7 @@ extension Storage {
         }
     }
     
-    func bookmark(for bookmarkID: Bookmark.ID, in folderID: Folder.ID) -> Binding<Bookmark?> {
+    func bookmark(for bookmarkID: Bookmark.ID?, in folderID: Folder.ID?) -> Binding<Bookmark?> {
         Binding {
             guard
                 let folder = self.folder(for: folderID).wrappedValue,

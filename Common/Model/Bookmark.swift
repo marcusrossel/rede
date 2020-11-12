@@ -15,7 +15,7 @@ struct Bookmark: Codable, Identifiable, Hashable {
     let additionDate: Date
     var readDate: Date?
     var isFavorite: Bool
-    var folder: Folder.ID?
+    var folderID: Folder.ID?
 
     init(
         id: UUID = UUID(),
@@ -24,7 +24,7 @@ struct Bookmark: Codable, Identifiable, Hashable {
         additionDate: Date = Date(),
         readDate: Date? = nil,
         isFavorite: Bool = false,
-        folder: Folder.ID? = nil
+        folderID: Folder.ID? = nil
     ) {
         self.id = id
         self.title = title
@@ -32,6 +32,6 @@ struct Bookmark: Codable, Identifiable, Hashable {
         self.additionDate = additionDate
         self.readDate = readDate
         self.isFavorite = isFavorite
-        self.folder = folder
+        self.folderID = folderID
     }
 }
