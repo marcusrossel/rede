@@ -11,7 +11,7 @@ import SwiftUI
 
 struct BookmarkEditor: View {
     
-    init(title: String, bookmark: Binding<Bookmark?>, onCompletion: ((Action) -> Void)? = nil) {
+    init(title: String, bookmark: Binding<Bookmark>, onCompletion: ((Action) -> Void)? = nil) {
         let model = Model(bookmark: bookmark, onCompletion: onCompletion)
         _model = StateObject(wrappedValue: model)
         
@@ -54,16 +54,12 @@ struct BookmarkEditor: View {
             .navigationBarTitle(title, displayMode: .inline)
             .navigationBarItems(
                 leading:
-                    Button {
+                    Button("Cancel") {
                         model.onCompletion(.rejection, presentationMode)
-                    } label: {
-                        Text("Cancel")
                     },
                 trailing:
-                    Button {
+                    Button("Done") {
                         model.onCompletion(.acceptance, presentationMode)
-                    } label: {
-                        Text("Done")
                     }
                     .disabled(model.bookmark.title.isEmpty)
             )
@@ -79,15 +75,15 @@ extension BookmarkEditor {
         
         private let storage: Storage
         
-        private let target: Binding<Bookmark?>
+        private let target: Binding<Bookmark>
         @Published var bookmark: Bookmark
 
         private(set) var onCompletion: (Action, Binding<PresentationMode>) -> Void = { _, _ in }
         
-        init(bookmark: Binding<Bookmark?>, onCompletion: ((Action) -> Void)? = nil) {
+        init(bookmark: Binding<Bookmark>, onCompletion: ((Action) -> Void)? = nil) {
             storage = Storage.shared
             target = bookmark
-            self.bookmark = bookmark.wrappedValue ?? Bookmark(title: "", url: URL(string: "https://your.url")!)
+            self.bookmark = bookmark.wrappedValue
             
             self.onCompletion = { [weak self] action, presentationMode in
                 defer {
@@ -97,14 +93,14 @@ extension BookmarkEditor {
                 
                 guard let self = self, case .acceptance = action else { return }
                 
-                if self.target.wrappedValue?.folderID != self.bookmark.folderID {
-                    self.storage
-                        .folder(for: self.target.wrappedValue?.folderID).wrappedValue?
+                if self.target.wrappedValue.folderID != self.bookmark.folderID {
+                    (§self.target.wrappedValue.folderID)?
+                        .wrappedValue
                         .bookmarks
-                        .remove(id: self.target.wrappedValue?.id)
+                        .remove(id: self.target.wrappedValue.id)
                     
-                    self.storage
-                        .folder(for: self.bookmark.folderID).wrappedValue?
+                    (§self.bookmark.folderID)?
+                        .wrappedValue
                         .bookmarks
                         .insert(self.bookmark, at: 0)
                 }

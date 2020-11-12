@@ -47,42 +47,54 @@ final class Storage: ObservableObject {
 
 // MARK: Accessors
 
-extension Storage {
+prefix operator §
+
+extension Folder {
     
-    func folder(for id: Folder.ID?) -> Binding<Folder?> {
-        Binding {
-            self.folders.first { $0.id == id }
-        } set: {
-            // Setting a `nil` value here is explicitly ignored. This might be a sign of a bad
-            // approach here.
-            guard
-                let newValue = $0,
-                let index = self.folders.firstIndex(where: { $0.id == id })
-            else { return }
-            
-            self.folders[index] = newValue
+    static prefix func § (folder: Folder) -> Binding<Folder> {
+        let storage = Storage.shared
+        
+        return Binding {
+            storage.folders.first { $0.id == folder.id } ?? folder
+        } set: { newValue in
+            guard let index = storage.folders.firstIndex(where: { $0.id == folder.id }) else { return }
+            storage.folders[index] = newValue
         }
     }
+}
+
+extension Folder.ID {
+
+    static prefix func § (folderID: Folder.ID) -> Binding<Folder>? {
+        let storage = Storage.shared
+        guard let fallback = storage.folders.first(where: { $0.id == folderID }) else { return nil }
+        
+        return Binding {
+            storage.folders.first { $0.id == folderID } ?? fallback
+        } set: { newValue in
+            guard let index = storage.folders.firstIndex(where: { $0.id == folderID }) else { return }
+            storage.folders[index] = newValue
+        }
+    }
+}
+
+extension Bookmark {
     
-    func bookmark(for bookmarkID: Bookmark.ID?, in folderID: Folder.ID?) -> Binding<Bookmark?> {
-        Binding {
+    static prefix func § (bookmark: Bookmark) -> Binding<Bookmark>? {
+        return Binding {
             guard
-                let folder = self.folder(for: folderID).wrappedValue,
-                let index = folder.bookmarks.firstIndex(where: { $0.id == bookmarkID })
-            else { return nil }
+                let folder = §bookmark.folderID,
+                let index = folder.wrappedValue.bookmarks.firstIndex(where: { $0.id == bookmark.id })
+            else { return bookmark }
             
-            return folder.bookmarks[index]
-        } set: {
-            let folder = self.folder(for: folderID)
-            
-            // Setting a `nil` value here is explicitly ignored. This might be a sign of a bad
-            // approach here.
+            return folder.wrappedValue.bookmarks[index]
+        } set: { newValue in
             guard
-                let newValue = $0,
-                let index = folder.wrappedValue?.bookmarks.firstIndex(where: { $0.id == bookmarkID })
+                let folder = §bookmark.folderID,
+                let index = folder.wrappedValue.bookmarks.firstIndex(where: { $0.id == bookmark.id })
             else { return }
             
-            folder.wrappedValue?.bookmarks[index] = newValue
+            folder.wrappedValue.bookmarks[index] = newValue
         }
     }
 }

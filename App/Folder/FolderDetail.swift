@@ -46,7 +46,11 @@ struct FolderDetail: View {
     @State private var sheet: Sheet?
     @State private var isReordering = false
     
-    @State private var newBookmark = Bookmark(title: "", url: URL(string: "https://your.url")!)
+    @State private var newBookmark = Bookmark(
+        title: "",
+        url: URL(string: "https://your.url")!,
+        folderID: Folder.ID()
+    )
     
     var body: some View {
         VStack {
@@ -123,25 +127,20 @@ struct FolderDetail: View {
                 #warning("HOOK")
                 switch sheet {
                 case .newBookmark:
-                    var _isFirstAccess = true
-                    let _hook = Binding<Bookmark?> {
-                        if _isFirstAccess {
-                            folder.bookmarks[0].folderID = folder.id
-                            _isFirstAccess = false
+                    if let bookmark = §folder.bookmarks[0] {
+                        BookmarkEditor(title: "New Bookmark", bookmark: bookmark) { action in
+                            if case .rejection = action { folder.bookmarks.remove(at: 0) }
+                            newBookmark = Bookmark(
+                                title: "",
+                                url: URL(string: "https://your.url")!,
+                                folderID: Folder.ID()
+                            )
                         }
-                        return folder.bookmarks[0]
-                    } set: {
-                        guard let newValue = $0 else { return }
-                        folder.bookmarks[0] = newValue
-                    }
-                    
-                    BookmarkEditor(title: "New Bookmark", bookmark: _hook) { action in
-                        if case .rejection = action { folder.bookmarks.remove(at: 0) }
-                        newBookmark = Bookmark(title: "", url: URL(string: "https://your.url")!)
                     }
                 case .edit(let row):
-                    let _hook = storage.bookmark(for: row.element.id, in: row.element.folderID)
-                    BookmarkEditor(title: "Edit Bookmark", bookmark: _hook)
+                    if let bookmark = §row.element {
+                        BookmarkEditor(title: "Edit Bookmark", bookmark: bookmark)
+                    }
                 }
             }
         }

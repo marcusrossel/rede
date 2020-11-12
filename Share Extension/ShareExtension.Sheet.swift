@@ -61,7 +61,11 @@ extension ShareExtension {
                         Button("Cancel", action: model.dismissShareExtension),
                     trailing:
                         Button("Save") {
-                            let bookmark = Bookmark(title: model.websiteTitle!, url: model.url!)
+                            let bookmark = Bookmark(
+                                title: model.websiteTitle!,
+                                url: model.url!,
+                                folderID: storage.folders[destination!.index].id
+                            )
                             storage.folders[destination!.index].bookmarks.insert(bookmark, at: 0)
                             try? storage.save()
                             model.dismissShareExtension()

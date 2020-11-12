@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FolderPicker: View {
     
-    init(title: String, selection: Binding<Folder.ID?>, excluded: Set<Folder.ID> = []) {
+    init(title: String, selection: Binding<Folder.ID>, excluded: Set<Folder.ID> = []) {
         _selection = selection
         self.title = title
         self.excluded = excluded
@@ -17,7 +17,7 @@ struct FolderPicker: View {
     
     @StateObject private var storage: Storage = .shared
     
-    @Binding private var selection: Folder.ID?
+    @Binding private var selection: Folder.ID
     private let title: String
     private let excluded: Set<Folder.ID>
     
