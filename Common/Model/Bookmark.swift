@@ -7,8 +7,6 @@
 
 import Foundation
 
-// MARK: Bookmark
-
 struct Bookmark: Codable, Identifiable, Hashable {
     
     let id: UUID
@@ -17,13 +15,23 @@ struct Bookmark: Codable, Identifiable, Hashable {
     let additionDate: Date
     var readDate: Date?
     var isFavorite: Bool
+    var folder: Folder.ID?
 
-    init(id: UUID = UUID(), title: String, url: URL, additionDate: Date = Date(), readDate: Date? = nil, isFavorite: Bool = false) {
+    init(
+        id: UUID = UUID(),
+        title: String,
+        url: URL,
+        additionDate: Date = Date(),
+        readDate: Date? = nil,
+        isFavorite: Bool = false,
+        folder: Folder.ID? = nil
+    ) {
         self.id = id
         self.title = title
         self.url = url
         self.additionDate = additionDate
         self.readDate = readDate
         self.isFavorite = isFavorite
+        self.folder = folder
     }
 }

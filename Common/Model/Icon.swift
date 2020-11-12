@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// MARK: Icon
+
 struct Icon: Hashable {
     
     var name: String
@@ -22,7 +24,7 @@ struct Icon: Hashable {
     }
 }
 
-// MARK: Defaults
+// MARK: Members
 
 extension Icon {
     
@@ -30,7 +32,7 @@ extension Icon {
 }
 
     
-// MARK: Coding
+// MARK: Serialization
 
 extension Icon: Codable {
     

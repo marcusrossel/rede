@@ -1,5 +1,5 @@
 //
-//  Preview Data.swift
+//  PreviewData.swift
 //  Rede / Common
 //
 //  Created by Marcus Rossel on 22.09.20.
@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-// MARK: URL
-
-extension URL {
+enum PreviewData {
     
-    static let previewData: [URL] = [
+    // MARK: URL
+    
+    static let urls: [URL] = [
         URL(string: "https://swift.org")!,
         URL(string: "https://tech.guardsquare.com/posts/swift-native-method-swizzling/")!,
         URL(string: "http://literatejava.com/exceptions/")!,
@@ -22,68 +22,62 @@ extension URL {
         URL(string: "https://markmap.js.org")!,
         URL(string: "http://marcusrossel.com")!
     ]
-}
-
-// MARK: Bookmark
-
-extension Bookmark {
+    
+    // MARK: Bookmarks
     
     private static let hour: Double = 60 * 60
     private static let day:  Double = 24 * hour
     
-    static let previewData: [Bookmark] = [
+    static let bookmarks: [Bookmark] = [
         Bookmark(
             title: "Swift.org",
-            url: URL.previewData[0]
+            url: urls[0]
         ),
         Bookmark(
             title: "Native Method Swizzling",
-            url: URL.previewData[1],
+            url: urls[1],
             additionDate: Date().addingTimeInterval(-3 * hour),
             readDate: Date()
         ),
         Bookmark(
             title: "Exceptions",
-            url: URL.previewData[2],
+            url: urls[2],
             additionDate: Date().addingTimeInterval(-5 * day)
         ),
         Bookmark(
             title: "Philosophy & Religion",
-            url: URL.previewData[3],
+            url: urls[3],
             readDate: Date()
         ),
         Bookmark(
             title: "What is Nix?",
-            url: URL.previewData[4],
+            url: urls[4],
             additionDate: Date().addingTimeInterval(-100 * day),
             readDate: Date().addingTimeInterval(-50 * day)
         ),
         Bookmark(
             title: "The Complexity of Counting",
-            url: URL.previewData[5],
+            url: urls[5],
             additionDate: Date().addingTimeInterval(-1 * hour),
             readDate: Date().addingTimeInterval(-1 * hour)
         ),
         Bookmark(
             title: "How Kodak Detected the Atomic Bomb",
-            url: URL.previewData[6]
+            url: urls[6]
         ),
         Bookmark(
             title: "markmap-lib",
-            url: URL.previewData[7],
+            url: urls[7],
             additionDate: Date().addingTimeInterval(-2 * day)
         ),
         Bookmark(
             title: "marcus'",
-            url: URL.previewData[8],
+            url: urls[8],
             additionDate: Date().addingTimeInterval(-1 * day)
         )
     ]
-}
-
-// MARK: Folder
-
-extension Folder {
+    
+    // MARK: Folders
     
     static let previewData: [Folder] = [
         Folder(
@@ -91,29 +85,29 @@ extension Folder {
         ),
         Folder(
             name: "Programming",
-            bookmarks: Array(Bookmark.previewData[0...2]),
+            bookmarks: Array(bookmarks[0...2]),
             icon: Icon(name: "command", color: .green)
         ),
         Folder(
             name: "Social",
-            bookmarks: Array(Bookmark.previewData[3...3]),
+            bookmarks: Array(bookmarks[3...3]),
             icon: Icon(name: "person.fill", color: .yellow)
         ),
         Folder(
             name: "Math",
-            bookmarks: Array(Bookmark.previewData[4...5]),
+            bookmarks: Array(bookmarks[4...5]),
             sorting: .byTitle,
             icon: Icon(name: "number", color: .red)
         ),
         Folder(
             name: "Videos",
-            bookmarks: Array(Bookmark.previewData[6...6]),
+            bookmarks: Array(bookmarks[6...6]),
             sorting: .byDate,
             icon: Icon(name: "tropicalstorm", color: .blue)
         ),
         Folder(
             name: "Tools",
-            bookmarks: Array(Bookmark.previewData[7...8]),
+            bookmarks: Array(bookmarks[7...8]),
             sorting: .byDate,
             icon: Icon(name: "hammer.fill", color: .white)
         )

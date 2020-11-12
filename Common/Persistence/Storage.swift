@@ -45,6 +45,48 @@ final class Storage: ObservableObject {
     }
 }
 
+// MARK: Accessors
+
+extension Storage {
+    
+    func folder(for id: Folder.ID) -> Binding<Folder?> {
+        Binding {
+            self.folders.first { $0.id == id }
+        } set: {
+            // Setting a `nil` value here is explicitly ignored. This might be a sign of a bad
+            // approach here.
+            guard
+                let newValue = $0,
+                let index = self.folders.firstIndex(where: { $0.id == id })
+            else { return }
+            
+            self.folders[index] = newValue
+        }
+    }
+    
+    func bookmark(for bookmarkID: Bookmark.ID, in folderID: Folder.ID) -> Binding<Bookmark?> {
+        Binding {
+            guard
+                let folder = self.folder(for: folderID).wrappedValue,
+                let index = folder.bookmarks.firstIndex(where: { $0.id == bookmarkID })
+            else { return nil }
+            
+            return folder.bookmarks[index]
+        } set: {
+            let folder = self.folder(for: folderID)
+            
+            // Setting a `nil` value here is explicitly ignored. This might be a sign of a bad
+            // approach here.
+            guard
+                let newValue = $0,
+                let index = folder.wrappedValue?.bookmarks.firstIndex(where: { $0.id == bookmarkID })
+            else { return }
+            
+            folder.wrappedValue?.bookmarks[index] = newValue
+        }
+    }
+}
+
 // MARK: File
 
 fileprivate enum File: String, Hashable {
