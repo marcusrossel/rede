@@ -15,6 +15,19 @@ struct FolderPicker: View {
         self.excluded = excluded
     }
     
+    init(title: String, selection: Binding<Folder.ID?>, excluded: Set<Folder.ID> = []) {
+        let dummy = Folder.ID()
+        
+        _selection = Binding {
+            selection.wrappedValue ?? dummy
+        } set: {
+            selection.wrappedValue = $0
+        }
+        
+        self.title = title
+        self.excluded = excluded
+    }
+    
     @StateObject private var storage: Storage = .shared
     
     @Binding private var selection: Folder.ID
@@ -25,7 +38,7 @@ struct FolderPicker: View {
         List {
             Section(header: Text(title)) {
                 ForEach(storage.folders) { folder in
-                    if excluded.contains(folder.id) { EmptyView() } else {
+                    if !excluded.contains(folder.id) {
                         HStack {
                             Label {
                                 Text(folder.name)

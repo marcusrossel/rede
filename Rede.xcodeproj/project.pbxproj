@@ -45,8 +45,8 @@
 		2CE41CE7255DA15100AE68E2 /* Folder.Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE41CE6255DA15100AE68E2 /* Folder.Sorting.swift */; };
 		2CE41CE8255DA15100AE68E2 /* Folder.Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE41CE6255DA15100AE68E2 /* Folder.Sorting.swift */; };
 		2CE41CF0255DAE9D00AE68E2 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE41CEF255DAE9D00AE68E2 /* Action.swift */; };
-		2CE41CF9255DB3DD00AE68E2 /* Array+IndexForID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE41CF8255DB3DD00AE68E2 /* Array+IndexForID.swift */; };
-		2CE41CFA255DB3DD00AE68E2 /* Array+IndexForID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE41CF8255DB3DD00AE68E2 /* Array+IndexForID.swift */; };
+		2CE41CF9255DB3DD00AE68E2 /* Array+Subscripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE41CF8255DB3DD00AE68E2 /* Array+Subscripts.swift */; };
+		2CE41CFA255DB3DD00AE68E2 /* Array+Subscripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE41CF8255DB3DD00AE68E2 /* Array+Subscripts.swift */; };
 		2CE41D00255DB95800AE68E2 /* BookmarkEditor.URLField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE41CFF255DB95800AE68E2 /* BookmarkEditor.URLField.swift */; };
 		2CE41D06255DBA0100AE68E2 /* BookmarkEditor.FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE41D05255DBA0100AE68E2 /* BookmarkEditor.FavoriteButton.swift */; };
 		2CE41D11255DBAE700AE68E2 /* BookmarkEditor.ReadButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE41D10255DBAE700AE68E2 /* BookmarkEditor.ReadButton.swift */; };
@@ -112,7 +112,7 @@
 		2CE33FA625585B7C006E2254 /* FolderEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderEditor.swift; sourceTree = "<group>"; };
 		2CE41CE6255DA15100AE68E2 /* Folder.Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.Sorting.swift; sourceTree = "<group>"; };
 		2CE41CEF255DAE9D00AE68E2 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
-		2CE41CF8255DB3DD00AE68E2 /* Array+IndexForID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+IndexForID.swift"; sourceTree = "<group>"; };
+		2CE41CF8255DB3DD00AE68E2 /* Array+Subscripts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Subscripts.swift"; sourceTree = "<group>"; };
 		2CE41CFF255DB95800AE68E2 /* BookmarkEditor.URLField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkEditor.URLField.swift; sourceTree = "<group>"; };
 		2CE41D05255DBA0100AE68E2 /* BookmarkEditor.FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkEditor.FavoriteButton.swift; sourceTree = "<group>"; };
 		2CE41D10255DBAE700AE68E2 /* BookmarkEditor.ReadButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkEditor.ReadButton.swift; sourceTree = "<group>"; };
@@ -262,9 +262,9 @@
 			isa = PBXGroup;
 			children = (
 				2C1E80832559F726000CA8E4 /* Binding+Subscripts.swift */,
+				2CE41CF8255DB3DD00AE68E2 /* Array+Subscripts.swift */,
 				2CE33FA32558568C006E2254 /* RandomAccessCollection+Indexed.swift */,
 				2CB3CE51255BC8160007419F /* Collection+Safe.swift */,
-				2CE41CF8255DB3DD00AE68E2 /* Array+IndexForID.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -415,7 +415,7 @@
 				2CB3CE52255BC8160007419F /* Collection+Safe.swift in Sources */,
 				2CE33FA725585B7C006E2254 /* FolderEditor.swift in Sources */,
 				2CE41CF0255DAE9D00AE68E2 /* Action.swift in Sources */,
-				2CE41CF9255DB3DD00AE68E2 /* Array+IndexForID.swift in Sources */,
+				2CE41CF9255DB3DD00AE68E2 /* Array+Subscripts.swift in Sources */,
 				2C1277E02558484B008B8C7D /* RedeApp.swift in Sources */,
 				2C1E80842559F726000CA8E4 /* Binding+Subscripts.swift in Sources */,
 				2CE41CE7255DA15100AE68E2 /* Folder.Sorting.swift in Sources */,
@@ -439,7 +439,7 @@
 				2C24E1EF255C512900722B9C /* ShareExtension.swift in Sources */,
 				2C73A9C9255C2EAA00026565 /* ShareExtension.Controller.swift in Sources */,
 				2C73A9FB255C434F00026565 /* FolderPicker.swift in Sources */,
-				2CE41CFA255DB3DD00AE68E2 /* Array+IndexForID.swift in Sources */,
+				2CE41CFA255DB3DD00AE68E2 /* Array+Subscripts.swift in Sources */,
 				2C73A9DB255C2FC200026565 /* Storage.swift in Sources */,
 				2C24E1F5255C517E00722B9C /* ShareExtension.Model.swift in Sources */,
 				2C73AA07255C43A000026565 /* PreviewData.swift in Sources */,

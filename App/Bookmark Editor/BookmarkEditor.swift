@@ -73,16 +73,14 @@ extension BookmarkEditor {
     
     fileprivate final class Model: ObservableObject {
         
-        private let storage: Storage
-        
-        private let target: Binding<Bookmark>
+        @Published private var storage: Storage = .shared
+        @Binding private var target: Bookmark
         @Published var bookmark: Bookmark
 
         private(set) var onCompletion: (Action, Binding<PresentationMode>) -> Void = { _, _ in }
         
         init(bookmark: Binding<Bookmark>, onCompletion: ((Action) -> Void)? = nil) {
-            storage = Storage.shared
-            target = bookmark
+            _target = bookmark
             self.bookmark = bookmark.wrappedValue
             
             self.onCompletion = { [weak self] action, presentationMode in
@@ -93,19 +91,13 @@ extension BookmarkEditor {
                 
                 guard let self = self, case .acceptance = action else { return }
                 
-                if self.target.wrappedValue.folderID != self.bookmark.folderID {
-                    (§self.target.wrappedValue.folderID)?
-                        .wrappedValue
-                        .bookmarks
-                        .remove(id: self.target.wrappedValue.id)
-                    
-                    (§self.bookmark.folderID)?
-                        .wrappedValue
-                        .bookmarks
-                        .insert(self.bookmark, at: 0)
-                }
+                let folderID = (target: self.target.folderID, bookmark: self.bookmark.folderID)
+                self.target = self.bookmark
                 
-                self.target.wrappedValue = self.bookmark
+                if folderID.target != folderID.bookmark {
+                    self.storage.folders[permanent: folderID.bookmark].bookmarks.insert(self.bookmark, at: 0)
+                    self.storage.folders[permanent: folderID.target].bookmarks.remove(id: self.target.id)
+                }
             }
         }
     }

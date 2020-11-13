@@ -127,20 +127,16 @@ struct FolderDetail: View {
                 #warning("HOOK")
                 switch sheet {
                 case .newBookmark:
-                    if let bookmark = §folder.bookmarks[0] {
-                        BookmarkEditor(title: "New Bookmark", bookmark: bookmark) { action in
-                            if case .rejection = action { folder.bookmarks.remove(at: 0) }
-                            newBookmark = Bookmark(
-                                title: "",
-                                url: URL(string: "https://your.url")!,
-                                folderID: Folder.ID()
-                            )
-                        }
+                    BookmarkEditor(title: "New Bookmark", bookmark: $newBookmark) { action in
+                        if case .rejection = action { folder.bookmarks.remove(at: 0) }
+                        newBookmark = Bookmark(
+                            title: "",
+                            url: URL(string: "https://your.url")!,
+                            folderID: Folder.ID()
+                        )
                     }
                 case .edit(let row):
-                    if let bookmark = §row.element {
-                        BookmarkEditor(title: "Edit Bookmark", bookmark: bookmark)
-                    }
+                    BookmarkEditor(title: "Edit Bookmark", bookmark: $folder.bookmarks[permanent: row.element.id])
                 }
             }
         }

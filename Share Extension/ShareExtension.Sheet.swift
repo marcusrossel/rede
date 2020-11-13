@@ -15,7 +15,7 @@ extension ShareExtension {
         @StateObject private var storage: Storage = .shared
         @ObservedObject var model: Model
         
-        @State private var destination: Row<Folder>?
+        @State private var destination: Folder.ID?
         
         private var title: Binding<String> {
             Binding { model.websiteTitle ?? "" } set: { model.websiteTitle = $0 }
@@ -53,7 +53,7 @@ extension ShareExtension {
                     .padding(.bottom, 14)
                     
                     #warning("HOOK")
-                    // FolderPicker(title: "Destination", selection: $destination)
+                    FolderPicker(title: "Destination", selection: $destination)
                 }
                 .navigationBarTitle("New Bookmark", displayMode: .large)
                 .navigationBarItems(
@@ -64,9 +64,9 @@ extension ShareExtension {
                             let bookmark = Bookmark(
                                 title: model.websiteTitle!,
                                 url: model.url!,
-                                folderID: storage.folders[destination!.index].id
+                                folderID: destination!
                             )
-                            storage.folders[destination!.index].bookmarks.insert(bookmark, at: 0)
+                            storage.folders[volatile: destination!]?.bookmarks.insert(bookmark, at: 0)
                             try? storage.save()
                             model.dismissShareExtension()
                         }

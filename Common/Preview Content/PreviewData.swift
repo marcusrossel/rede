@@ -88,7 +88,7 @@ enum PreviewData {
     
     // MARK: Folder IDs
     
-    static let folderIDs: [Folder.ID] = Array(repeating: Folder.ID(), count: 6)
+    static let folderIDs: [Folder.ID] = (1...6).map { _ in Folder.ID() }
     
     // MARK: Folders
     

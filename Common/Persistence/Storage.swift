@@ -45,60 +45,6 @@ final class Storage: ObservableObject {
     }
 }
 
-// MARK: Accessors
-
-prefix operator §
-
-extension Folder {
-    
-    static prefix func § (folder: Folder) -> Binding<Folder> {
-        let storage = Storage.shared
-        
-        return Binding {
-            storage.folders.first { $0.id == folder.id } ?? folder
-        } set: { newValue in
-            guard let index = storage.folders.firstIndex(where: { $0.id == folder.id }) else { return }
-            storage.folders[index] = newValue
-        }
-    }
-}
-
-extension Folder.ID {
-
-    static prefix func § (folderID: Folder.ID) -> Binding<Folder>? {
-        let storage = Storage.shared
-        guard let fallback = storage.folders.first(where: { $0.id == folderID }) else { return nil }
-        
-        return Binding {
-            storage.folders.first { $0.id == folderID } ?? fallback
-        } set: { newValue in
-            guard let index = storage.folders.firstIndex(where: { $0.id == folderID }) else { return }
-            storage.folders[index] = newValue
-        }
-    }
-}
-
-extension Bookmark {
-    
-    static prefix func § (bookmark: Bookmark) -> Binding<Bookmark>? {
-        return Binding {
-            guard
-                let folder = §bookmark.folderID,
-                let index = folder.wrappedValue.bookmarks.firstIndex(where: { $0.id == bookmark.id })
-            else { return bookmark }
-            
-            return folder.wrappedValue.bookmarks[index]
-        } set: { newValue in
-            guard
-                let folder = §bookmark.folderID,
-                let index = folder.wrappedValue.bookmarks.firstIndex(where: { $0.id == bookmark.id })
-            else { return }
-            
-            folder.wrappedValue.bookmarks[index] = newValue
-        }
-    }
-}
-
 // MARK: File
 
 fileprivate enum File: String, Hashable {
