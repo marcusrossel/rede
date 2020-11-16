@@ -14,8 +14,11 @@ extension FolderDetail {
         @StateObject private var storage: Storage = .shared
         @Binding var bookmark: Bookmark
         
+        // Setting the edit mode from a subview, does not currently set it in the parent. This is a
+        // workaround.
+        @Binding var editMode: EditMode?
+        
         var onEdit: ((Binding<Bookmark>) -> Void)? = nil
-        var onReorder: (() -> Void)? = nil
         
         private var folder: Folder {
             get { storage.folders[permanent: bookmark.folderID] }
@@ -29,46 +32,50 @@ extension FolderDetail {
         }
         
         var body: some View {
-            Button {
-                bookmark.readDate = bookmark.isRead ? nil : Date()
-            } label: {
-                Text("Mark As \(bookmark.isRead ? "Unread" : "Read")")
-                Image(systemName: "book\(bookmark.isRead ? "" : ".fill")")
-            }
-            
-            Button {
-                bookmark.isFavorite.toggle()
-            } label: {
-                Text(bookmark.isFavorite ? "Unfavorite" : "Favorite")
-                Image(systemName: "star\(bookmark.isFavorite ? "" : ".fill")")
-            }
-            
-            Button { onEdit?($bookmark) } label: {
-                Text("Edit")
-                Image(systemName: "slider.horizontal.3")
-            }
-            
-            if showReorderButton {
-                Button { onReorder?() } label: {
-                    Text("Reorder")
-                    Image(systemName: "rectangle.arrowtriangle.2.outward")
+            if editMode != .inactive {
+                EmptyView()
+            } else {
+                Button {
+                    bookmark.readDate = bookmark.isRead ? nil : Date()
+                } label: {
+                    Text("Mark As \(bookmark.isRead ? "Unread" : "Read")")
+                    Image(systemName: "book\(bookmark.isRead ? "" : ".fill")")
                 }
-            }
-            
-            Button {
-                folder.bookmarks.remove(id: bookmark.id)
-            } label: {
-                Text("Delete")
-                Image(systemName: "minus.circle.fill")
+                
+                Button {
+                    bookmark.isFavorite.toggle()
+                } label: {
+                    Text(bookmark.isFavorite ? "Unfavorite" : "Favorite")
+                    Image(systemName: "star\(bookmark.isFavorite ? "" : ".fill")")
+                }
+                
+                Button { onEdit?($bookmark) } label: {
+                    Text("Edit")
+                    Image(systemName: "slider.horizontal.3")
+                }
+                
+                if showReorderButton {
+                    Button {
+                        withAnimation {
+                            editMode = .active
+                        }
+                    } label: {
+                        Text("Reorder")
+                        Image(systemName: "rectangle.arrowtriangle.2.outward")
+                    }
+                }
+                
+                Button {
+                    folder.bookmarks.remove(id: bookmark.id)
+                } label: {
+                    Text("Delete")
+                    Image(systemName: "minus.circle.fill")
+                }
             }
         }
         
         func onEdit(_ action: @escaping (Binding<Bookmark>) -> Void) -> Self {
-            ContextMenu(bookmark: $bookmark, onEdit: action, onReorder: onReorder)
-        }
-        
-        func onReorder(_ action: @escaping () -> Void) -> Self {
-            ContextMenu(bookmark: $bookmark, onEdit: onEdit, onReorder: action)
+            ContextMenu(bookmark: $bookmark, editMode: $editMode, onEdit: action)
         }
     }
 }

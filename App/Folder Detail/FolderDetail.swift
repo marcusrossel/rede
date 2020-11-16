@@ -9,69 +9,45 @@ import SwiftUI
 
 struct FolderDetail: View {
     
-    init(row: Row<Folder>) {
-        _storage = StateObject(wrappedValue: Storage.shared)
-        
-        // This is really a manual implementation of `Binding.suscript(safe:)`.
-        _folder = Binding<Folder> {
-            guard Storage.shared.folders.indices.contains(row.index) else { return row.element }
-            return Storage.shared.folders[row.index]
-        } set: { newValue in
-            guard Storage.shared.folders.indices.contains(row.index) else { return }
-            Storage.shared.folders[row.index] = newValue
-        }
-    }
+    @StateObject private var storage: Storage = .shared
+    @Binding var folder: Folder
     
-    @StateObject private var storage: Storage
-    @Binding private var folder: Folder
+    // Setting the edit mode from a subview, does not currently set it in the parent. This is a
+    // workaround.
+    @State private var editMode: EditMode? = .inactive
+    @State private var sheet: Sheet? = nil
     
-    private var unreadRows: [Row<Bookmark>] {
-        let filtered = folder.bookmarks.indexed()
-            .filter {
-                $0.element.readDate == nil &&
-                !$0.element.title.isEmpty // Filters out the new bookmark while it's editing.
-            }
-            
-        switch folder.sorting {
-        case .manual:
-            return filtered
-        default:
-            return filtered.sorted { lhs, rhs in folder.sorting.predicate(lhs.element, rhs.element) }
-        }
-    }
     private var readBookmarks: [Bookmark] { folder.bookmarks.filter(\.isRead) }
-    
-    @State private var sheet: Sheet?
-    @State private var isReordering = false
+    private var unreadBookmarks: [Bookmark] {
+        folder.bookmarks
+            // The second statement filters out the new bookmark while it's editing.
+            .filter { $0.readDate == nil && !$0.title.isEmpty }
+            .sorted(by: folder.sorting.predicate)
+    }
     
     var body: some View {
         VStack {
-            if unreadRows.isEmpty && readBookmarks.isEmpty {
+            // Checking this condtion instead of `folder.bookmarks.isEmpty` is important here, to
+            // retain the side effects of `unreadBookmarks`.
+            if unreadBookmarks.isEmpty && readBookmarks.isEmpty {
                 NoBookmarks /*onTapGesture:*/ {
-                    let newBookmark = Bookmark(
-                        title: "",
-                        url: URL(string: "https://your.url")!,
-                        folderID: folder.id
-                    )
+                    let newBookmark = Bookmark(title: "", url: URL(string: "https://your.url")!, folderID: folder.id)
                     folder.bookmarks.insert(newBookmark, at: 0)
                     sheet = .new(bookmark: $folder.bookmarks[permanent: newBookmark.id])
                 }
             }
             
             List {
-                if !unreadRows.isEmpty {
+                if !unreadBookmarks.isEmpty {
                     Section(header: Text("Unread")) {
-                        ForEach(unreadRows) { row in
-                            BookmarkRow(bookmark: row.element)
+                        ForEach(unreadBookmarks) { bookmark in
+                            BookmarkRow(bookmark: bookmark)
                                 .contextMenu {
-                                    if !isReordering {
-                                        ContextMenu(bookmark: $folder.bookmarks[row.index])
-                                            .onEdit { sheet = .edit(bookmark: $0) }
-                                            .onReorder { withAnimation { isReordering = true } }
-                                    }
+                                    ContextMenu(bookmark: $folder.bookmarks[permanent: bookmark.id], editMode: $editMode)
+                                        .onEdit { sheet = .edit(bookmark: $0) }
                                 }
                         }
-                        .onDelete(perform: isReordering ? nil : { delete(atOffsets: $0, areRead: false) })
+                        .onDelete(perform: onDelete(for: unreadBookmarks))
                         .onMove(perform: onMove(offsets:destination:))
                     }
                 }
@@ -81,22 +57,19 @@ struct FolderDetail: View {
                         ForEach(readBookmarks) { bookmark in
                             BookmarkRow(bookmark: bookmark)
                                 .contextMenu {
-                                    if !isReordering {
-                                        ContextMenu(bookmark: $folder.bookmarks[permanent: bookmark.id])
-                                            .onEdit { sheet = .edit(bookmark: $0) }
-                                            .onReorder { withAnimation { isReordering = true } }
-                                    }
+                                    ContextMenu(bookmark: $folder.bookmarks[permanent: bookmark.id], editMode: $editMode)
+                                        .onEdit { sheet = .edit(bookmark: $0) }
                                 }
                         }
-                        .onDelete(perform: isReordering ? nil : { delete(atOffsets: $0, areRead: true) })
+                        .onDelete(perform: onDelete(for: readBookmarks))
                     }
                 }
             }
             .listStyle(InsetGroupedListStyle())
             .navigationBarItems(trailing:
                 Group {
-                    if isReordering {
-                        Button("Done") { withAnimation { isReordering = false } }
+                    if (editMode != .inactive) {
+                        Button("Done") { withAnimation { editMode = .inactive } }
                     } else {
                         Picker(selection: $folder.sorting, label: Image(systemName: "arrow.up.arrow.down.circle.fill")) {
                             ForEach(Folder.Sorting.allCases) { sorting in
@@ -108,7 +81,7 @@ struct FolderDetail: View {
                     }
                 }
             )
-            .environment(\.editMode, .constant(isReordering ? .active : .inactive))
+            .environment(\.editMode, Binding($editMode))
             .sheet(item: $sheet) { sheet in
                 switch sheet {
                 case .new(let bookmark):
@@ -123,10 +96,14 @@ struct FolderDetail: View {
         .navigationBarTitle(folder.name, displayMode: .inline)
     }
     
-    private func delete(atOffsets offsets: IndexSet, areRead: Bool) {
-        #warning("Broken")
-        let properOffsets = IndexSet(offsets.map { (areRead ? readBookmarks[$0] : unreadRows[$0]).index })
-        folder.bookmarks.remove(atOffsets: properOffsets)
+    private func onDelete(for bookmarks: [Bookmark]) -> ((IndexSet) -> Void)? {
+        guard editMode == .inactive else { return nil }
+        
+        return { offsets in
+            for offset in offsets {
+                folder.bookmarks.remove(id: bookmarks[offset].id)
+            }
+        }
     }
     
     private func onMove(offsets: IndexSet, destination: Int) {
@@ -138,9 +115,9 @@ struct FolderDetail: View {
         // Since `move(fromOffsets:toOffsets)` requires the destination to be overshot by 1, and
         // we've explicitly removed that overshoot due to index mapping, we need to reintroduce it
         // in the final "proper" destination.
-        let properDestination = unreadRows[destination + (moveIsUp ? -1 : 0)].index + (moveIsUp ? 1 : 0)
+        /*let properDestination = unreadRows[destination + (moveIsUp ? -1 : 0)].index + (moveIsUp ? 1 : 0)
         let properOffsets = IndexSet(offsets.map { unreadRows[$0].index })
         
-        folder.bookmarks.move(fromOffsets: properOffsets, toOffset: properDestination)
+        folder.bookmarks.move(fromOffsets: properOffsets, toOffset: properDestination)*/
     }
 }

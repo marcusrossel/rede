@@ -27,7 +27,7 @@ struct Home: View {
             
             List {
                 ForEach(storage.folders.indexed()) { row in
-                    FolderRow(row: row)
+                    FolderRow(folder: $storage.folders[permanent: row.element.id])
                         .contextMenu { isReordering ? nil : contextMenu(for: row) }
                 }
                 .onDelete(perform: isReordering ? nil : onDelete(offsets:))

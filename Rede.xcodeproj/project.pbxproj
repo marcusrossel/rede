@@ -151,10 +151,10 @@
 			isa = PBXGroup;
 			children = (
 				2C12780925584ED7008B8C7D /* FolderDetail.swift */,
+				2C12780C25585078008B8C7D /* FolderDetail.BookmarkRow.swift */,
 				2C40AFF42562BEE2003DA2C2 /* FolderDetail.NoBookmarks.swift */,
 				2C40AFE82562AF8F003DA2C2 /* FolderDetail.Sheet.swift */,
 				2C40AFEE2562B313003DA2C2 /* FolderDetail.ContextMenu.swift */,
-				2C12780C25585078008B8C7D /* FolderDetail.BookmarkRow.swift */,
 			);
 			path = "Folder Detail";
 			sourceTree = "<group>";
