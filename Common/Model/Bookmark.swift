@@ -16,6 +16,8 @@ struct Bookmark: Codable, Identifiable, Hashable {
     var readDate: Date?
     var isFavorite: Bool
     var folderID: Folder.ID
+    
+    var isRead: Bool { readDate != nil }
 
     init(
         id: UUID = UUID(),

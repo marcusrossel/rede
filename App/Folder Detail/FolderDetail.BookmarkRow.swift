@@ -15,11 +15,10 @@ extension FolderDetail {
         
         // `Link` can't open *any* URL, so this is a cheap attempt at making it do so anyway.
         private var openableURL: URL {
-            if bookmark.url.absoluteString.hasPrefix("https://") || bookmark.url.absoluteString.hasPrefix("http://") {
-                return bookmark.url
-            } else {
-                return URL(string: "https://" + bookmark.url.absoluteString)!
-            }
+            bookmark.url.absoluteString.hasPrefix("https://") ||
+            bookmark.url.absoluteString.hasPrefix("http://")
+                ? bookmark.url
+                : URL(string: "https://" + bookmark.url.absoluteString)!
         }
         
         var body: some View {

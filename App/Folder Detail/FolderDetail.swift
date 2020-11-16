@@ -39,68 +39,54 @@ struct FolderDetail: View {
             return filtered.sorted { lhs, rhs in folder.sorting.predicate(lhs.element, rhs.element) }
         }
     }
-    private var readRows: [Row<Bookmark>] {
-        folder.bookmarks.indexed().filter { $0.element.readDate != nil }
-    }
+    private var readBookmarks: [Bookmark] { folder.bookmarks.filter(\.isRead) }
     
     @State private var sheet: Sheet?
     @State private var isReordering = false
     
-    @State private var newBookmark = Bookmark(
-        title: "",
-        url: URL(string: "https://your.url")!,
-        folderID: Folder.ID()
-    )
-    
     var body: some View {
         VStack {
-            if unreadRows.isEmpty && readRows.isEmpty {
-                Spacer()
-                
-                VStack(spacing: 12) {
-                    Button {
-                        folder.bookmarks.insert(newBookmark, at: 0)
-                        sheet = .newBookmark
-                    } label: {
-                        Image(systemName: "bookmark.fill")
-                            .font(.system(size: 50))
-                            .foregroundColor(Color(#colorLiteral(red: 0.3895070553, green: 0.7931495309, blue: 0.4028683305, alpha: 1)))
-                            .overlay(
-                                Image(systemName: "plus")
-                                    .font(Font.system(size: 20).bold())
-                                    .padding(.bottom, 12)
-                                    .foregroundColor(Color(.systemBackground))
-                            )
-                    }
-                    
-                    Text("No bookmarks yet?\nTry adding one!")
-                        .fontWeight(.bold)
-                        .font(.title3)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
+            if unreadRows.isEmpty && readBookmarks.isEmpty {
+                NoBookmarks /*onTapGesture:*/ {
+                    let newBookmark = Bookmark(
+                        title: "",
+                        url: URL(string: "https://your.url")!,
+                        folderID: folder.id
+                    )
+                    folder.bookmarks.insert(newBookmark, at: 0)
+                    sheet = .new(bookmark: $folder.bookmarks[permanent: newBookmark.id])
                 }
-                .padding(40)
             }
             
             List {
                 if !unreadRows.isEmpty {
                     Section(header: Text("Unread")) {
                         ForEach(unreadRows) { row in
-                            if row.element != newBookmark {
-                                BookmarkRow(bookmark: row.element)
-                                    .contextMenu { isReordering ? nil : contextMenu(for: row) }
-                            }
+                            BookmarkRow(bookmark: row.element)
+                                .contextMenu {
+                                    if !isReordering {
+                                        ContextMenu(bookmark: $folder.bookmarks[row.index])
+                                            .onEdit { sheet = .edit(bookmark: $0) }
+                                            .onReorder { withAnimation { isReordering = true } }
+                                    }
+                                }
                         }
                         .onDelete(perform: isReordering ? nil : { delete(atOffsets: $0, areRead: false) })
                         .onMove(perform: onMove(offsets:destination:))
                     }
                 }
                 
-                if !readRows.isEmpty {
+                if !readBookmarks.isEmpty {
                     Section(header: Text("Read")) {
-                        ForEach(readRows) { row in
-                            BookmarkRow(bookmark: row.element)
-                                .contextMenu { isReordering ? nil : contextMenu(for: row) }
+                        ForEach(readBookmarks) { bookmark in
+                            BookmarkRow(bookmark: bookmark)
+                                .contextMenu {
+                                    if !isReordering {
+                                        ContextMenu(bookmark: $folder.bookmarks[permanent: bookmark.id])
+                                            .onEdit { sheet = .edit(bookmark: $0) }
+                                            .onReorder { withAnimation { isReordering = true } }
+                                    }
+                                }
                         }
                         .onDelete(perform: isReordering ? nil : { delete(atOffsets: $0, areRead: true) })
                     }
@@ -124,19 +110,13 @@ struct FolderDetail: View {
             )
             .environment(\.editMode, .constant(isReordering ? .active : .inactive))
             .sheet(item: $sheet) { sheet in
-                #warning("HOOK")
                 switch sheet {
-                case .newBookmark:
-                    BookmarkEditor(title: "New Bookmark", bookmark: $newBookmark) { action in
+                case .new(let bookmark):
+                    BookmarkEditor(title: "New Bookmark", bookmark: bookmark) { action in
                         if case .rejection = action { folder.bookmarks.remove(at: 0) }
-                        newBookmark = Bookmark(
-                            title: "",
-                            url: URL(string: "https://your.url")!,
-                            folderID: Folder.ID()
-                        )
                     }
-                case .edit(let row):
-                    BookmarkEditor(title: "Edit Bookmark", bookmark: $folder.bookmarks[permanent: row.element.id])
+                case .edit(let bookmark):
+                    BookmarkEditor(title: "Edit Bookmark", bookmark: bookmark)
                 }
             }
         }
@@ -144,7 +124,8 @@ struct FolderDetail: View {
     }
     
     private func delete(atOffsets offsets: IndexSet, areRead: Bool) {
-        let properOffsets = IndexSet(offsets.map { (areRead ? readRows[$0] : unreadRows[$0]).index })
+        #warning("Broken")
+        let properOffsets = IndexSet(offsets.map { (areRead ? readBookmarks[$0] : unreadRows[$0]).index })
         folder.bookmarks.remove(atOffsets: properOffsets)
     }
     
@@ -161,57 +142,5 @@ struct FolderDetail: View {
         let properOffsets = IndexSet(offsets.map { unreadRows[$0].index })
         
         folder.bookmarks.move(fromOffsets: properOffsets, toOffset: properDestination)
-    }
-    
-    private func contextMenu(for row: Row<Bookmark>) -> some View {
-        Group {
-            let isUnread = row.element.readDate == nil
-            
-            Button {
-                folder.bookmarks[row.index].readDate = isUnread ? Date() : nil
-            } label: {
-                Text("Mark As \(isUnread ? "Read" : "Unread")")
-                Image(systemName: "book\(isUnread ? ".fill" : "")")
-            }
-            
-            Button {
-                folder.bookmarks[row.index].isFavorite.toggle()
-            } label: {
-                Text(row.element.isFavorite ? "Unfavorite" : "Favorite")
-                Image(systemName: "star\(row.element.isFavorite ? "" : ".fill")")
-            }
-            
-            Button { sheet = .edit(row: row) } label: {
-                Text("Edit")
-                Image(systemName: "slider.horizontal.3")
-            }
-            
-            if isUnread && unreadRows.count > 1 && folder.sorting == .manual {
-                Button { withAnimation { isReordering = true } } label: {
-                    Text("Reorder")
-                    Image(systemName: "rectangle.arrowtriangle.2.outward")
-                }
-            }
-            
-            Button {
-                folder.bookmarks.remove(at: row.index)
-            } label: {
-                Text("Delete")
-                Image(systemName: "minus.circle.fill")
-            }
-        }
-    }
-}
-
-// MARK: Sheet
-
-extension FolderDetail {
-    
-    enum Sheet: Identifiable, Hashable {
-        
-        case newBookmark
-        case edit(row: Row<Bookmark>)
-        
-        var id: Sheet { self }
     }
 }

@@ -8,17 +8,15 @@
 import Foundation
 
 struct Folder: Identifiable, Hashable, Codable {
-    
-    typealias ID = UUID
-    
-    let id: ID
+
+    let id: UUID
     var name: String
     var bookmarks: [Bookmark]
     var sorting: Sorting
     var icon: Icon
     
     init(
-        id: ID = ID(),
+        id: UUID = UUID(),
         name: String,
         bookmarks: [Bookmark] = [],
         sorting: Sorting = .manual,
