@@ -1,6 +1,6 @@
 //
 //  FolderDetail.ContextMenu.swift
-//  Rede
+//  Rede / App
 //
 //  Created by Marcus Rossel on 16.11.20.
 //
@@ -14,7 +14,7 @@ extension FolderDetail {
         @StateObject private var storage: Storage = .shared
         @Binding var bookmark: Bookmark
         
-        // Setting the edit mode from a subview, does not currently set it in the parent. This is a
+        // Setting the edit mode from a subview does not currently set it in the parent. This is a
         // workaround.
         @Binding var editMode: EditMode?
         

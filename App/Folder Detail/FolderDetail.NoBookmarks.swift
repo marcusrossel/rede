@@ -1,6 +1,6 @@
 //
 //  FolderDetail.NoBookmarks.swift
-//  Rede
+//  Rede / App
 //
 //  Created by Marcus Rossel on 16.11.20.
 //

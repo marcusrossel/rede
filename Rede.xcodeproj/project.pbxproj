@@ -29,6 +29,7 @@
 		2C40AFE92562AF8F003DA2C2 /* FolderDetail.Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C40AFE82562AF8F003DA2C2 /* FolderDetail.Sheet.swift */; };
 		2C40AFEF2562B313003DA2C2 /* FolderDetail.ContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C40AFEE2562B313003DA2C2 /* FolderDetail.ContextMenu.swift */; };
 		2C40AFF52562BEE2003DA2C2 /* FolderDetail.NoBookmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C40AFF42562BEE2003DA2C2 /* FolderDetail.NoBookmarks.swift */; };
+		2C50C49725630FE6001C5E49 /* FolderDetail.BarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C50C49625630FE6001C5E49 /* FolderDetail.BarButton.swift */; };
 		2C73A9C9255C2EAA00026565 /* ShareExtension.Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C73A9C8255C2EAA00026565 /* ShareExtension.Controller.swift */; };
 		2C73A9D0255C2EAA00026565 /* Share Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2C73A9C6255C2EAA00026565 /* Share Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2C73A9DB255C2FC200026565 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1277F725584970008B8C7D /* Storage.swift */; };
@@ -109,6 +110,7 @@
 		2C40AFE82562AF8F003DA2C2 /* FolderDetail.Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetail.Sheet.swift; sourceTree = "<group>"; };
 		2C40AFEE2562B313003DA2C2 /* FolderDetail.ContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetail.ContextMenu.swift; sourceTree = "<group>"; };
 		2C40AFF42562BEE2003DA2C2 /* FolderDetail.NoBookmarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetail.NoBookmarks.swift; sourceTree = "<group>"; };
+		2C50C49625630FE6001C5E49 /* FolderDetail.BarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetail.BarButton.swift; sourceTree = "<group>"; };
 		2C73A9C6255C2EAA00026565 /* Share Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Share Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C73A9C8255C2EAA00026565 /* ShareExtension.Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtension.Controller.swift; sourceTree = "<group>"; };
 		2C73A9CD255C2EAA00026565 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				2C40AFF42562BEE2003DA2C2 /* FolderDetail.NoBookmarks.swift */,
 				2C40AFE82562AF8F003DA2C2 /* FolderDetail.Sheet.swift */,
 				2C40AFEE2562B313003DA2C2 /* FolderDetail.ContextMenu.swift */,
+				2C50C49625630FE6001C5E49 /* FolderDetail.BarButton.swift */,
 			);
 			path = "Folder Detail";
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				2C12780A25584ED7008B8C7D /* FolderDetail.swift in Sources */,
 				2C1277FA25584970008B8C7D /* Folder.swift in Sources */,
 				2C1277F825584970008B8C7D /* Icon.swift in Sources */,
+				2C50C49725630FE6001C5E49 /* FolderDetail.BarButton.swift in Sources */,
 				2C2224DE255938BF000F53C6 /* FolderMerger.swift in Sources */,
 				2C2224D625592F21000F53C6 /* SFSymbols.swift in Sources */,
 				2C40AFE92562AF8F003DA2C2 /* FolderDetail.Sheet.swift in Sources */,
