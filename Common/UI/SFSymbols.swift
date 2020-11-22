@@ -1,6 +1,6 @@
 //
 //  SFSymbols.swift
-//  Rede / App
+//  Rede / Common
 //
 //  Created by Marcus Rossel on 03.10.20.
 //

@@ -10,16 +10,14 @@ import Combine
 
 struct FolderEditor: View {
     
-    enum Completion { case done, cancel }
-    
-    init(folder: Binding<Folder>, onCompletion: ((Completion) -> Void)? = nil) {
+    init(folder: Binding<Folder>, onCompletion: ((Action) -> Void)? = nil) {
         let model = Model(folder: folder, onCompletion: onCompletion)
         _model = StateObject(wrappedValue: model)
     }
 
     @StateObject private var model: Model
-    
     @Environment(\.presentationMode) private var presentationMode
+    
     private let defaultColors = [#colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1), #colorLiteral(red: 1, green: 0.6958661223, blue: 0.1375563212, alpha: 1), #colorLiteral(red: 0.9592913348, green: 0.8808340757, blue: 0, alpha: 1), #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1), #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), #colorLiteral(red: 0.1826183216, green: 0.5399370489, blue: 1, alpha: 1), #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1), #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1), #colorLiteral(red: 0.817692547, green: 0.5427757314, blue: 1, alpha: 1), #colorLiteral(red: 0.7439069119, green: 0.5957958577, blue: 0.4106654354, alpha: 1), #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)].map(Color.init)
     private let columns = Array(repeating: GridItem(), count: 6)
     private let gridItemSize: CGFloat = 48
@@ -81,13 +79,13 @@ struct FolderEditor: View {
             .navigationBarItems(
                 leading:
                     Button {
-                        model.onCompletion(.cancel, presentationMode)
+                        model.onCompletion(.rejection, presentationMode)
                     } label: {
                         Text("Cancel")
                     },
                 trailing:
                     Button {
-                        model.onCompletion(.done, presentationMode)
+                        model.onCompletion(.acceptance, presentationMode)
                     } label: {
                         Text("Done")
                     }
@@ -108,14 +106,14 @@ extension FolderEditor {
         @Binding private var original: Folder
         @Published var folder: Folder
         
-        private(set) var onCompletion: (Completion, Binding<PresentationMode>) -> Void = { _, _ in }
+        private(set) var onCompletion: (Action, Binding<PresentationMode>) -> Void = { _, _ in }
         
         @Published var currentNameIsValid: Bool
         let folderIsNew: Bool
         
         private var subscription: AnyCancellable?
         
-        init(folder: Binding<Folder>, onCompletion: ((Completion) -> Void)? = nil) {
+        init(folder: Binding<Folder>, onCompletion: ((Action) -> Void)? = nil) {
             _original = folder
             self.folder = folder.wrappedValue
             
@@ -127,9 +125,9 @@ extension FolderEditor {
                 .map(isAvailable(name:))
                 .sink { [weak self] in self?.currentNameIsValid = $0 }
             
-            self.onCompletion = { [weak self] completion, presentationMode in
-                if let self = self, case .done = completion { folder.wrappedValue = self.folder }
-                onCompletion?(completion)
+            self.onCompletion = { [weak self] action, presentationMode in
+                if let self = self, case .acceptance = action { folder.wrappedValue = self.folder }
+                onCompletion?(action)
                 presentationMode.wrappedValue.dismiss()
             }
         }

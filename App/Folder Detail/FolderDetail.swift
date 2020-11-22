@@ -12,9 +12,7 @@ struct FolderDetail: View {
     @StateObject private var storage: Storage = .shared
     @Binding var folder: Folder
     
-    // Setting the edit mode from a subview does not currently set it in the parent. This is a
-    // workaround.
-    @State private var editMode: EditMode? = .inactive
+    @Environment(\.editMode) private var editMode
     @State private var sheet: Sheet? = nil
     
     private var readBookmarks: [Bookmark] { folder.bookmarks.filter(\.isRead) }
@@ -38,14 +36,16 @@ struct FolderDetail: View {
             }
             
             List {
-                ForEach([\Self.unreadBookmarks, \.readBookmarks], id: \.self) { bookmarks in
+                let sections = [\Self.unreadBookmarks, \.readBookmarks]
+                ForEach(sections, id: \.self) { bookmarks in
                     if !self[keyPath: bookmarks].isEmpty {
                         Section(header: Text((bookmarks == \.unreadBookmarks) ? "Unread" : "Read")) {
                             ForEach(self[keyPath: bookmarks]) { bookmark in
                                 BookmarkRow(bookmark: bookmark)
                                     .contextMenu {
-                                        ContextMenu(bookmark: $folder.bookmarks[permanent: bookmark.id], editMode: $editMode)
-                                            .onEdit { sheet = .edit(bookmark: $0) }
+                                        ContextMenu(bookmark: $folder.bookmarks[permanent: bookmark.id], editMode: editMode) /*onEdit:*/ {
+                                            sheet = .edit(bookmark: $0)
+                                        }
                                     }
                             }
                             .onDelete(perform: onDelete(for: bookmarks))
@@ -55,19 +55,24 @@ struct FolderDetail: View {
                 }
             }
             .listStyle(InsetGroupedListStyle())
-            .navigationBarItems(trailing: BarButton(folder: $folder, editMode: $editMode))
+            .navigationBarItems(trailing: BarButton(folder: $folder, editMode: editMode))
             .sheet(item: $sheet) { $0 }
-            .environment(\.editMode, Binding($editMode))
         }
         .navigationBarTitle(folder.name, displayMode: .inline)
     }
     
     private func onDelete(for bookmarks: KeyPath<Self, [Bookmark]>) -> ((IndexSet) -> Void)? {
-        guard editMode == .inactive else { return nil }
-        
-        return { offsets in
-            for offset in offsets {
-                folder.bookmarks.remove(id: self[keyPath: bookmarks][offset].id)
+        switch editMode?.wrappedValue {
+        case .active:
+            return nil
+        default:
+            return { offsets in
+                for offset in offsets {
+                    // Since the bookmarks in this context are considered "permanent", their number
+                    // can only stay constant or grow, so this direct subscript via `offset` is at
+                    // least safe.
+                    folder.bookmarks.remove(id: self[keyPath: bookmarks][offset].id)
+                }
             }
         }
     }

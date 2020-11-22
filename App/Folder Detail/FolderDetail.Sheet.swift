@@ -18,7 +18,9 @@ extension FolderDetail {
             switch self {
             case let .new(bookmark, folder):
                 BookmarkEditor(title: "New Bookmark", bookmark: bookmark) { action in
-                    if case .rejection = action { folder.wrappedValue.bookmarks.remove(at: 0) }
+                    if case .rejection = action {
+                        folder.wrappedValue.bookmarks.remove(at: 0)
+                    }
                 }
             case let .edit(bookmark):
                 BookmarkEditor(title: "Edit Bookmark", bookmark: bookmark)

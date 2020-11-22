@@ -14,11 +14,8 @@ extension FolderDetail {
         @StateObject private var storage: Storage = .shared
         @Binding var bookmark: Bookmark
         
-        // Setting the edit mode from a subview does not currently set it in the parent. This is a
-        // workaround.
-        @Binding var editMode: EditMode?
-        
-        var onEdit: ((Binding<Bookmark>) -> Void)? = nil
+        var editMode: Binding<EditMode>?
+        var onEdit: (Binding<Bookmark>) -> Void
         
         private var folder: Folder {
             get { storage.folders[permanent: bookmark.folderID] }
@@ -32,9 +29,10 @@ extension FolderDetail {
         }
         
         var body: some View {
-            if editMode != .inactive {
+            switch editMode?.wrappedValue {
+            case .active:
                 EmptyView()
-            } else {
+            default:
                 Button {
                     bookmark.readDate = bookmark.isRead ? nil : Date()
                 } label: {
@@ -49,7 +47,7 @@ extension FolderDetail {
                     Image(systemName: "star\(bookmark.isFavorite ? "" : ".fill")")
                 }
                 
-                Button { onEdit?($bookmark) } label: {
+                Button { onEdit($bookmark) } label: {
                     Text("Edit")
                     Image(systemName: "slider.horizontal.3")
                 }
@@ -57,7 +55,7 @@ extension FolderDetail {
                 if showReorderButton {
                     Button {
                         withAnimation {
-                            editMode = .active
+                            editMode?.wrappedValue = .active
                         }
                     } label: {
                         Text("Reorder")
@@ -72,10 +70,6 @@ extension FolderDetail {
                     Image(systemName: "minus.circle.fill")
                 }
             }
-        }
-        
-        func onEdit(_ action: @escaping (Binding<Bookmark>) -> Void) -> Self {
-            ContextMenu(bookmark: $bookmark, editMode: $editMode, onEdit: action)
         }
     }
 }

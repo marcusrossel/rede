@@ -30,7 +30,6 @@ extension Icon {
     
     static let folder = Icon(name: "folder.fill", uiColor: .systemBlue)
 }
-
     
 // MARK: Serialization
 
