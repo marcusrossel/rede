@@ -12,8 +12,10 @@ extension Home {
     struct BarButton: View {
         
         @StateObject private var storage: Storage = .shared
-        var sheet: Binding<Sheet?>
+        @Binding var sheet: Sheet?
         var editMode: Binding<EditMode>?
+        
+        var onNewFolder: () -> Void
         
         var body: some View {
             switch editMode?.wrappedValue {
@@ -26,9 +28,7 @@ extension Home {
             default:
                 Menu {
                     Button {
-                        let newFolder = Folder(name: "")
-                        storage.folders.insert(newFolder, at: 0)
-                        sheet.wrappedValue = .new(folder: $storage.folders[permanent: newFolder.id])
+                        onNewFolder()
                     } label: {
                         Label("New Folder", systemImage: "folder.fill.badge.plus")
                     }

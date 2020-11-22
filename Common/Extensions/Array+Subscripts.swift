@@ -5,11 +5,14 @@
 //  Created by Marcus Rossel on 12.11.20.
 //
 
+import Foundation
+
 extension Array where Element: Identifiable {
     
     subscript(permanent id: Element.ID) -> Element {
         get {
-            first { $0.id == id }!
+            first { $0.id == id }//!
+                ?? (Storage.shared.backup[id as! UUID]! as! Element)
         }
         set {
             // RACE CONDITION

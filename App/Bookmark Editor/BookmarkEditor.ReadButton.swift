@@ -15,27 +15,30 @@ extension BookmarkEditor {
         @State private var rotation: Angle = .degrees(0)
         
         var body: some View {
-            Button {
-                withAnimation {
-                    rotation.degrees += 180
-                    readDate = (readDate == nil) ? Date() : nil
+            ZStack {
+                Button {
+                    withAnimation {
+                        rotation.degrees += 180
+                        readDate = (readDate == nil) ? Date() : nil
+                    }
+                } label: {
+                    Circle()
+                        .foregroundColor(Color(.secondarySystemBackground))
+                        .frame(maxWidth: 120, maxHeight: 120)
                 }
-            } label: {
+                
                 VStack(spacing: 10) {
                     Image(systemName: "book\(readDate == nil ? "" : ".fill")")
-                        .rotation3DEffect(rotation, axis: (x: 0, y: 1, z: 0))
                         .foregroundColor(Color(#colorLiteral(red: 1, green: 0.2635219395, blue: 0.2254285514, alpha: 1)))
                         .font(.system(size: 30))
+                        .rotation3DEffect(rotation, axis: (x: 0, y: 1, z: 0))
 
                     Text("Read")
                         .font(.footnote)
                         .foregroundColor(.secondary)
                 }
-                .frame(maxWidth: 120, maxHeight: 120)
-                .contentShape(Circle())
+                .disabled(true)
             }
-            .background(Color(.secondarySystemBackground))
-            .clipShape(Circle())
         }
     }
 }

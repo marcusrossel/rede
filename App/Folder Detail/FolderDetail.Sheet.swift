@@ -10,17 +10,17 @@ import SwiftUI
 extension FolderDetail {
     
     enum Sheet: View {
+        
+        private var storage: Storage { .shared }
                 
-        case new(bookmark: Binding<Bookmark>, folder: Binding<Folder>)
+        case new(bookmark: Binding<Bookmark>)
         case edit(bookmark: Binding<Bookmark>)
         
         var body: some View {
             switch self {
-            case let .new(bookmark, folder):
-                BookmarkEditor(title: "New Bookmark", bookmark: bookmark) { action in
-                    if case .rejection = action {
-                        folder.wrappedValue.bookmarks.remove(at: 0)
-                    }
+            case let .new(bookmark):
+                BookmarkEditor(title: "New Bookmark", bookmark: bookmark) { _ in
+                    bookmark.wrappedValue = Bookmark(title: "", url: URL(string: "https://your.url")!, folderID: nil)
                 }
             case let .edit(bookmark):
                 BookmarkEditor(title: "Edit Bookmark", bookmark: bookmark)
@@ -42,13 +42,9 @@ extension FolderDetail.Sheet: Equatable {
     
     static func == (lhs: FolderDetail.Sheet, rhs: FolderDetail.Sheet) -> Bool {
         switch (lhs, rhs) {
-        case let (.new(leftBookmark, leftFolder), .new(rightBookmark, rightFolder)):
-            return leftBookmark.wrappedValue == rightBookmark.wrappedValue &&
-                   leftFolder.wrappedValue   == rightFolder.wrappedValue
-        case let (.edit(left), .edit(right)):
-            return left.wrappedValue == right.wrappedValue
-        default:
-            return false
+        case let (.new(left), .new(right)):   return left.wrappedValue == right.wrappedValue
+        case let (.edit(left), .edit(right)): return left.wrappedValue == right.wrappedValue
+        default:                              return false
         }
     }
 }
@@ -59,10 +55,11 @@ extension FolderDetail.Sheet: Hashable {
     
     func hash(into hasher: inout Hasher) {
         switch self {
-        case let .new(bookmark, folder):
+        case let .new(bookmark):
+            hasher.combine("new")
             hasher.combine(bookmark.wrappedValue)
-            hasher.combine(folder.wrappedValue)
         case let .edit(bookmark):
+            hasher.combine("edit")
             hasher.combine(bookmark.wrappedValue)
         }
     }

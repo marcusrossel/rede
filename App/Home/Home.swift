@@ -20,9 +20,7 @@ struct Home: View {
     var body: some View {
         VStack {
             if storage.folders.isEmpty {
-                NoFolders /*onTapGesture:*/ {
-                    sheet = .new(folder: $newFolder)
-                }
+                NoFolders(onTapGesture: editNewFolder)
             }
             
             List {
@@ -43,8 +41,9 @@ struct Home: View {
             }
             .listStyle(InsetGroupedListStyle())
         }
-        .navigationBarTitle("Rede")
-        .navigationBarItems(trailing: BarButton(sheet: $sheet, editMode: editMode))
+        .environment(\.editMode, editMode)
+        .navigationBarTitle("Folders")
+        .navigationBarItems(trailing: BarButton(sheet: $sheet, editMode: editMode, onNewFolder: editNewFolder))
         .sheet(item: $sheet) { $0 }
         .actionSheet(item: $folderInDeletion, content: actionSheet(for:))
     }
@@ -75,8 +74,13 @@ struct Home: View {
         storage.folders.move(fromOffsets: offsets, toOffset: destination)
     }
     
+    private func editNewFolder() {
+        sheet = .new(folder: $newFolder)
+    }
+    
     private func actionSheet(for folder: Folder) -> ActionSheet {
         let delete: ActionSheet.Button = .destructive(Text("Delete")) {
+            storage.backup[folder.id] = folder
             storage.folders.remove(id: folder.id)
         }
         let merge: ActionSheet.Button = .default(Text("Merge Into Other Folder")) {

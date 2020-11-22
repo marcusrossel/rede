@@ -18,8 +18,8 @@ extension FolderDetail {
         var onEdit: (Binding<Bookmark>) -> Void
         
         private var folder: Folder {
-            get { storage.folders[permanent: bookmark.folderID] }
-            nonmutating set { $storage.folders[permanent: bookmark.folderID].wrappedValue = newValue }
+            get { storage.folders[permanent: bookmark.folderID!] }
+            nonmutating set { $storage.folders[permanent: bookmark.folderID!].wrappedValue = newValue }
         }
         
         private var showReorderButton: Bool {
@@ -54,9 +54,7 @@ extension FolderDetail {
                 
                 if showReorderButton {
                     Button {
-                        withAnimation {
-                            editMode?.wrappedValue = .active
-                        }
+                        editMode?.wrappedValue = .active
                     } label: {
                         Text("Reorder")
                         Image(systemName: "rectangle.arrowtriangle.2.outward")

@@ -21,9 +21,8 @@ extension Home {
             switch self {
             case .new(let folder):
                 FolderEditor(folder: folder) { action in
-                    if case .rejection = action {
-                        storage.folders.remove(id: folder.wrappedValue.id)
-                    }
+                    if case .acceptance = action { storage.folders.insert(folder.wrappedValue, at: 0) }
+                    folder.wrappedValue = Folder(name: "")
                 }
             case .edit(let folder):
                 FolderEditor(folder: folder)

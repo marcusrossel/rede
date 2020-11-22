@@ -39,6 +39,7 @@ extension Home {
                             presentationMode.wrappedValue.dismiss()
                             guard let destinationID = destinationID else { return }
                             storage.folders[permanent: destinationID].bookmarks += source.bookmarks
+                            storage.folders.remove(id: source.id)
                         }
                         .disabled(destinationID == nil)
                 )

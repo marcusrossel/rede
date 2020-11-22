@@ -14,24 +14,18 @@ struct FolderDetail: View {
     
     @Environment(\.editMode) private var editMode
     @State private var sheet: Sheet? = nil
+    @State private var newBookmark = Bookmark(title: "", url: URL(string: "https://your.url")!, folderID: nil)
     
     private var readBookmarks: [Bookmark] { folder.bookmarks.filter(\.isRead) }
     private var unreadBookmarks: [Bookmark] {
-        folder.bookmarks
-            // The second statement filters out the new bookmark while it's editing.
-            .filter { $0.readDate == nil && !$0.title.isEmpty }
-            .sorted(by: folder.sorting.predicate)
+        folder.sorting.applied(to: folder.bookmarks.filter { !$0.isRead })
     }
     
     var body: some View {
         VStack {
-            // Checking this condtion instead of `folder.bookmarks.isEmpty` is important here, to
-            // retain the side effects of `unreadBookmarks`.
-            if unreadBookmarks.isEmpty && readBookmarks.isEmpty {
+            if folder.bookmarks.isEmpty {
                 NoBookmarks /*onTapGesture:*/ {
-                    let newBookmark = Bookmark(title: "", url: URL(string: "https://your.url")!, folderID: folder.id)
-                    folder.bookmarks.insert(newBookmark, at: 0)
-                    sheet = .new(bookmark: $folder.bookmarks[permanent: newBookmark.id], folder: $folder)
+                    sheet = .new(bookmark: $newBookmark)
                 }
             }
             
@@ -55,10 +49,10 @@ struct FolderDetail: View {
                 }
             }
             .listStyle(InsetGroupedListStyle())
-            .navigationBarItems(trailing: BarButton(folder: $folder, editMode: editMode))
-            .sheet(item: $sheet) { $0 }
         }
         .navigationBarTitle(folder.name, displayMode: .inline)
+        .navigationBarItems(trailing: BarButton(folder: $folder, editMode: editMode))
+        .sheet(item: $sheet) { $0 }
     }
     
     private func onDelete(for bookmarks: KeyPath<Self, [Bookmark]>) -> ((IndexSet) -> Void)? {
@@ -77,7 +71,6 @@ struct FolderDetail: View {
         }
     }
     
-    #warning("Broken")
     private func onMove(offsets: IndexSet, destination: Int) {
         let moveIsUp = offsets.contains { $0 < destination }
         

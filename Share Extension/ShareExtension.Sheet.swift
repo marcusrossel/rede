@@ -52,7 +52,6 @@ extension ShareExtension {
                     .padding([.leading, .trailing], 32)
                     .padding(.bottom, 14)
                     
-                    #warning("HOOK")
                     FolderPicker(title: "Destination", selection: $destination)
                 }
                 .navigationBarTitle("New Bookmark", displayMode: .large)

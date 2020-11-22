@@ -12,6 +12,7 @@ import SwiftUI
 final class Storage: ObservableObject {
 
     @Published var folders: [Folder] = []
+    var backup: [UUID: Any] = [:]
     
     private init() { }
     

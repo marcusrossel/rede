@@ -61,7 +61,7 @@ struct BookmarkEditor: View {
                     Button("Done") {
                         model.onCompletion(.acceptance, presentationMode)
                     }
-                    .disabled(model.bookmark.title.isEmpty)
+                    .disabled(!model.bookmarkIsComplete)
             )
         }
     }
@@ -77,6 +77,10 @@ extension BookmarkEditor {
         @Binding private var target: Bookmark
         @Published var bookmark: Bookmark
 
+        var bookmarkIsComplete: Bool {
+            !bookmark.title.isEmpty && bookmark.folderID != nil
+        }
+        
         private(set) var onCompletion: (Action, Binding<PresentationMode>) -> Void = { _, _ in }
         
         init(bookmark: Binding<Bookmark>, onCompletion: ((Action) -> Void)? = nil) {
@@ -89,14 +93,22 @@ extension BookmarkEditor {
                     presentationMode.wrappedValue.dismiss()
                 }
                 
-                guard let self = self, case .acceptance = action else { return }
+                guard
+                    let self = self, case .acceptance = action,
+                    let destinationID = self.bookmark.folderID
+                else { return }
                 
-                let folderID = (target: self.target.folderID, bookmark: self.bookmark.folderID)
+                let sourceID = self.target.folderID
+                
                 self.target = self.bookmark
                 
-                if folderID.target != folderID.bookmark {
-                    self.storage.folders[permanent: folderID.bookmark].bookmarks.insert(self.bookmark, at: 0)
-                    self.storage.folders[permanent: folderID.target].bookmarks.remove(id: self.target.id)
+                if let sourceID = sourceID {
+                    if sourceID != destinationID {
+                        self.storage.folders[permanent: destinationID].bookmarks.insert(self.bookmark, at: 0)
+                        self.storage.folders[permanent: sourceID].bookmarks.remove(id: self.target.id)
+                    }
+                } else {
+                    self.storage.folders[permanent: destinationID].bookmarks.insert(self.bookmark, at: 0)
                 }
             }
         }

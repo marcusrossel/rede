@@ -23,13 +23,11 @@ extension Folder {
             }
         }
         
-        var predicate: (Bookmark, Bookmark) -> Bool {
-            return { lhs, rhs in
-                switch self {
-                case .manual: return true
-                case .byDate: return lhs.additionDate > rhs.additionDate
-                case .byTitle: return lhs.title.lowercased() < rhs.title.lowercased()
-                }
+        func applied(to bookmarks: [Bookmark]) -> [Bookmark] {
+            switch self {
+            case .manual:  return bookmarks
+            case .byDate:  return bookmarks.sorted { $0.additionDate > $1.additionDate }
+            case .byTitle: return bookmarks.sorted { $0.title.lowercased() < $1.title.lowercased() }
             }
         }
     }

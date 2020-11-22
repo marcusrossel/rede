@@ -15,12 +15,18 @@ extension BookmarkEditor {
         @State private var rotation: Angle = .degrees(0)
         
         var body: some View {
-            Button {
-                withAnimation {
-                    rotation.degrees += 72
-                    isFavorite.toggle()
+            ZStack {
+                Button {
+                    withAnimation {
+                        rotation.degrees += 72
+                        isFavorite.toggle()
+                    }
+                } label: {
+                    Circle()
+                        .foregroundColor(Color(.secondarySystemBackground))
+                        .frame(maxWidth: 120, maxHeight: 120)
                 }
-            } label: {
+                
                 VStack(spacing: 10) {
                     Image(systemName: "star\(isFavorite ? ".fill" : "")")
                         .rotationEffect(rotation)
@@ -31,11 +37,7 @@ extension BookmarkEditor {
                         .font(.footnote)
                         .foregroundColor(.secondary)
                 }
-                .frame(maxWidth: 120, maxHeight: 120)
-                .contentShape(Circle())
             }
-            .background(Color(.secondarySystemBackground))
-            .clipShape(Circle())
         }
     }
 }
