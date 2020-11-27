@@ -36,8 +36,6 @@
 		2C73A9DF255C2FD600026565 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1277F425584970008B8C7D /* Bookmark.swift */; };
 		2C73A9E0255C2FD600026565 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1277F325584970008B8C7D /* Folder.swift */; };
 		2C73A9FB255C434F00026565 /* FolderPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF72D9325598467002381AD /* FolderPicker.swift */; };
-		2C73A9FE255C436F00026565 /* Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2224E4255944A8000F53C6 /* Row.swift */; };
-		2C73AA01255C439D00026565 /* RandomAccessCollection+Indexed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE33FA32558568C006E2254 /* RandomAccessCollection+Indexed.swift */; };
 		2C73AA04255C439D00026565 /* Binding+Subscripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1E80832559F726000CA8E4 /* Binding+Subscripts.swift */; };
 		2C73AA07255C43A000026565 /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C12780125584B65008B8C7D /* PreviewData.swift */; };
 		2C73AA0A255C43A700026565 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C1277E32558484E008B8C7D /* Assets.xcassets */; };
@@ -58,7 +56,6 @@
 		2CF72D9425598467002381AD /* FolderPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF72D9325598467002381AD /* FolderPicker.swift */; };
 		2CF72D9A255988A8002381AD /* DataField in Frameworks */ = {isa = PBXBuildFile; productRef = 2CF72D99255988A8002381AD /* DataField */; };
 		2CF83372255C55EC00445A1A /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 2CF83371255C55EC00445A1A /* SwiftSoup */; };
-		2CF8337D255C574B00445A1A /* DataField in Frameworks */ = {isa = PBXBuildFile; productRef = 2CF8337C255C574B00445A1A /* DataField */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,7 +100,6 @@
 		2C1E80832559F726000CA8E4 /* Binding+Subscripts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Subscripts.swift"; sourceTree = "<group>"; };
 		2C2224D525592F21000F53C6 /* SFSymbols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
 		2C2224DD255938BF000F53C6 /* Home.FolderMerger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.FolderMerger.swift; sourceTree = "<group>"; };
-		2C2224E4255944A8000F53C6 /* Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Row.swift; sourceTree = "<group>"; };
 		2C24E1E3255C492100722B9C /* ShareExtension.Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtension.Sheet.swift; sourceTree = "<group>"; };
 		2C24E1EE255C512900722B9C /* ShareExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtension.swift; sourceTree = "<group>"; };
 		2C24E1F4255C517E00722B9C /* ShareExtension.Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtension.Model.swift; sourceTree = "<group>"; };
@@ -118,7 +114,6 @@
 		2C9071F0256A7B63001B0933 /* Home.BarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.BarButton.swift; sourceTree = "<group>"; };
 		2C9071FA256A8371001B0933 /* Home.ContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.ContextMenu.swift; sourceTree = "<group>"; };
 		2CDC78632564251E002FBB26 /* Home.Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.Sheet.swift; sourceTree = "<group>"; };
-		2CE33FA32558568C006E2254 /* RandomAccessCollection+Indexed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RandomAccessCollection+Indexed.swift"; sourceTree = "<group>"; };
 		2CE33FA625585B7C006E2254 /* FolderEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderEditor.swift; sourceTree = "<group>"; };
 		2CE41CE6255DA15100AE68E2 /* Folder.Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.Sorting.swift; sourceTree = "<group>"; };
 		2CE41CEF255DAE9D00AE68E2 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
@@ -144,7 +139,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CF83372255C55EC00445A1A /* SwiftSoup in Frameworks */,
-				2CF8337D255C574B00445A1A /* DataField in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,7 +237,6 @@
 			isa = PBXGroup;
 			children = (
 				2C73A9CD255C2EAA00026565 /* Info.plist */,
-				2C90720A256A8736001B0933 /* Deprecated */,
 				2C24E1EE255C512900722B9C /* ShareExtension.swift */,
 				2C24E1E3255C492100722B9C /* ShareExtension.Sheet.swift */,
 				2C24E1F4255C517E00722B9C /* ShareExtension.Model.swift */,
@@ -281,15 +274,6 @@
 				2CE33FA625585B7C006E2254 /* FolderEditor.swift */,
 			);
 			path = "Folder Editor";
-			sourceTree = "<group>";
-		};
-		2C90720A256A8736001B0933 /* Deprecated */ = {
-			isa = PBXGroup;
-			children = (
-				2C2224E4255944A8000F53C6 /* Row.swift */,
-				2CE33FA32558568C006E2254 /* RandomAccessCollection+Indexed.swift */,
-			);
-			path = Deprecated;
 			sourceTree = "<group>";
 		};
 		2CE33FA225585672006E2254 /* Extensions */ = {
@@ -359,7 +343,6 @@
 			name = "Share Extension";
 			packageProductDependencies = (
 				2CF83371255C55EC00445A1A /* SwiftSoup */,
-				2CF8337C255C574B00445A1A /* DataField */,
 			);
 			productName = "Share Extension";
 			productReference = 2C73A9C6255C2EAA00026565 /* Share Extension.appex */;
@@ -469,7 +452,6 @@
 				2C73A9DE255C2FD600026565 /* Icon.swift in Sources */,
 				2C73A9E0255C2FD600026565 /* Folder.swift in Sources */,
 				2C24E1E4255C492100722B9C /* ShareExtension.Sheet.swift in Sources */,
-				2C73AA01255C439D00026565 /* RandomAccessCollection+Indexed.swift in Sources */,
 				2C73AA04255C439D00026565 /* Binding+Subscripts.swift in Sources */,
 				2C24E1EF255C512900722B9C /* ShareExtension.swift in Sources */,
 				2C73A9C9255C2EAA00026565 /* ShareExtension.Controller.swift in Sources */,
@@ -479,7 +461,6 @@
 				2C73A9DB255C2FC200026565 /* Storage.swift in Sources */,
 				2C24E1F5255C517E00722B9C /* ShareExtension.Model.swift in Sources */,
 				2C73AA07255C43A000026565 /* PreviewData.swift in Sources */,
-				2C73A9FE255C436F00026565 /* Row.swift in Sources */,
 				2C73A9DF255C2FD600026565 /* Bookmark.swift in Sources */,
 				2CE41CE8255DA15100AE68E2 /* Folder.Sorting.swift in Sources */,
 			);
@@ -763,11 +744,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2C24E1E9255C4D9300722B9C /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
-		};
-		2CF8337C255C574B00445A1A /* DataField */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2CF72D98255988A8002381AD /* XCRemoteSwiftPackageReference "data-field" */;
-			productName = DataField;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

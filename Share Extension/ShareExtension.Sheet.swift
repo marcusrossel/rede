@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import DataField
 
 extension ShareExtension {
     
@@ -21,9 +20,13 @@ extension ShareExtension {
             Binding { model.websiteTitle ?? "" } set: { model.websiteTitle = $0 }
         }
         
+        private var url: Binding<String> {
+            Binding { model.url?.absoluteString ?? "" } set: { model.url = URL(string: $0) }
+        }
+        
         private var saveIsDisabled: Bool {
-            guard let title = model.websiteTitle, model.url != nil else { return true }
-            return destination == nil || title.isEmpty
+            guard let title = model.websiteTitle else { return true }
+            return destination == nil || model.url == nil || title.isEmpty
         }
         
         var body: some View {
@@ -39,12 +42,7 @@ extension ShareExtension {
                         .padding(.top, 8)
                     
                     HStack {
-                        DataField("URL", data: $model.url) { text in
-                            guard let url = URL(string: text) else { return (nil as URL??) }
-                            return url
-                        } dataToText: { url in
-                            url?.absoluteString ?? ""
-                        }
+                        TextField("URL", text: url)
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
                     }
