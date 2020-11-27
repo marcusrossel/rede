@@ -26,7 +26,7 @@ extension Home {
                         .foregroundColor(.secondary)
                         .padding([.leading, .trailing, .top])
                     
-                    FolderPicker(title: "Destination", selection: $destinationID)
+                    FolderPicker(title: "Destination", selection: $destinationID, excluded: [source.id])
                 }
                 .navigationBarTitle(Text("Merge \"\(source.name)\""), displayMode: .inline)
                 .navigationBarItems(
@@ -38,7 +38,13 @@ extension Home {
                         Button("Merge") {
                             presentationMode.wrappedValue.dismiss()
                             guard let destinationID = destinationID else { return }
+                            
+                            for id in source.bookmarks.map(\.id) {
+                                source.bookmarks[permanent: id].folderID = destinationID
+                            }
+                            
                             storage.folders[permanent: destinationID].bookmarks += source.bookmarks
+                            storage.backup[source.id] = source
                             storage.folders.remove(id: source.id)
                         }
                         .disabled(destinationID == nil)

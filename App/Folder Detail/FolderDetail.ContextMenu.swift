@@ -35,6 +35,10 @@ extension FolderDetail {
             default:
                 Button {
                     bookmark.readDate = bookmark.isRead ? nil : Date()
+                    
+                    // RACE CONDITION
+                    let index = folder.bookmarks.firstIndex(of: bookmark)!
+                    folder.bookmarks.move(fromOffsets: [index], toOffset: 0)
                 } label: {
                     Text("Mark As \(bookmark.isRead ? "Unread" : "Read")")
                     Image(systemName: "book\(bookmark.isRead ? "" : ".fill")")

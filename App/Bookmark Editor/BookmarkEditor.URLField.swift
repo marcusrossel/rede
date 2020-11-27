@@ -17,10 +17,12 @@ extension BookmarkEditor {
         
         var body: some View {
             HStack {
-                DataField("URL", data: $url) { text in
+                DataField("URL", initialData: url, sinkContinuously: true) { text in
                     URL(string: text)
                 } dataToText: { url in
-                    url.absoluteString
+                    url?.absoluteString ?? ""
+                } sink: { validURL in
+                    url = validURL
                 } invalidText: { invalidText in
                     textIsValid = invalidText == nil
                 }

@@ -39,14 +39,7 @@ struct FolderEditor: View {
                         .padding(8)
                         .background(Color(.secondarySystemBackground))
                         .cornerRadius(12)
-                        .padding(model.currentNameIsValid ? .all : [.top, .bottom, .leading])
-                    
-                    if !model.currentNameIsValid {
-                        Image(systemName: "exclamationmark.triangle.fill")
-                            .renderingMode(.original)
-                            .font(.system(size: 24))
-                            .padding([.top, .bottom, .trailing])
-                    }
+                        .padding()
                 }
                 
                 LazyVGrid(columns: columns, spacing: gridSpacing) {
@@ -122,7 +115,7 @@ extension FolderEditor {
             
             subscription = $folder
                 .map(\.name)
-                .map(isAvailable(name:))
+                .map { !$0.isEmpty }
                 .sink { [weak self] in self?.currentNameIsValid = $0 }
             
             self.onCompletion = { [weak self] action, presentationMode in
@@ -130,11 +123,6 @@ extension FolderEditor {
                 onCompletion?(action)
                 presentationMode.wrappedValue.dismiss()
             }
-        }
-        
-        private func isAvailable(name: String) -> Bool {
-            !name.isEmpty &&
-            (name == original.name || storage.folders.allSatisfy { $0.name != name })
         }
     }
 }

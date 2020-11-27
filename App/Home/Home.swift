@@ -83,12 +83,12 @@ struct Home: View {
             storage.backup[folder.id] = folder
             storage.folders.remove(id: folder.id)
         }
-        let merge: ActionSheet.Button = .default(Text("Merge Into Other Folder")) {
+        let merge: ActionSheet.Button = .default(Text("Merge")) {
             sheet = .merge(folder: $storage.folders[permanent: folder.id])
         }
         
         return ActionSheet(
-            title: Text("Delete \"\(folder.name)\""),
+            title: Text("Delete \"\(folder.name)\"?"),
             message: Text("This will also delete all of the folder's bookmarks."),
             buttons: [delete, storage.folders.count > 1 ? merge : nil, .cancel()].compactMap { $0 }
         )
