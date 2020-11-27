@@ -97,7 +97,7 @@ enum PreviewData {
             id: folderIDs[0],
             name: "Empty"
         ),
-        Folder(
+        /*Folder(
             id: folderIDs[1],
             name: "Programming",
             bookmarks: Array(bookmarks[0...2]),
@@ -129,6 +129,6 @@ enum PreviewData {
             bookmarks: Array(bookmarks[7...8]),
             sorting: .byDate,
             icon: Icon(name: "hammer.fill", color: .white)
-        )
+        )*/
     ]
 }

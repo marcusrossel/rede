@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import Combine
 
 struct Home: View {
     
-    @StateObject var storage: Storage = .shared
+    @StateObject var model = Model()
     
     @State private var sheet: Sheet? = nil
     @State private var folderInDeletion: Folder? = nil
@@ -19,13 +20,15 @@ struct Home: View {
     
     var body: some View {
         VStack {
-            if storage.folders.isEmpty {
+            if model.showNoFolders {
                 NoFolders(onTapGesture: editNewFolder)
+                    .zIndex(1)
+                    .transition(.opacity)
             }
             
             List {
-                ForEach(storage.folders) { folder in
-                    let binding = $storage.folders[permanent: folder.id]
+                ForEach(model.storage.folders) { folder in
+                    let binding = $model.storage.folders[permanent: folder.id]
                     FolderRow(folder: binding)
                         .contextMenu {
                             ContextMenu(
@@ -59,10 +62,10 @@ struct Home: View {
                 // Since the folders in this context are considered "permanent", their number can
                 // only stay constant or grow, so this direct subscript via `index` is at least
                 // safe.
-                let folder = storage.folders[index]
+                let folder = model.storage.folders[index]
                 
                 if folder.bookmarks.isEmpty {
-                    storage.folders.remove(id: folder.id)
+                    model.storage.folders.remove(id: folder.id)
                 } else {
                     folderInDeletion = folder
                 }
@@ -71,7 +74,7 @@ struct Home: View {
     }
     
     private func onMove(offsets: IndexSet, destination: Int) {
-        storage.folders.move(fromOffsets: offsets, toOffset: destination)
+        model.storage.folders.move(fromOffsets: offsets, toOffset: destination)
     }
     
     private func editNewFolder() {
@@ -80,17 +83,43 @@ struct Home: View {
     
     private func actionSheet(for folder: Folder) -> ActionSheet {
         let delete: ActionSheet.Button = .destructive(Text("Delete")) {
-            storage.backup[folder.id] = folder
-            storage.folders.remove(id: folder.id)
+            model.storage.backup[folder.id] = folder
+            model.storage.folders.remove(id: folder.id)
         }
         let merge: ActionSheet.Button = .default(Text("Merge")) {
-            sheet = .merge(folder: $storage.folders[permanent: folder.id])
+            sheet = .merge(folder: $model.storage.folders[permanent: folder.id])
         }
         
         return ActionSheet(
             title: Text("Delete \"\(folder.name)\"?"),
             message: Text("This will also delete all of the folder's bookmarks."),
-            buttons: [delete, storage.folders.count > 1 ? merge : nil, .cancel()].compactMap { $0 }
+            buttons: [delete, model.storage.folders.count > 1 ? merge : nil, .cancel()].compactMap { $0 }
         )
+    }
+}
+
+
+// MARK: View Model
+
+extension Home {
+    
+    final class Model: ObservableObject {
+        
+        @Published var storage: Storage
+        @Published private(set) var showNoFolders: Bool
+        
+        private var subscriptions: Set<AnyCancellable> = []
+        
+        init() {
+            let storage = Storage.shared
+            
+            self.storage = storage
+            showNoFolders = storage.folders.isEmpty
+            
+            storage.$folders
+                .map(\.isEmpty)
+                .sink { [weak self] value in withAnimation { self?.showNoFolders = value } }
+                .store(in: &subscriptions)
+        }
     }
 }

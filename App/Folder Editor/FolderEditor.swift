@@ -18,6 +18,13 @@ struct FolderEditor: View {
     @StateObject private var model: Model
     @Environment(\.presentationMode) private var presentationMode
     
+    @State private var iconFilter = ""
+    private var icons: [String] {
+        iconFilter.isEmpty
+            ? SFSymbols.all
+            : SFSymbols.all.filter { $0.contains(iconFilter.lowercased()) }
+    }
+    
     private let defaultColors = [#colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1), #colorLiteral(red: 1, green: 0.6958661223, blue: 0.1375563212, alpha: 1), #colorLiteral(red: 0.9592913348, green: 0.8808340757, blue: 0, alpha: 1), #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1), #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1), #colorLiteral(red: 0.1826183216, green: 0.5399370489, blue: 1, alpha: 1), #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1), #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1), #colorLiteral(red: 0.817692547, green: 0.5427757314, blue: 1, alpha: 1), #colorLiteral(red: 0.7439069119, green: 0.5957958577, blue: 0.4106654354, alpha: 1), #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)].map(Color.init)
     private let columns = Array(repeating: GridItem(), count: 6)
     private let gridItemSize: CGFloat = 48
@@ -33,15 +40,14 @@ struct FolderEditor: View {
                     .font(.system(size: 60))
                     .frame(maxHeight: 100)
                 
-                HStack {
-                    TextField("Folder Name", text: $model.folder.name)
-                        .font(.system(size: 24))
-                        .multilineTextAlignment(.center)
-                        .padding(8)
-                        .background(Color(.secondarySystemBackground))
-                        .cornerRadius(12)
-                        .padding()
-                }
+                
+                TextField("Folder Name", text: $model.folder.name)
+                    .font(.system(size: 24))
+                    .multilineTextAlignment(.center)
+                    .padding(8)
+                    .background(Color(.secondarySystemBackground))
+                    .cornerRadius(12)
+                    .padding()
                 
                 LazyVGrid(columns: columns, spacing: gridSpacing) {
                     ForEach(defaultColors, id: \.self) { color in
@@ -54,11 +60,25 @@ struct FolderEditor: View {
                     ColorPicker("Folder Color", selection: $model.folder.icon.color)
                         .labelsHidden()
                 }
-                .padding([.leading, .trailing, .bottom])
+                .padding([.leading, .trailing])
+                
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                        .font(.body)
+                        .padding(8)
+                    
+                    TextField("Filter Icons", text: $iconFilter)
+                        .font(.caption)
+                }
+                .background(Color(.tertiarySystemBackground))
+                .cornerRadius(10)
+                .padding([.top, .leading, .trailing])
                 
                 ScrollView {
+                    Color.clear.frame(maxHeight: 2)
+                    
                     LazyVGrid(columns: columns, spacing: gridSpacing) {
-                        ForEach(SFSymbols.all, id: \.self) { name in
+                        ForEach(icons, id: \.self) { name in
                             Color(.secondarySystemBackground)
                                 .frame(minWidth: gridItemSize, minHeight: gridItemSize)
                                 .clipShape(Circle())

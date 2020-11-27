@@ -18,9 +18,9 @@ extension FolderDetail {
             switch editMode?.wrappedValue {
             case .active:
                 Button("Done") {
-                    withAnimation {
+                    // withAnimation {
                         editMode?.wrappedValue = .inactive
-                    }
+                    // }
                 }
             default:
                 Picker(selection: $folder.sorting, label: Image(systemName: "arrow.up.arrow.down.circle.fill")) {

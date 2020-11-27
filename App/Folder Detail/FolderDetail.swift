@@ -34,7 +34,7 @@ struct FolderDetail: View {
                 ForEach(sections, id: \.self) { bookmarks in
                     if !self[keyPath: bookmarks].isEmpty {
                         Section(header: Text((bookmarks == \.unreadBookmarks) ? "Unread" : "Read")) {
-                            ForEach(self[keyPath: bookmarks]) { bookmark in
+                            ForEach(self[keyPath: bookmarks], id: \.self) { bookmark in
                                 BookmarkRow(bookmark: bookmark)
                                     .contextMenu {
                                         ContextMenu(bookmark: $folder.bookmarks[permanent: bookmark.id], editMode: editMode) /*onEdit:*/ {
