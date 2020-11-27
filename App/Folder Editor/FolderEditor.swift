@@ -31,6 +31,7 @@ struct FolderEditor: View {
                 Image(systemName: model.folder.icon.name)
                     .foregroundColor(model.folder.icon.color)
                     .font(.system(size: 60))
+                    .frame(maxHeight: 100)
                 
                 HStack {
                     TextField("Folder Name", text: $model.folder.name)
