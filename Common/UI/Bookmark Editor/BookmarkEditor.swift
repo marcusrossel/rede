@@ -1,6 +1,6 @@
 //
 //  BookmarkEditor.swift
-//  Rede / App
+//  Rede / Common
 //
 //  Created by Marcus Rossel on 09.11.20.
 //
@@ -24,7 +24,6 @@ struct BookmarkEditor: View {
     @Environment(\.presentationMode) private var presentationMode
     
     var body: some View {
-        EmptyView()
         NavigationView {
             VStack {
                 TextField("Bookmark Title", text: $model.bookmark.title)
@@ -34,12 +33,14 @@ struct BookmarkEditor: View {
                     .background(Color(.secondarySystemBackground))
                     .cornerRadius(8)
                     .padding([.leading, .trailing, .top])
-                    .padding(.top, 8)
+                    
                 
                 URLField(url: $model.bookmark.url)
                     .font(.footnote)
                     .padding([.leading, .trailing], 32)
-                    .padding(.bottom, 14)
+                    .padding(.bottom, 27)
+                
+                Divider()
                 
                 HStack {
                     Spacer()
@@ -48,8 +49,12 @@ struct BookmarkEditor: View {
                     ReadButton(readDate: $model.bookmark.readDate)
                     Spacer()
                 }
+                .padding(.top, 8)
+                
+                Divider()
                 
                 FolderPicker(title: "Folder", selection: $model.bookmark.folderID)
+                    .padding([.top], 20)
             }
             .navigationBarTitle(title, displayMode: .inline)
             .navigationBarItems(

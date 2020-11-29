@@ -20,8 +20,12 @@ extension ShareExtension {
             Binding { model.websiteTitle ?? "" } set: { model.websiteTitle = $0 }
         }
         
-        private var url: Binding<String> {
-            Binding { model.url?.absoluteString ?? "" } set: { model.url = URL(string: $0) }
+        private var url: Binding<URL> {
+            Binding {
+                model.url ?? URL(string: "https://your.url")!
+            } set: {
+                model.url = $0
+            }
         }
         
         private var saveIsDisabled: Bool {
@@ -41,16 +45,29 @@ extension ShareExtension {
                         .padding([.leading, .trailing, .top])
                         .padding(.top, 8)
                     
+                    #warning("This isn't working out.")
+                    BookmarkEditor.URLField(url: url)
+                        .font(.footnote)
+                        .padding([.leading, .trailing], 32)
+                        .padding(.bottom, 27)
+                    
+                    Divider()
+                    
                     HStack {
-                        TextField("URL", text: url)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
+                        Spacer()
+                        BookmarkEditor.FavoriteButton(isFavorite: $model.isFavorite)
+                        Spacer()
+                        BookmarkEditor.ReadButton(readDate: $model.readDate)
+                        Spacer()
+                        NewFolderButton(folders: $storage.folders, destination: $destination)
+                        Spacer()
                     }
-                    .font(.footnote)
-                    .padding([.leading, .trailing], 32)
-                    .padding(.bottom, 14)
+                    .padding(.top, 8)
+                    
+                    Divider()
                     
                     FolderPicker(title: "Destination", selection: $destination)
+                        .padding([.top], 20)
                 }
                 .navigationBarTitle("New Bookmark", displayMode: .large)
                 .navigationBarItems(
@@ -61,6 +78,8 @@ extension ShareExtension {
                             let bookmark = Bookmark(
                                 title: model.websiteTitle!,
                                 url: model.url!,
+                                readDate: model.readDate,
+                                isFavorite: model.isFavorite,
                                 folderID: destination!
                             )
                             storage.folders[volatile: destination!]?.bookmarks.insert(bookmark, at: 0)
@@ -73,4 +92,3 @@ extension ShareExtension {
         }
     }
 }
-

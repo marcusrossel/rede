@@ -1,6 +1,6 @@
 //
 //  FolderEditor.swift
-//  Rede / App
+//  Rede / Common
 //
 //  Created by Marcus Rossel on 08.11.20.
 //
@@ -61,22 +61,25 @@ struct FolderEditor: View {
                         .labelsHidden()
                 }
                 .padding([.leading, .trailing])
+                .padding(.bottom, 12)
                 
-                HStack {
+                Divider()
+                
+                HStack(alignment: .firstTextBaseline) {
+                    Spacer()
+                    
                     Image(systemName: "magnifyingglass")
                         .font(.body)
-                        .padding(8)
+                    TextField("Search Icons", text: $iconFilter)
+                        .font(.callout)
                     
-                    TextField("Filter Icons", text: $iconFilter)
-                        .font(.caption)
+                    Spacer()
                 }
-                .background(Color(.tertiarySystemBackground))
-                .cornerRadius(10)
-                .padding([.top, .leading, .trailing])
+                .padding([.leading, .trailing])
+                .padding(.top, 10)
+                .padding(.bottom, 8)
                 
                 ScrollView {
-                    Color.clear.frame(maxHeight: 2)
-                    
                     LazyVGrid(columns: columns, spacing: gridSpacing) {
                         ForEach(icons, id: \.self) { name in
                             Color(.secondarySystemBackground)

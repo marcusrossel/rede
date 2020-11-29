@@ -1,6 +1,6 @@
 //
 //  BookmarkEditor.URLField.swift
-//  Rede / App
+//  Rede / Common
 //
 //  Created by Marcus Rossel on 12.11.20.
 //

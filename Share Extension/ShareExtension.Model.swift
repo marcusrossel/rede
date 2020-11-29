@@ -19,6 +19,8 @@ extension ShareExtension {
         
         @Published var websiteTitle: String?
         @Published var url: URL?
+        @Published var isFavorite = false
+        @Published var readDate: Date?
 
         private let controller: Controller
         

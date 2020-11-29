@@ -34,18 +34,22 @@ extension FolderDetail {
                 EmptyView()
             default:
                 Button {
-                    bookmark.readDate = bookmark.isRead ? nil : Date()
-                    
-                    // RACE CONDITION
-                    let index = folder.bookmarks.firstIndex(of: bookmark)!
-                    folder.bookmarks.move(fromOffsets: [index], toOffset: 0)
+                    withAnimation {
+                        bookmark.readDate = bookmark.isRead ? nil : Date()
+                        
+                        // RACE CONDITION
+                        let index = folder.bookmarks.firstIndex(of: bookmark)!
+                        folder.bookmarks.move(fromOffsets: [index], toOffset: 0)
+                    }
                 } label: {
                     Text("Mark As \(bookmark.isRead ? "Unread" : "Read")")
                     Image(systemName: "book\(bookmark.isRead ? "" : ".fill")")
                 }
                 
                 Button {
-                    bookmark.isFavorite.toggle()
+                    withAnimation {
+                        bookmark.isFavorite.toggle()
+                    }
                 } label: {
                     Text(bookmark.isFavorite ? "Unfavorite" : "Favorite")
                     Image(systemName: "star\(bookmark.isFavorite ? "" : ".fill")")
@@ -58,7 +62,9 @@ extension FolderDetail {
                 
                 if showReorderButton {
                     Button {
-                        editMode?.wrappedValue = .active
+                        withAnimation {
+                            editMode?.wrappedValue = .active
+                        }
                     } label: {
                         Text("Reorder")
                         Image(systemName: "rectangle.arrowtriangle.2.outward")

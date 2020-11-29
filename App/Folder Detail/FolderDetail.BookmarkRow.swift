@@ -43,6 +43,7 @@ extension FolderDetail {
                     Image(systemName: "star.fill")
                         .renderingMode(.original)
                         .font(.footnote)
+                        .transition(.scale)
                 }
                 
                 HStack(spacing: 3) {
