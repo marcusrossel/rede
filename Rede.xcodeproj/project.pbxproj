@@ -25,6 +25,8 @@
 		2C24E1E4255C492100722B9C /* ShareExtension.Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C24E1E3255C492100722B9C /* ShareExtension.Sheet.swift */; };
 		2C24E1EF255C512900722B9C /* ShareExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C24E1EE255C512900722B9C /* ShareExtension.swift */; };
 		2C24E1F5255C517E00722B9C /* ShareExtension.Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C24E1F4255C517E00722B9C /* ShareExtension.Model.swift */; };
+		2C38BD802575510000C8893A /* WebView in Frameworks */ = {isa = PBXBuildFile; productRef = 2C38BD7F2575510000C8893A /* WebView */; };
+		2C38BD842575526500C8893A /* BookmarkReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C38BD832575526500C8893A /* BookmarkReader.swift */; };
 		2C40AFE92562AF8F003DA2C2 /* FolderDetail.Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C40AFE82562AF8F003DA2C2 /* FolderDetail.Sheet.swift */; };
 		2C40AFEF2562B313003DA2C2 /* FolderDetail.ContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C40AFEE2562B313003DA2C2 /* FolderDetail.ContextMenu.swift */; };
 		2C40AFF52562BEE2003DA2C2 /* FolderDetail.NoBookmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C40AFF42562BEE2003DA2C2 /* FolderDetail.NoBookmarks.swift */; };
@@ -111,6 +113,7 @@
 		2C24E1E3255C492100722B9C /* ShareExtension.Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtension.Sheet.swift; sourceTree = "<group>"; };
 		2C24E1EE255C512900722B9C /* ShareExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtension.swift; sourceTree = "<group>"; };
 		2C24E1F4255C517E00722B9C /* ShareExtension.Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtension.Model.swift; sourceTree = "<group>"; };
+		2C38BD832575526500C8893A /* BookmarkReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookmarkReader.swift; path = App/BookmarkReader.swift; sourceTree = SOURCE_ROOT; };
 		2C40AFE82562AF8F003DA2C2 /* FolderDetail.Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetail.Sheet.swift; sourceTree = "<group>"; };
 		2C40AFEE2562B313003DA2C2 /* FolderDetail.ContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetail.ContextMenu.swift; sourceTree = "<group>"; };
 		2C40AFF42562BEE2003DA2C2 /* FolderDetail.NoBookmarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetail.NoBookmarks.swift; sourceTree = "<group>"; };
@@ -139,6 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C38BD802575510000C8893A /* WebView in Frameworks */,
 				2CF72D9A255988A8002381AD /* DataField in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,6 +199,7 @@
 				2C1277DF2558484B008B8C7D /* RedeApp.swift */,
 				2C2224DC255938AE000F53C6 /* Home */,
 				2C04B4C12559655800A34D35 /* Folder Detail */,
+				2C38BD832575526500C8893A /* BookmarkReader.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -326,6 +331,7 @@
 			name = Rede;
 			packageProductDependencies = (
 				2CF72D99255988A8002381AD /* DataField */,
+				2C38BD7F2575510000C8893A /* WebView */,
 			);
 			productName = Rede;
 			productReference = 2C1277DC2558484B008B8C7D /* Rede.app */;
@@ -381,6 +387,7 @@
 			packageReferences = (
 				2CF72D98255988A8002381AD /* XCRemoteSwiftPackageReference "data-field" */,
 				2C24E1E9255C4D9300722B9C /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				2C38BD7E2575510000C8893A /* XCRemoteSwiftPackageReference "SwiftUI-WebView" */,
 			);
 			productRefGroup = 2C1277DD2558484B008B8C7D /* Products */;
 			projectDirPath = "";
@@ -417,6 +424,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CDC78642564251E002FBB26 /* Home.Sheet.swift in Sources */,
+				2C38BD842575526500C8893A /* BookmarkReader.swift in Sources */,
 				2C12780625584D88008B8C7D /* Home.FolderRow.swift in Sources */,
 				2C12780225584B65008B8C7D /* PreviewData.swift in Sources */,
 				2CE41D00255DB95800AE68E2 /* BookmarkEditor.URLField.swift in Sources */,
@@ -735,6 +743,14 @@
 				minimumVersion = 2.3.2;
 			};
 		};
+		2C38BD7E2575510000C8893A /* XCRemoteSwiftPackageReference "SwiftUI-WebView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kylehickinson/SwiftUI-WebView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.0;
+			};
+		};
 		2CF72D98255988A8002381AD /* XCRemoteSwiftPackageReference "data-field" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/marcusrossel/data-field";
@@ -746,6 +762,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2C38BD7F2575510000C8893A /* WebView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C38BD7E2575510000C8893A /* XCRemoteSwiftPackageReference "SwiftUI-WebView" */;
+			productName = WebView;
+		};
 		2C609AA32573F8C7003BDBF5 /* DataField */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2CF72D98255988A8002381AD /* XCRemoteSwiftPackageReference "data-field" */;

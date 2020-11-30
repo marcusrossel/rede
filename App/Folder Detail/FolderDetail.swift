@@ -35,9 +35,10 @@ struct FolderDetail: View {
                     if !self[keyPath: bookmarks].isEmpty {
                         Section(header: Text((bookmarks == \.unreadBookmarks) ? "Unread" : "Read")) {
                             ForEach(self[keyPath: bookmarks], id: \.self) { bookmark in
-                                BookmarkRow(bookmark: bookmark)
+                                let binding = $folder.bookmarks[permanent: bookmark.id]
+                                BookmarkRow(bookmark: binding)
                                     .contextMenu {
-                                        ContextMenu(bookmark: $folder.bookmarks[permanent: bookmark.id], editMode: editMode) /*onEdit:*/ {
+                                        ContextMenu(bookmark: binding, editMode: editMode) /*onEdit:*/ {
                                             sheet = .edit(bookmark: $0)
                                         }
                                     }
