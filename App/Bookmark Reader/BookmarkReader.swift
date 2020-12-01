@@ -12,6 +12,10 @@ struct BookmarkReader: View {
     
     @StateObject private var storage: Storage = .shared
     @StateObject private var store = WebViewStore()
+    
+    @State private var showToolbar = true
+    @StateObject private var scrollHandler = ScrollHandler()
+    
     @Environment(\.presentationMode) private var presentationMode
     
     @Binding var bookmark: Bookmark
@@ -25,28 +29,52 @@ struct BookmarkReader: View {
     }
     
     var body: some View {
-        ZStack {
-            WebView(webView: store.webView)
-                .navigationBarHidden(true)
-                .ignoresSafeArea()
-                .onAppear {
-                    let view = store.webView
-                    
-                    view.scrollView.contentInset = .init(top: 41, left: 0, bottom: 0, right: 0)
-                    view.allowsBackForwardNavigationGestures = true
-                    view.load(URLRequest(url: openableURL))
-                }
-            
-            VStack {
-                HStack {
-                    leadingButtons
-                    Spacer()
-                    trailingButtons
-                }
-                .font(.system(size: 20, weight: .medium, design: .rounded))
-                .background(Blur().ignoresSafeArea())
+        GeometryReader { proxy in
+            ZStack {
+                WebView(webView: store.webView)
+                    .navigationBarHidden(true)
+                    .ignoresSafeArea()
+                    .onAppear {
+                        let view = store.webView
+                        
+                        scrollHandler.webView = view
+                        scrollHandler.onFastScroll = { direction in
+                            let directionIsUp = direction == .up
+                            guard showToolbar != directionIsUp else { return }
+                            withAnimation(.linear(duration: 0.1)) { showToolbar = directionIsUp }
+                        }
+                        
+                        view.scrollView.contentInset =
+                            .init(top: proxy.safeAreaInsets.top, left: 0, bottom: 0, right: 0)
+                        view.allowsBackForwardNavigationGestures = true
+                        view.load(URLRequest(url: openableURL))
+                    }
                 
-                Spacer()
+                VStack {
+                    if showToolbar {
+                        HStack {
+                            leadingButtons
+                            Spacer()
+                            trailingButtons
+                        }
+                        .transition(.move(edge: .top))
+                        .font(.system(size: 20, weight: .medium, design: .rounded))
+                        .background(Blur().ignoresSafeArea())
+                        
+                    // WORKAROUND
+                    // Until `.statusBar(hidden:)` is fixed: https://developer.apple.com/forums/thread/653153
+                    } else {
+                        Blur()
+                            .ignoresSafeArea()
+                            .frame(maxHeight: 0)
+                    }
+                    
+                    Spacer()
+                }
+                .onChange(of: showToolbar) { toolbarIsShowing in
+                    store.webView.scrollView.contentInset =
+                        .init(top: toolbarIsShowing ? proxy.safeAreaInsets.top : 0, left: 0, bottom: 0, right: 0)
+                }
             }
         }
     }
@@ -115,15 +143,5 @@ struct BookmarkReader: View {
                     .contentShape(Rectangle())
             }
         }
-    }
-}
-
-struct Blur: UIViewRepresentable {
-    var style: UIBlurEffect.Style = .systemMaterial
-    func makeUIView(context: Context) -> UIVisualEffectView {
-        return UIVisualEffectView(effect: UIBlurEffect(style: style))
-    }
-    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
-        uiView.effect = UIBlurEffect(style: style)
     }
 }

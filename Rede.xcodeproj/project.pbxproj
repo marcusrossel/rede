@@ -25,6 +25,8 @@
 		2C24E1E4255C492100722B9C /* ShareExtension.Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C24E1E3255C492100722B9C /* ShareExtension.Sheet.swift */; };
 		2C24E1EF255C512900722B9C /* ShareExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C24E1EE255C512900722B9C /* ShareExtension.swift */; };
 		2C24E1F5255C517E00722B9C /* ShareExtension.Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C24E1F4255C517E00722B9C /* ShareExtension.Model.swift */; };
+		2C261AC82576A145004D53C9 /* BookmarkReader.ScrollHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C261AC72576A145004D53C9 /* BookmarkReader.ScrollHandler.swift */; };
+		2C261ACE2576A195004D53C9 /* BookmarkReader.Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C261ACD2576A195004D53C9 /* BookmarkReader.Blur.swift */; };
 		2C38BD802575510000C8893A /* WebView in Frameworks */ = {isa = PBXBuildFile; productRef = 2C38BD7F2575510000C8893A /* WebView */; };
 		2C38BD842575526500C8893A /* BookmarkReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C38BD832575526500C8893A /* BookmarkReader.swift */; };
 		2C40AFE92562AF8F003DA2C2 /* FolderDetail.Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C40AFE82562AF8F003DA2C2 /* FolderDetail.Sheet.swift */; };
@@ -113,7 +115,9 @@
 		2C24E1E3255C492100722B9C /* ShareExtension.Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtension.Sheet.swift; sourceTree = "<group>"; };
 		2C24E1EE255C512900722B9C /* ShareExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtension.swift; sourceTree = "<group>"; };
 		2C24E1F4255C517E00722B9C /* ShareExtension.Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExtension.Model.swift; sourceTree = "<group>"; };
-		2C38BD832575526500C8893A /* BookmarkReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookmarkReader.swift; path = App/BookmarkReader.swift; sourceTree = SOURCE_ROOT; };
+		2C261AC72576A145004D53C9 /* BookmarkReader.ScrollHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkReader.ScrollHandler.swift; sourceTree = "<group>"; };
+		2C261ACD2576A195004D53C9 /* BookmarkReader.Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkReader.Blur.swift; sourceTree = "<group>"; };
+		2C38BD832575526500C8893A /* BookmarkReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookmarkReader.swift; path = "App/Bookmark Reader/BookmarkReader.swift"; sourceTree = SOURCE_ROOT; };
 		2C40AFE82562AF8F003DA2C2 /* FolderDetail.Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetail.Sheet.swift; sourceTree = "<group>"; };
 		2C40AFEE2562B313003DA2C2 /* FolderDetail.ContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetail.ContextMenu.swift; sourceTree = "<group>"; };
 		2C40AFF42562BEE2003DA2C2 /* FolderDetail.NoBookmarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderDetail.NoBookmarks.swift; sourceTree = "<group>"; };
@@ -199,7 +203,7 @@
 				2C1277DF2558484B008B8C7D /* RedeApp.swift */,
 				2C2224DC255938AE000F53C6 /* Home */,
 				2C04B4C12559655800A34D35 /* Folder Detail */,
-				2C38BD832575526500C8893A /* BookmarkReader.swift */,
+				2C261AC62576A126004D53C9 /* Bookmark Reader */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -243,6 +247,16 @@
 				2C2224DD255938BF000F53C6 /* Home.FolderMerger.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		2C261AC62576A126004D53C9 /* Bookmark Reader */ = {
+			isa = PBXGroup;
+			children = (
+				2C38BD832575526500C8893A /* BookmarkReader.swift */,
+				2C261AC72576A145004D53C9 /* BookmarkReader.ScrollHandler.swift */,
+				2C261ACD2576A195004D53C9 /* BookmarkReader.Blur.swift */,
+			);
+			path = "Bookmark Reader";
 			sourceTree = "<group>";
 		};
 		2C73A9C7255C2EAA00026565 /* Share Extension */ = {
@@ -428,6 +442,7 @@
 				2C12780625584D88008B8C7D /* Home.FolderRow.swift in Sources */,
 				2C12780225584B65008B8C7D /* PreviewData.swift in Sources */,
 				2CE41D00255DB95800AE68E2 /* BookmarkEditor.URLField.swift in Sources */,
+				2C261AC82576A145004D53C9 /* BookmarkReader.ScrollHandler.swift in Sources */,
 				2C40AFF52562BEE2003DA2C2 /* FolderDetail.NoBookmarks.swift in Sources */,
 				2CE41D06255DBA0100AE68E2 /* BookmarkEditor.FavoriteButton.swift in Sources */,
 				2CF72D9125597A46002381AD /* BookmarkEditor.swift in Sources */,
@@ -437,6 +452,7 @@
 				2C50C49725630FE6001C5E49 /* FolderDetail.BarButton.swift in Sources */,
 				2C9071F1256A7B63001B0933 /* Home.BarButton.swift in Sources */,
 				2C2224DE255938BF000F53C6 /* Home.FolderMerger.swift in Sources */,
+				2C261ACE2576A195004D53C9 /* BookmarkReader.Blur.swift in Sources */,
 				2C2224D625592F21000F53C6 /* SFSymbols.swift in Sources */,
 				2C40AFE92562AF8F003DA2C2 /* FolderDetail.Sheet.swift in Sources */,
 				2C9071FB256A8371001B0933 /* Home.ContextMenu.swift in Sources */,
