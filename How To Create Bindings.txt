@@ -1,0 +1,49 @@
+How To Create Bindings
+
+Is it to a simple property? (Level 0)
+-> Make a native binding:
+$container.property
+
+Is it to an element in an array that won't change during the lifetime of the binding? (Level 1)
+-> Index into a native binding:
+$container.array[index]
+
+From this point on, bindings to specific targets don't even make sense if those elements don't have identity. 
+
+Is it to an element in an array, where the target element might change its index during the lifetime of the binding? (Level 2)
+-> Make a custom binding based on ID:
+Binding<Target> {
+    container.array.first { $0.id == targetID }!
+} set: {
+    let index = container.array.firstIndex { $0.id == targetID }!
+    container.array[index] = $0
+}
+
+Call the extension subscript(id:). 
+
+Is it to an element in an array, where the target element might change its index or be removed during the lifetime of the binding? (Level 3)
+-> Make a custom binding to an optional target based on ID:
+Binding<Target?> {
+    container.array.first { $0.id == targetID }
+} set: {
+    guard let index = container.array.firstIndex(where: { $0.id == targetID }) else { return } 
+    container.array[index] = $0
+}
+
+Call the extension subscript(volatile:)
+
+The last two options still contain race conditions in their setters. 
+
+---
+
+*Nesting* with these approaches:
+
+The maximum volatility wins! 
+And multiple levels of optionals can be flattened?
+
+Folders are level 2. 
+Boomarks are level 2. 
+
+How to practically nest:
+concatenate!
+container.array[permanent: id1].subarray[permanent: id2]

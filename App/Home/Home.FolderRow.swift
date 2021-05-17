@@ -18,9 +18,11 @@ extension Home {
                 HStack {
                     Label {
                         Text(folder.name)
+                            .font(.headline)
                     } icon: {
                         Image(systemName: folder.icon.name)
                             .foregroundColor(folder.icon.color)
+                            .font(.title3)
                     }
                     
                     Spacer()
@@ -32,6 +34,7 @@ extension Home {
                             .foregroundColor(.secondary)
                     }
                 }
+                .padding(.vertical, 8)
             }
         }
     }

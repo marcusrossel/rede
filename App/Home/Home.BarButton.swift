@@ -31,6 +31,7 @@ extension Home {
                         onNewFolder()
                     } label: {
                         Label("New Folder", systemImage: "folder.fill.badge.plus")
+                            .font(.headline)
                     }
 
                     if storage.folders.count > 1 {
